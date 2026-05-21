@@ -12,132 +12,296 @@
             background-color: #fdfbf7;
             color: #333333;
         }
-        /* 1. SELECT LANGUAGE TOP BAR */
+
+        /* 1. LANGUAGE POPUP STYLING */
+        .lang-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+        .lang-popup-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid #FF9933; /* Bhagwa Border */
+            max-width: 400px;
+            width: 90%;
+        }
+        .lang-popup-box h2 {
+            color: #7a2014;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .lang-popup-box p {
+            font-size: 1.1rem;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+        .lang-btn {
+            display: block;
+            width: 100%;
+            background-color: #FF9933; /* Bhagwa */
+            color: white;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lang-btn:hover {
+            background-color: #E67E22;
+        }
+
+        /* TOP MANUAL LANGUAGE BAR */
         .language-bar {
-            background-color: #f1ebd9;
+            background-color: #fbeed5;
             text-align: center;
             padding: 10px;
             font-weight: bold;
-            border-bottom: 1px solid #dcd1b4;
+            border-bottom: 1px solid #e3d3b0;
         }
         .language-bar span {
             margin: 0 15px;
             cursor: pointer;
             color: #7a2014;
         }
-        /* 2. MAIN HEADER (NAME, QUOTE, KHANA) */
+        .language-bar span:hover {
+            text-decoration: underline;
+        }
+
+        /* 2. MAIN HEADER (BHAGWA THEME) */
         .header-container {
             display: flex;
-            background-color: #7a2014;
+            background-color: #FF9933; /* True Bhagwa Colour */
             color: white;
             padding: 30px;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 4px solid #E67E22;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .header-container { flex-direction: column; text-align: center; }
+            .khanda-symbol { margin: 15px 0 !important; }
         }
         .header-left {
             flex: 3;
         }
+        .quote-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .quote-row { justify-content: center; }
+        }
         .header-left h3 {
-            margin: 0 0 5px 0;
+            margin: 0;
             font-style: italic;
-            color: #fbd1a2;
-            font-weight: normal;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .khanda-symbol {
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         .header-left h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         .header-right-khana {
             flex: 1;
-            background-color: #a12f20;
+            background-color: #E67E22;
             padding: 15px;
             text-align: center;
             border-radius: 6px;
-            border: 2px dashed #fbd1a2;
+            border: 2px dashed #ffffff;
+            font-size: 1.1rem;
         }
+
         /* 3. NAVIGATION GRID (4 COLUMNS) */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background-color: #333333;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .nav-grid { grid-template-columns: 1fr; }
         }
         .nav-item {
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 18px;
             text-decoration: none;
             font-weight: bold;
             border-right: 1px solid #444444;
+            font-size: 1.1rem;
         }
         .nav-item:hover {
-            background-color: #d9534f;
+            background-color: #FF9933;
         }
         .nav-item:last-child {
             border-right: none;
         }
-        /* 4. MAIN CONTENT AREA (DATA, PICS, MOTIVE) */
+
+        /* 4. MAIN CONTENT AREA */
         .main-content {
             max-width: 1000px;
             margin: 30px auto;
-            padding: 20px;
+            padding: 30px;
             background: white;
             border: 1px solid #e6dfd3;
             border-radius: 8px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
         .image-placeholder {
-            background-color: #f0f0f0;
-            border: 2px dashed #cccccc;
-            padding: 60px 20px;
-            margin: 20px 0;
+            background-color: #f9f9f9;
+            border: 2px dashed #FF9933;
+            padding: 80px 20px;
+            margin: 25px 0;
             color: #666666;
+            border-radius: 6px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Select Language -->
-    <div class="language-bar">
-        Select Language: <span>Hindi</span> | <span>English</span> | <span>Marathi</span>
+    <!-- 1. INTRODUCTORY LANGUAGE POPUP -->
+    <div class="lang-popup-overlay" id="langPopup">
+        <div class="lang-popup-box">
+            <h2>जय माता दी / सत श्री अकाल</h2>
+            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
+            <button class="lang-btn" onclick="setLanguage('hi')">हिंदी (Hindi)</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('mr')">मराठी (Marathi)</button>
+        </div>
     </div>
 
-    <!-- 2. Header (Quote, Name, Khana) -->
+    <!-- Quick Manual Language Switcher Bar -->
+    <div class="language-bar">
+        भाषा बदलें / Change Language: 
+        <span onclick="setLanguage('hi')">हिंदी</span> | 
+        <span onclick="setLanguage('en')">English</span> | 
+        <span onclick="setLanguage('mr')">मराठी</span>
+    </div>
+
+    <!-- 2. Header (Quote, Khanda, Name, Khana Seva) -->
     <div class="header-container">
         <div class="header-left">
-            <h3>"मानव सेवा ही माधव सेवा है" / "Service to Humanity is Service to God"</h3>
-            <h1>संत मोनी बाबा साहिब वृद्धानन्द आश्रम</h1>
+            <div class="quote-row">
+                <h3 id="quoteText">"मानव सेवा ही माधव सेवा है"</h3>
+                <span class="khanda-symbol">☬</span>
+            </div>
+            <h1 id="mainTitle">संत मोनी बाबा साहिब वृद्धानन्द आश्रम</h1>
         </div>
-        <div class="header-right-khana">
-            <strong>निःशुल्क लंगर</strong><br>Free Food Seva
+        <div id="langarBadge" class="header-right-khana">
+            <strong>निःशुल्क लंगर सेवा</strong>
         </div>
     </div>
 
     <!-- 3. Navigation Grid Buttons -->
     <div class="nav-grid">
-        <a href="#" class="nav-item" style="background-color: #d9534f;">Donate Us</a>
-        <a href="#" class="nav-item">Volunteer</a>
-        <a href="#" class="nav-item">Contact Us</a>
-        <a href="#" class="nav-item">Help / About Us</a>
+        <a href="#" id="navDonate" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
+        <a href="#" id="navVolunteer" class="nav-item">स्वयंसेवक बनें</a>
+        <a href="#" id="navContact" class="nav-item">संपर्क करें</a>
+        <a href="#" id="navAbout" class="nav-item">हमारे बारे में</a>
     </div>
 
-    <!-- 4. Main Body (Data, Pics, Motive) -->
+    <!-- 4. Main Body Content Area -->
     <div class="main-content">
-        <h2>Our Mission & Motive (हमारा उद्देश्य)</h2>
-        <p>This section is for your organization's detailed information, background updates, and daily data updates.</p>
+        <h2 id="contentHeading">आश्रम में आपका स्वागत है</h2>
+        <p id="contentText1">यह खंड आपके संगठन की विस्तृत जानकारी, दैनिक गतिविधियों और समाचारों को प्रदर्शित करने के लिए है।</p>
         
-        <!-- Placeholder where your photos will go -->
-        <div class="image-placeholder">
-            📸 [ Ashram & Langar Photos Will Be Displayed Here ]
+        <!-- Photo Section Placement -->
+        <div id="photoPlaceholder" class="image-placeholder">
+            📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]
         </div>
         
-        <p>More detailed text about Sant Moni Baba's spiritual journey and vision goes right here.</p>
+        <p id="contentText2">परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
     </div>
+
+    <!-- TRANSITION SCRIPT FOR DYNAMIC TRANSLATION -->
+    <script>
+        // Language Database Content
+        const translations = {
+            hi: {
+                quote: '"मानव सेवा ही माधव सेवा है"',
+                title: 'संत मोनी बाबा साहिब वृद्धानन्द आश्रम',
+                langar: '<strong>निःशुल्क लंगर सेवा</strong>',
+                donate: 'दान दें (Donate)',
+                volunteer: 'स्वयंसेवक बनें',
+                contact: 'संपर्क करें',
+                about: 'हमारे बारे में',
+                heading: 'आश्रम में आपका स्वागत है',
+                txt1: 'यह खंड आपके संगठन की विस्तृत जानकारी, दैनिक गतिविधियों और समाचारों को प्रदर्शित करने के लिए है।',
+                pics: '📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]',
+                txt2: 'परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।'
+            },
+            en: {
+                quote: '"Service to Humanity is Service to God"',
+                title: 'Sant Moni Baba Sahib Vriddhanand Ashram',
+                langar: '<strong>Free Langar Seva</strong>',
+                donate: 'Donate Us',
+                volunteer: 'Volunteer',
+                contact: 'Contact Us',
+                about: 'Help / About Us',
+                heading: 'Welcome to the Ashram',
+                txt1: 'This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.',
+                pics: '📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]',
+                txt2: 'Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.'
+            },
+            mr: {
+                quote: '"मानव सेवा ही खरी ईश्वर सेवा आहे"',
+                title: 'संत मोनी बाबा साहिब वृद्धानंद आश्रम',
+                langar: '<strong>मोफत लंगर सेवा</strong>',
+                donate: 'देणगी द्या (Donate)',
+                volunteer: 'स्वयंसेवक व्हा',
+                contact: 'संपर्क करा',
+                about: 'आमच्याबद्दल माहिती',
+                heading: 'आश्रमात आपले स्वागत आहे',
+                txt1: 'हा विभाग आपल्या संस्थेची सविस्तर माहिती, दैनंदिन उपक्रम आणि बातम्या प्रदर्शित करण्यासाठी आहे.',
+                pics: '📸 [ संत मोनी बाबा आश्रम आणि लंगर सेवेचे फोटो येथे दिसतील ]',
+                txt2: 'परम पूज्य संत मोनी बाबा जी यांच्या आशीर्वाद आणि प्रेरणेने हे पवित्र कार्य निरंतर सुरू आहे.'
+            }
+        };
+
+        // Function to switch language instantly on click
+        function setLanguage(lang) {
+            // Hide the startup popup window
+            document.getElementById('langPopup').style.display = 'none';
+            
+            // Map text areas directly to chosen language database keys
+            document.getElementById('quoteText').innerText = translations[lang].quote;
+            document.getElementById('mainTitle').innerText = translations[lang].title;
+            document.getElementById('langarBadge').innerHTML = translations[lang].langar;
+            document.getElementById('navDonate').innerText = translations[lang].donate;
+            document.getElementById('navVolunteer').innerText = translations[lang].volunteer;
+            document.getElementById('navContact').innerText = translations[lang].contact;
+            document.getElementById('navAbout').innerText = translations[lang].about;
+            document.getElementById('contentHeading').innerText = translations[lang].heading;
+            document.getElementById('contentText1').innerText = translations[lang].txt1;
+            document.getElementById('photoPlaceholder').innerText = translations[lang].pics;
+            document.getElementById('contentText2').innerText = translations[lang].txt2;
+        }
+    </script>
 
 </body>
 </html>
