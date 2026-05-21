@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sant Moni Baba Sahib Vriddhanand Ashram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7;
+            color: #333333;
+        }
+        /* 1. SELECT LANGUAGE TOP BAR */
+        .language-bar {
+            background-color: #f1ebd9;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #dcd1b4;
+        }
+        .language-bar span {
+            margin: 0 15px;
+            cursor: pointer;
+            color: #7a2014;
+        }
+        /* 2. MAIN HEADER (NAME, QUOTE, KHANA) */
+        .header-container {
+            display: flex;
+            background-color: #7a2014;
+            color: white;
+            padding: 30px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; text-align: center; }
+        }
+        .header-left {
+            flex: 3;
+        }
+        .header-left h3 {
+            margin: 0 0 5px 0;
+            font-style: italic;
+            color: #fbd1a2;
+            font-weight: normal;
+        }
+        .header-left h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .header-right-khana {
+            flex: 1;
+            background-color: #a12f20;
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px;
+            border: 2px dashed #fbd1a2;
+        }
+        /* 3. NAVIGATION GRID (4 COLUMNS) */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background-color: #333333;
+        }
+        @media (max-width: 600px) {
+            .nav-grid { grid-template-columns: 1fr; }
+        }
+        .nav-item {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-right: 1px solid #444444;
+        }
+        .nav-item:hover {
+            background-color: #d9534f;
+        }
+        .nav-item:last-child {
+            border-right: none;
+        }
+        /* 4. MAIN CONTENT AREA (DATA, PICS, MOTIVE) */
+        .main-content {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #e6dfd3;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .image-placeholder {
+            background-color: #f0f0f0;
+            border: 2px dashed #cccccc;
+            padding: 60px 20px;
+            margin: 20px 0;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Select Language -->
+    <div class="language-bar">
+        Select Language: <span>Hindi</span> | <span>English</span> | <span>Marathi</span>
+    </div>
+
+    <!-- 2. Header (Quote, Name, Khana) -->
+    <div class="header-container">
+        <div class="header-left">
+            <h3>"मानव सेवा ही माधव सेवा है" / "Service to Humanity is Service to God"</h3>
+            <h1>संत मोनी बाबा साहिब वृद्धानन्द आश्रम</h1>
+        </div>
+        <div class="header-right-khana">
+            <strong>निःशुल्क लंगर</strong><br>Free Food Seva
+        </div>
+    </div>
+
+    <!-- 3. Navigation Grid Buttons -->
+    <div class="nav-grid">
+        <a href="#" class="nav-item" style="background-color: #d9534f;">Donate Us</a>
+        <a href="#" class="nav-item">Volunteer</a>
+        <a href="#" class="nav-item">Contact Us</a>
+        <a href="#" class="nav-item">Help / About Us</a>
+    </div>
+
+    <!-- 4. Main Body (Data, Pics, Motive) -->
+    <div class="main-content">
+        <h2>Our Mission & Motive (हमारा उद्देश्य)</h2>
+        <p>This section is for your organization's detailed information, background updates, and daily data updates.</p>
+        
+        <!-- Placeholder where your photos will go -->
+        <div class="image-placeholder">
+            📸 [ Ashram & Langar Photos Will Be Displayed Here ]
+        </div>
+        
+        <p>More detailed text about Sant Moni Baba's spiritual journey and vision goes right here.</p>
+    </div>
+
+</body>
+</html>
