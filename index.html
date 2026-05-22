@@ -32,7 +32,7 @@
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 4px solid #FF9933; /* Bhagwa Border */
+            border: 4px solid #FF9933;
             max-width: 400px;
             width: 90%;
         }
@@ -49,7 +49,7 @@
         .lang-btn {
             display: block;
             width: 100%;
-            background-color: #FF9933; /* Bhagwa */
+            background-color: #FF9933;
             color: white;
             border: none;
             padding: 15px;
@@ -81,10 +81,10 @@
             text-decoration: underline;
         }
 
-        /* 2. MAIN HEADER (BHAGWA THEME WITH IMAGE, CENTERED TITLE, RIGHT SYMBOL) */
+        /* 2. MAIN HEADER */
         .header-container {
             display: flex;
-            background-color: #FF9933; /* True Bhagwa Colour */
+            background-color: #FF9933;
             color: white;
             padding: 25px 30px;
             align-items: center;
@@ -161,7 +161,7 @@
             line-height: 1;
         }
 
-        /* 3. NAVIGATION GRID (4 COLUMNS) */
+        /* 3. NAVIGATION GRID */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -178,6 +178,7 @@
             font-weight: bold;
             border-right: 1px solid #444444;
             font-size: 1.1rem;
+            cursor: pointer;
         }
         .nav-item:hover {
             background-color: #FF9933;
@@ -205,6 +206,59 @@
             color: #666666;
             border-radius: 6px;
             font-size: 1.2rem;
+        }
+
+        /* DIGITAL REGISTRATION FORM BOX */
+        .form-section {
+            background-color: #fff9f2;
+            border: 2px solid #ffdec2;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-section h3 {
+            margin-top: 0;
+            color: #7a2014;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #FF9933;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444444;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .submit-btn {
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #E67E22;
         }
     </style>
 </head>
@@ -245,12 +299,12 @@
         </div>
     </div>
 
-    <!-- 3. Navigation Grid Buttons (FIXED GRID ARRANGE HERE) -->
+    <!-- 3. Navigation Grid Buttons -->
     <div class="nav-grid">
-        <a href="#" id="navDonate" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
-        <a href="#" id="navRegister" class="nav-item">अपनों का पंजीकरण करें</a>
-        <a href="#" id="navContact" class="nav-item">संपर्क करें</a>
-        <a href="#" id="navAbout" class="nav-item">हमारे बारे में</a>
+        <a id="navDonate" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
+        <a href="#registerSection" id="navRegister" class="nav-item">अपनों का पंजीकरण करें</a>
+        <a id="navContact" class="nav-item">संपर्क करें</a>
+        <a id="navAbout" class="nav-item">हमारे बारे में</a>
     </div>
 
     <!-- 4. Main Body Content Area -->
@@ -262,33 +316,8 @@
             📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]
         </div>
         
-        <p id="contentText2">परम पूज्य संत मोनी बाबा जी के आशीर्वाद and प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
-    </div>
+        <p id="contentText2">परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
 
-    <!-- TRANSITION SCRIPT FOR DYNAMIC TRANSLATION -->
-    <script>
-        const translations = {
-            hi: {
-                quote: '"मानव सेवा ही माधव सेवा है"',
-                title: 'संत मोनी बाबा साहिब वृद्धानन्द आश्रम',
-                donate: 'दान दें (Donate)',
-                register: 'अपनों का पंजीकरण करें',
-                contact: 'संपर्क करें',
-                about: 'हमारे बारे में',
-                heading: 'आश्रम में आपका स्वागत है',
-                txt1: 'यह खंड आपके संगठन की विस्तृत जानकारी, दैनिक गतिविधियों और समाचारों को प्रदर्शित करने के लिए है।',
-                pics: '📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]',
-                txt2: 'परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।'
-            },
-            en: {
-                quote: '"Service to Humanity is Service to God"',
-                title: 'Sant Moni Baba Sahib Vriddhanand Ashram',
-                donate: 'Donate Us',
-                register: 'Register your loved ones',
-                contact: 'Contact Us',
-                about: 'Help / About Us',
-                heading: 'Welcome to the Ashram',
-                txt1: 'This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.',
-                pics: '📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]',
+        <!-- NEW: INTERACTIVE REGISTRATION FORM SECTION -->
 
-                
+        
