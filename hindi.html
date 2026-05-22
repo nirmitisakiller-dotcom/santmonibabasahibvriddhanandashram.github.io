@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संत मोनी बाबा साहिब वृद्धानन्द आश्रम</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7;
+            color: #333333;
+        }
+
+        /* TOP LANGUAGE ROUTING BAR */
+        .language-bar {
+            background-color: #fbeed5;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 1px solid #e3d3b0;
+        }
+        .language-bar a {
+            margin: 0 15px;
+            color: #7a2014;
+            text-decoration: none;
+        }
+        .language-bar a:hover {
+            text-decoration: underline;
+        }
+        .current-lang {
+            color: #333333 !important;
+            cursor: default;
+            text-decoration: none !important;
+        }
+
+        /* MAIN HEADER (BHAGWA THEME) */
+        .header-container {
+            display: flex;
+            background-color: #FF9933; /* Bhagwa Color */
+            color: white;
+            padding: 25px 30px;
+            align-items: center;
+            border-bottom: 4px solid #E67E22;
+        }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; gap: 20px; }
+            .baba-image-box { margin-right: 0 !important; }
+            .header-right-box { margin-left: 0 !important; }
+        }
+        
+        .baba-image-box {
+            width: 100px;
+            height: 100px;
+            background-color: #fcf4e8;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a2014;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-center-title {
+            flex: 2;
+            text-align: center;
+        }
+        .header-center-title h3 {
+            margin: 0 0 10px 0;
+            font-style: italic;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .header-center-title h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        
+        .header-right-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+        .white-square {
+            background-color: #ffffff;
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .khanda-symbol {
+            font-size: 3.8rem;
+            color: #FF9933;
+            line-height: 1;
+        }
+
+        /* NAVIGATION GRID (4 COLUMNS) */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background-color: #333333;
+        }
+        @media (max-width: 768px) {
+            .nav-grid { grid-template-columns: 1fr; }
+        }
+        .nav-item {
+            color: white;
+            text-align: center;
+            padding: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            border-right: 1px solid #444444;
+            font-size: 1.1rem;
+        }
+        .nav-item:hover {
+            background-color: #FF9933;
+        }
+        .nav-item:last-child {
+            border-right: none;
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border: 1px solid #e6dfd3;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .image-placeholder {
+            background-color: #f9f9f9;
+            border: 2px dashed #FF9933;
+            padding: 80px 20px;
+            margin: 25px 0;
+            color: #666666;
+            border-radius: 6px;
+            font-size: 1.2rem;
+        }
+
+        /* REGISTRATION FORM BOX */
+        .form-section {
+            background-color: #fff9f2;
+            border: 2px solid #ffdec2;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-section h3 {
+            margin-top: 0;
+            color: #7a2014;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #FF9933;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444444;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .submit-btn {
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #E67E22;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Routing Language Switcher Bar -->
+    <div class="language-bar">
+        भाषा चुनें / Select Language: 
+        <a href="index.html">English</a> | 
+        <a href="#" class="current-lang">हिंदी (Hindi)</a> | 
+        <a href="marathi.html">मराठी (Marathi)</a>
+    </div>
+
+    <!-- Header Block -->
+    <div class="header-container">
+        <div class="baba-image-box">
+            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबा चित्र\n[Photo]';">
+        </div>
+        <div class="header-center-title">
+            <h3>"मानव सेवा ही माधव सेवा है"</h3>
+            <h1>संत मोनी बाबा साहिब वृद्धानन्द आश्रम</h1>
+        </div>
+        <div class="header-right-box">
+            <div class="white-square">
+                <span class="khanda-symbol">☬</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Grid Buttons -->
+    <div class="nav-grid">
+        <a href="#" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
+        <a href="#registerSection" class="nav-item">अपनों का पंजीकरण करें</a>
+        <a href="#" class="nav-item">संपर्क करें</a>
+        <a href="#" class="nav-item">हमारे बारे में</a>
+    </div>
+
+    <!-- Main Body Content Area -->
+    <div class="main-content">
+        <h2>आश्रम में आपका स्वागत है</h2>
+        <p>यह खंड आपके संगठन की विस्तृत जानकारी, दैनिक गतिविधियों और समाचारों को प्रदर्शित करने के लिए है।</p>
+        
+        <div class="image-placeholder">
+            📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]
+        </div>
+        
+        <p>परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
+
+        <!-- REGISTRATION FORM SECTION -->
+        <div class="form-section" id="registerSection">
+            <h3>वृद्ध जन पंजीकरण फॉर्म</h3>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('विवरण सुरक्षित किया गया!');">
+                <div class="form-group">
+                    <label for="elderName">बुजुर्ग का पूरा नाम:</label>
+                    <input type="text" id="elderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="elderAge">आयु (Age):</label>
+                    <input type="number" id="elderAge" required>
+                </div>
+                <div class="form-group">
+                    <label for="medical">स्वास्थ्य की स्थिति / बीमारियाँ:</label>
+                    <textarea id="medical" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="guardianPhone">अभिभावक / संपर्क नंबर:</label>
+                    <input type="tel" id="guardianPhone" required>
+                </div>
+                <button type="submit" class="submit-btn">पंजीकरण विवरण जमा करें</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
