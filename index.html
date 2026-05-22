@@ -13,6 +13,59 @@
             color: #333333;
         }
 
+        /* 1. INTRODUCTORY LANGUAGE POPUP OVERLAY */
+        .lang-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+        }
+        .lang-popup-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid #FF9933;
+            max-width: 400px;
+            width: 90%;
+        }
+        .lang-popup-box h2 {
+            color: #7a2014;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .lang-popup-box p {
+            font-size: 1.1rem;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+        .lang-btn {
+            display: block;
+            width: 100%;
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .lang-btn:hover {
+            background-color: #E67E22;
+        }
+
         /* TOP LANGUAGE ROUTING BAR */
         .language-bar {
             background-color: #fbeed5;
@@ -35,10 +88,10 @@
             text-decoration: none !important;
         }
 
-        /* MAIN HEADER (BHAGWA THEME) */
+        /* 2. MAIN HEADER (BHAGWA THEME WITH LOGO) */
         .header-container {
             display: flex;
-            background-color: #FF9933; /* Bhagwa Color */
+            background-color: #FF9933;
             color: white;
             padding: 25px 30px;
             align-items: center;
@@ -51,22 +104,19 @@
         }
         
         .baba-image-box {
-            width: 100px;
-            height: 100px;
-            background-color: #fcf4e8;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7a2014;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-align: center;
             flex-shrink: 0;
             margin-right: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .baba-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .header-center-title {
@@ -108,7 +158,7 @@
             line-height: 1;
         }
 
-        /* NAVIGATION GRID (4 COLUMNS) */
+        /* 3. NAVIGATION GRID (4 COLUMNS) */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -133,7 +183,7 @@
             border-right: none;
         }
 
-        /* MAIN CONTENT AREA */
+        /* 4. MAIN CONTENT AREA */
         .main-content {
             max-width: 1000px;
             margin: 30px auto;
@@ -153,62 +203,20 @@
             border-radius: 6px;
             font-size: 1.2rem;
         }
-
-        /* REGISTRATION FORM BOX */
-        .form-section {
-            background-color: #fff9f2;
-            border: 2px solid #ffdec2;
-            border-radius: 8px;
-            padding: 30px;
-            margin-top: 40px;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-section h3 {
-            margin-top: 0;
-            color: #7a2014;
-            text-align: center;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #FF9933;
-            padding-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #444444;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-        .submit-btn {
-            background-color: #FF9933;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background-color: #E67E22;
-        }
     </style>
 </head>
 <body>
+
+    <!-- SAFE INTRODUCTORY LANGUAGE POPUP OVERLAY -->
+    <div class="lang-popup-overlay" id="langPopup">
+        <div class="lang-popup-box">
+            <h2>जय माता दी / सत श्री अकाल</h2>
+            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
+            <a href="hindi.html" class="lang-btn">हिंदी (Hindi)</a>
+            <button class="lang-btn" onclick="document.getElementById('langPopup').style.display='none'">English</button>
+            <a href="marathi.html" class="lang-btn">मराठी (Marathi)</a>
+        </div>
+    </div>
 
     <!-- Top Routing Language Switcher Bar -->
     <div class="language-bar">
@@ -221,7 +229,7 @@
     <!-- Header Block -->
     <div class="header-container">
         <div class="baba-image-box">
-            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='Baba Photo';">
+            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='Baba Logo';">
         </div>
         <div class="header-center-title">
             <h3>"Service to Humanity is Service to God"</h3>
@@ -237,7 +245,7 @@
     <!-- Navigation Grid Buttons -->
     <div class="nav-grid">
         <a href="#" class="nav-item" style="background-color: #E67E22;">Donate Us</a>
-        <a href="#registerSection" class="nav-item">Register your loved ones</a>
+        <a href="https://google.com" target="_blank" class="nav-item">Register your loved ones</a>
         <a href="#" class="nav-item">Contact Us</a>
         <a href="#" class="nav-item">Help / About Us</a>
     </div>
@@ -252,30 +260,6 @@
         </div>
         
         <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
-
-        <!-- REGISTRATION FORM SECTION -->
-        <div class="form-section" id="registerSection">
-            <h3>Elder Registration Form</h3>
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Details Saved Successfully!');">
-                <div class="form-group">
-                    <label for="elderName">Full Name of Elder:</label>
-                    <input type="text" id="elderName" required>
-                </div>
-                <div class="form-group">
-                    <label for="elderAge">Age:</label>
-                    <input type="number" id="elderAge" required>
-                </div>
-                <div class="form-group">
-                    <label for="medical">Medical History / Conditions:</label>
-                    <textarea id="medical" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="guardianPhone">Guardian / Contact Number:</label>
-                    <input type="tel" id="guardianPhone" required>
-                </div>
-                <button type="submit" class="submit-btn">Submit Registration Details</button>
-            </form>
-        </div>
     </div>
 
 </body>
