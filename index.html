@@ -25,6 +25,7 @@
             justify-content: center;
             align-items: center;
             z-index: 100000;
+            display: none; /* Controlled dynamically by memory script below */
         }
         .lang-popup-box {
             background-color: #ffffff;
@@ -103,20 +104,24 @@
             .header-right-box { margin-left: 0 !important; }
         }
         
+        /* FIXED PERFECT CIRCLE container to completely mask out the square white edges */
         .baba-image-box {
             width: 120px;
             height: 120px;
+            border-radius: 50%; /* Perfect circle cut */
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             margin-right: 20px;
             overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         .baba-image-box img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover; /* Spreads inside the circular frame beautifully */
         }
 
         .header-center-title {
@@ -207,14 +212,14 @@
 </head>
 <body>
 
-    <!-- SAFE INTRODUCTORY LANGUAGE POPUP OVERLAY -->
+    <!-- INTRODUCTORY LANGUAGE POPUP WITH MEMORY LOGIC -->
     <div class="lang-popup-overlay" id="langPopup">
         <div class="lang-popup-box">
             <h2>जय माता दी / सत श्री अकाल</h2>
             <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
-            <a href="hindi.html" class="lang-btn">हिंदी (Hindi)</a>
-            <button class="lang-btn" onclick="document.getElementById('langPopup').style.display='none'">English</button>
-            <a href="marathi.html" class="lang-btn">मराठी (Marathi)</a>
+            <a href="hindi.html" class="lang-btn" onclick="saveLanguageChoice()">हिंदी (Hindi)</a>
+            <button class="lang-btn" onclick="closeLanguagePopup()">English</button>
+            <a href="marathi.html" class="lang-btn" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
         </div>
     </div>
 
@@ -222,8 +227,8 @@
     <div class="language-bar">
         Select Site Language: 
         <a href="#" class="current-lang">English</a> | 
-        <a href="hindi.html">हिंदी (Hindi)</a> | 
-        <a href="marathi.html">मराठी (Marathi)</a>
+        <a href="hindi.html" onclick="saveLanguageChoice()">हिंदी (Hindi)</a> | 
+        <a href="marathi.html" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
     </div>
 
     <!-- Header Block -->
@@ -261,6 +266,28 @@
         
         <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
     </div>
+
+    <!-- SMART POPUP MEMORY MANAGER SCRIPT -->
+    <script>
+        // Check short-term memory on load to see if they've already picked a language
+        window.onload = function() {
+            if (!sessionStorage.getItem('languageSelected')) {
+                // Show popup only if no memory marker exists
+                document.getElementById('langPopup').style.display = 'flex';
+            }
+        };
+
+        // When choosing English, save marker and hide box smoothly
+        function closeLanguagePopup() {
+            sessionStorage.setItem('languageSelected', 'true');
+            document.getElementById('langPopup').style.display = 'none';
+        }
+
+        // When choosing Hindi/Marathi, save marker so coming back to English won't prompt popup
+        function saveLanguageChoice() {
+            sessionStorage.setItem('languageSelected', 'true');
+        }
+    </script>
 
 </body>
 </html>
