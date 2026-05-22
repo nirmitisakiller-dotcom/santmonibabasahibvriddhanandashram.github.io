@@ -96,13 +96,12 @@
             .header-right-box { margin-left: 0 !important; }
         }
         
-        /* Left Side: Baba's Photo Box Placed Perfect */
         .baba-image-box {
             width: 100px;
             height: 100px;
             background-color: #fcf4e8;
             border: 2px solid #ffffff;
-            border-radius: 50%; /* Clean circular look */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -121,7 +120,6 @@
             object-fit: cover;
         }
 
-        /* Center Side: Title and Quote Block Shifted to Middle */
         .header-center-title {
             flex: 2;
             text-align: center;
@@ -140,7 +138,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
-        /* Right Side: Large Khanda Box Container */
         .header-right-box {
             display: flex;
             align-items: center;
@@ -150,8 +147,8 @@
         }
         .white-square {
             background-color: #ffffff;
-            width: 75px;  /* Made container larger */
-            height: 75px; /* Made container larger */
+            width: 75px;
+            height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -159,8 +156,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
         .khanda-symbol {
-            font-size: 3.8rem; /* Made the symbol very large */
-            color: #FF9933;    /* Bhagwa Colored Symbol */
+            font-size: 3.8rem;
+            color: #FF9933;
             line-height: 1;
         }
 
@@ -232,33 +229,26 @@
         <span onclick="setLanguage('mr')">मराठी</span>
     </div>
 
-    <!-- 2. Header Block (Left Image Box, Centered Titles, Large Right Khanda) -->
+    <!-- 2. Header Block -->
     <div class="header-container">
-        
-        <!-- Left Side Picture Box placeholder for Baba Ji's photo -->
         <div class="baba-image-box">
             <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबा चित्र\n[Photo]';">
         </div>
-
-        <!-- Centered Text Area -->
         <div class="header-center-title">
             <h3 id="quoteText">"मानव सेवा ही माधव सेवा है"</h3>
             <h1 id="mainTitle">संत मोनी बाबा साहिब वृद्धानन्द आश्रम</h1>
         </div>
-
-        <!-- Right Side Large Khanda Box -->
         <div class="header-right-box">
             <div class="white-square">
                 <span class="khanda-symbol">☬</span>
             </div>
         </div>
-
     </div>
 
-    <!-- 3. Navigation Grid Buttons -->
+    <!-- 3. Navigation Grid Buttons (FIXED GRID ARRANGE HERE) -->
     <div class="nav-grid">
         <a href="#" id="navDonate" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
-        <a href="#" id="navVolunteer" class="nav-item">स्वयंसेवक बनें</a>
+        <a href="#" id="navRegister" class="nav-item">अपनों का पंजीकरण करें</a>
         <a href="#" id="navContact" class="nav-item">संपर्क करें</a>
         <a href="#" id="navAbout" class="nav-item">हमारे बारे में</a>
     </div>
@@ -268,23 +258,21 @@
         <h2 id="contentHeading">आश्रम में आपका स्वागत है</h2>
         <p id="contentText1">यह खंड आपके संगठन की विस्तृत जानकारी, दैनिक गतिविधियों और समाचारों को प्रदर्शित करने के लिए है।</p>
         
-        <!-- Photo Section Placement -->
         <div id="photoPlaceholder" class="image-placeholder">
             📸 [ संत मोनी बाबा आश्रम और लंगर सेवा की तस्वीरें यहाँ दिखेंगी ]
         </div>
         
-        <p id="contentText2">परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
+        <p id="contentText2">परम पूज्य संत मोनी बाबा जी के आशीर्वाद and प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
     </div>
 
     <!-- TRANSITION SCRIPT FOR DYNAMIC TRANSLATION -->
     <script>
-        // Language Database Content
         const translations = {
             hi: {
                 quote: '"मानव सेवा ही माधव सेवा है"',
                 title: 'संत मोनी बाबा साहिब वृद्धानन्द आश्रम',
                 donate: 'दान दें (Donate)',
-                volunteer: 'स्वयंसेवक बनें',
+                register: 'अपनों का पंजीकरण करें',
                 contact: 'संपर्क करें',
                 about: 'हमारे बारे में',
                 heading: 'आश्रम में आपका स्वागत है',
@@ -296,46 +284,11 @@
                 quote: '"Service to Humanity is Service to God"',
                 title: 'Sant Moni Baba Sahib Vriddhanand Ashram',
                 donate: 'Donate Us',
-                volunteer: 'Volunteer',
+                register: 'Register your loved ones',
                 contact: 'Contact Us',
                 about: 'Help / About Us',
                 heading: 'Welcome to the Ashram',
                 txt1: 'This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.',
                 pics: '📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]',
-                txt2: 'Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.'
-            },
-            mr: {
-                quote: '"मानव सेवा ही खरी ईश्वर सेवा आहे"',
-                title: 'संत मोनी बाबा साहिब वृद्धानंद आश्रम',
-                donate: 'देणगी द्या (Donate)',
-                volunteer: 'स्वयंसेवक व्हा',
-                contact: 'संपर्क करा',
-                about: 'आमच्याबद्दल माहिती',
-                heading: 'आश्रमात आपले स्वागत आहे',
-                txt1: 'हा विभाग आपल्या संस्थेची सविस्तर माहिती, दैनंदिन उपक्रम आणि बातम्या प्रदर्शित करण्यासाठी आहे.',
-                pics: '📸 [ संत मोनी बाबा आश्रम आणि लंगर सेवेचे फोटो येथे दिसतील ]',
-                txt2: 'परम पूज्य संत मोनी बाबा जी यांच्या आशीर्वाद आणि प्रेरणेने हे पवित्र कार्य निरंतर सुरू आहे.'
-            }
-        };
 
-        // Function to switch language instantly on click
-        function setLanguage(lang) {
-            // Hide the startup popup window
-            document.getElementById('langPopup').style.display = 'none';
-            
-            // Map text areas directly to chosen language database keys
-            document.getElementById('quoteText').innerText = translations[lang].quote;
-            document.getElementById('mainTitle').innerText = translations[lang].title;
-            document.getElementById('navDonate').innerText = translations[lang].donate;
-            document.getElementById('navVolunteer').innerText = translations[lang].volunteer;
-            document.getElementById('navContact').innerText = translations[lang].contact;
-            document.getElementById('navAbout').innerText = translations[lang].about;
-            document.getElementById('contentHeading').innerText = translations[lang].heading;
-            document.getElementById('contentText1').innerText = translations[lang].txt1;
-            document.getElementById('photoPlaceholder').innerText = translations[lang].pics;
-            document.getElementById('contentText2').innerText = translations[lang].txt2;
-        }
-    </script>
-
-</body>
-</html>
+                
