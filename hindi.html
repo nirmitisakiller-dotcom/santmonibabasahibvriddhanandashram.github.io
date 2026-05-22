@@ -50,23 +50,24 @@
             .header-right-box { margin-left: 0 !important; }
         }
         
+        /* FIXED PERFECT CIRCLE LOGO FRAME */
         .baba-image-box {
-            width: 100px;
-            height: 100px;
-            background-color: #fcf4e8;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Perfect circle cut */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7a2014;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-align: center;
             flex-shrink: 0;
             margin-right: 20px;
             overflow: hidden;
+            background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .baba-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fits your circular portrait perfectly */
         }
 
         .header-center-title {
@@ -153,59 +154,6 @@
             border-radius: 6px;
             font-size: 1.2rem;
         }
-
-        /* REGISTRATION FORM BOX */
-        .form-section {
-            background-color: #fff9f2;
-            border: 2px solid #ffdec2;
-            border-radius: 8px;
-            padding: 30px;
-            margin-top: 40px;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-section h3 {
-            margin-top: 0;
-            color: #7a2014;
-            text-align: center;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #FF9933;
-            padding-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #444444;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-        .submit-btn {
-            background-color: #FF9933;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .submit-btn:hover {
-            background-color: #E67E22;
-        }
     </style>
 </head>
 <body>
@@ -213,9 +161,9 @@
     <!-- Top Routing Language Switcher Bar -->
     <div class="language-bar">
         भाषा चुनें / Select Language: 
-        <a href="index.html">English</a> | 
+        <a href="index.html" onclick="sessionStorage.setItem('languageSelected', 'true');">English</a> | 
         <a href="#" class="current-lang">हिंदी (Hindi)</a> | 
-        <a href="marathi.html">मराठी (Marathi)</a>
+        <a href="marathi.html" onclick="sessionStorage.setItem('languageSelected', 'true');">मराठी (Marathi)</a>
     </div>
 
     <!-- Header Block -->
@@ -237,7 +185,7 @@
     <!-- Navigation Grid Buttons -->
     <div class="nav-grid">
         <a href="#" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
-        <a href="#registerSection" class="nav-item">अपनों का पंजीकरण करें</a>
+        <a href="https://google.com" target="_blank" class="nav-item">अपनों का पंजीकरण करें</a>
         <a href="#" class="nav-item">संपर्क करें</a>
         <a href="#" class="nav-item">हमारे बारे में</a>
     </div>
@@ -252,30 +200,6 @@
         </div>
         
         <p>परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर आगे बढ़ाया जा रहा है।</p>
-
-        <!-- REGISTRATION FORM SECTION -->
-        <div class="form-section" id="registerSection">
-            <h3>वृद्ध जन पंजीकरण फॉर्म</h3>
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('विवरण सुरक्षित किया गया!');">
-                <div class="form-group">
-                    <label for="elderName">बुजुर्ग का पूरा नाम:</label>
-                    <input type="text" id="elderName" required>
-                </div>
-                <div class="form-group">
-                    <label for="elderAge">आयु (Age):</label>
-                    <input type="number" id="elderAge" required>
-                </div>
-                <div class="form-group">
-                    <label for="medical">स्वास्थ्य की स्थिति / बीमारियाँ:</label>
-                    <textarea id="medical" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="guardianPhone">अभिभावक / संपर्क नंबर:</label>
-                    <input type="tel" id="guardianPhone" required>
-                </div>
-                <button type="submit" class="submit-btn">पंजीकरण विवरण जमा करें</button>
-            </form>
-        </div>
     </div>
 
 </body>
