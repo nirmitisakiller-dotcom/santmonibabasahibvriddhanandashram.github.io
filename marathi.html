@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sant Moni Baba Sahib Vriddhanand Ashram</title>
+    <title>संत मोनी बाबा साहिब वृद्धानंद आश्रम</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,56 +12,6 @@
             background-color: #fdfbf7;
             color: #333333;
         }
-        .lang-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100000;
-            display: none;
-        }
-        .lang-popup-box {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 4px solid #FF9933;
-            max-width: 400px;
-            width: 90%;
-        }
-        .lang-popup-box h2 {
-            color: #7a2014;
-            margin-top: 0;
-            font-size: 1.8rem;
-        }
-        .lang-popup-box p {
-            font-size: 1.1rem;
-            color: #555555;
-            margin-bottom: 25px;
-        }
-        .lang-btn {
-            display: block;
-            width: 100%;
-            background-color: #FF9933;
-            color: white;
-            border: none;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        .lang-btn:hover { background-color: #E67E22; }
         .language-bar {
             background-color: #fbeed5;
             text-align: center;
@@ -228,30 +178,20 @@
 </head>
 <body>
 
-    <div class="lang-popup-overlay" id="langPopup">
-        <div class="lang-popup-box">
-            <h2>जय माता दी / सत श्री अकाल</h2>
-            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
-            <a href="hindi.html" class="lang-btn" onclick="saveLanguageChoice()">हिंदी (Hindi)</a>
-            <button class="lang-btn" onclick="closeLanguagePopup()">English</button>
-            <a href="marathi.html" class="lang-btn" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
-        </div>
-    </div>
-
     <div class="language-bar">
-        Select Site Language: 
-        <a href="#" class="current-lang">English</a> | 
-        <a href="hindi.html" onclick="saveLanguageChoice()">हिंदी (Hindi)</a> | 
-        <a href="marathi.html" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
+        भाषा निवडा / Select Language: 
+        <a href="index.html" onclick="sessionStorage.setItem('languageSelected', 'true');">English</a> | 
+        <a href="hindi.html" onclick="sessionStorage.setItem('languageSelected', 'true');">हिंदी (Hindi)</a> | 
+        <a href="#" class="current-lang">मराठी (Marathi)</a>
     </div>
 
     <div class="header-container">
         <div class="baba-image-box">
-            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='Baba Logo';">
+            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबांचे छायाचित्र';">
         </div>
         <div class="header-center-title">
-            <h3>"Service to Humanity is Service to God"</h3>
-            <h1>Sant Moni Baba Sahib Vriddhanand Ashram</h1>
+            <h3>"मानव सेवा ही खरी ईश्वर सेवा आहे"</h3>
+            <h1>संत मोनी बाबा साहिब वृद्धानंद आश्रम</h1>
         </div>
         <div class="header-right-box">
             <div class="white-square">
@@ -261,60 +201,46 @@
     </div>
 
     <div class="nav-grid">
-        <a href="#" class="nav-item" style="background-color: #E67E22;">Donate Us</a>
-        <a href="#registerSection" class="nav-item">Register your loved ones</a>
-        <a href="#" class="nav-item">Contact Us</a>
-        <a href="#" class="nav-item">Help / About Us</a>
+        <a href="#" class="nav-item" style="background-color: #E67E22;">देणगी द्या (Donate)</a>
+        <a href="#registerSection" class="nav-item">आपल्या जवळच्या व्यक्तींची नोंदणी करा</a>
+        <a href="#" class="nav-item">संपर्क करा</a>
+        <a href="#" class="nav-item">आमच्याबद्दल माहिती</a>
     </div>
 
     <div class="main-content">
-        <h2>Welcome to the Ashram</h2>
-        <p>This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.</p>
+        <h2>आश्रम मध्ये आपले स्वागत आहे</h2>
+        <p>हा विभाग आपल्या संस्थेची सविस्तर माहिती, दैनंदिन उपक्रम आणि बातम्या प्रदर्शित करण्यासाठी आहे.</p>
         
         <div class="image-placeholder">
-            📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]
+            📸 [ संत मोनी बाबा आश्रम आणि लंगर सेवेचे फोटो येथे दिसतील ]
         </div>
         
-        <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
+        <p>परम पूज्य संत मोनी बाबा जी यांच्या आशीर्वाद आणि प्रेरणेने हे पवित्र कार्य निरंतर सुरू आहे.</p>
 
         <div class="form-section" id="registerSection">
-            <h3>Elder Registration Form</h3>
+            <h3>वृद्ध व्यक्ती नोंदणी अर्ज</h3>
             <form action="https://formspree.io" method="POST">
                 <div class="form-group">
-                    <label for="elderName">Full Name of Elder:</label>
+                    <label for="elderName">बुजुर्ग व्यक्तीचे पूर्ण नाव:</label>
                     <input type="text" name="Elder Name" id="elderName" required>
                 </div>
                 <div class="form-group">
-                    <label for="elderAge">Age:</label>
+                    <label for="elderAge">वय (Age):</label>
                     <input type="number" name="Age" id="elderAge" required>
                 </div>
                 <div class="form-group">
-                    <label for="medical">Medical History / Conditions:</label>
+                    <label for="medical">शारीरिक स्थिती / आजारपण:</label>
                     <textarea name="Medical Issues" id="medical" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="guardianPhone">Guardian / Contact Number:</label>
+                    <label for="guardianPhone">पालक / संपर्क क्रमांक:</label>
                     <input type="tel" name="Contact Number" id="guardianPhone" required>
                 </div>
-                <button type="submit" class="submit-btn">Submit Registration Details</button>
+                <button type="submit" class="submit-btn">नोंदणी अर्ज पाठवा</button>
             </form>
         </div>
     </div>
 
-    <script>
-        window.onload = function() {
-            if (!sessionStorage.getItem('languageSelected')) {
-                document.getElementById('langPopup').style.display = 'flex';
-            }
-        };
-        function closeLanguagePopup() {
-            sessionStorage.setItem('languageSelected', 'true');
-            document.getElementById('langPopup').style.display = 'none';
-        }
-        function saveLanguageChoice() {
-            sessionStorage.setItem('languageSelected', 'true');
-        }
-    </script>
-
 </body>
 </html>
+
