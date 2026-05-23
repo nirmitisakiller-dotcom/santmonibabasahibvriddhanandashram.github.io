@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संत मोनी बाबा साहिब वृद्धानंद आश्रम</title>
+    <title>Sant Moni Baba Sahib Vriddhanand Ashram</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,8 +12,56 @@
             background-color: #fdfbf7;
             color: #333333;
         }
-
-        /* TOP LANGUAGE ROUTING BAR */
+        .lang-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            display: none;
+        }
+        .lang-popup-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid #FF9933;
+            max-width: 400px;
+            width: 90%;
+        }
+        .lang-popup-box h2 {
+            color: #7a2014;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .lang-popup-box p {
+            font-size: 1.1rem;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+        .lang-btn {
+            display: block;
+            width: 100%;
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .lang-btn:hover { background-color: #E67E22; }
         .language-bar {
             background-color: #fbeed5;
             text-align: center;
@@ -26,19 +74,15 @@
             color: #7a2014;
             text-decoration: none;
         }
-        .language-bar a:hover {
-            text-decoration: underline;
-        }
+        .language-bar a:hover { text-decoration: underline; }
         .current-lang {
             color: #333333 !important;
             cursor: default;
             text-decoration: none !important;
         }
-
-        /* MAIN HEADER (BHAGWA THEME) */
         .header-container {
             display: flex;
-            background-color: #FF9933; /* Bhagwa Color */
+            background-color: #FF9933;
             color: white;
             padding: 25px 30px;
             align-items: center;
@@ -49,12 +93,10 @@
             .baba-image-box { margin-right: 0 !important; }
             .header-right-box { margin-left: 0 !important; }
         }
-        
-        /* FIXED PERFECT CIRCLE LOGO FRAME */
         .baba-image-box {
             width: 120px;
             height: 120px;
-            border-radius: 50%; /* Perfect circle cut */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -67,13 +109,9 @@
         .baba-image-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Fits your circular portrait perfectly */
+            object-fit: cover;
         }
-
-        .header-center-title {
-            flex: 2;
-            text-align: center;
-        }
+        .header-center-title { flex: 2; text-align: center; }
         .header-center-title h3 {
             margin: 0 0 10px 0;
             font-style: italic;
@@ -81,11 +119,7 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-        .header-center-title h1 {
-            margin: 0;
-            font-size: 2.2rem;
-        }
-        
+        .header-center-title h1 { margin: 0; font-size: 2.2rem; }
         .header-right-box {
             display: flex;
             align-items: center;
@@ -103,21 +137,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .khanda-symbol {
-            font-size: 3.8rem;
-            color: #FF9933;
-            line-height: 1;
-        }
-
-        /* NAVIGATION GRID (4 COLUMNS) */
+        .khanda-symbol { font-size: 3.8rem; color: #FF9933; line-height: 1; }
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background-color: #333333;
         }
-        @media (max-width: 768px) {
-            .nav-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .nav-grid { grid-template-columns: 1fr; } }
         .nav-item {
             color: white;
             text-align: center;
@@ -127,14 +153,8 @@
             border-right: 1px solid #444444;
             font-size: 1.1rem;
         }
-        .nav-item:hover {
-            background-color: #FF9933;
-        }
-        .nav-item:last-child {
-            border-right: none;
-        }
-
-        /* MAIN CONTENT AREA */
+        .nav-item:hover { background-color: #FF9933; }
+        .nav-item:last-child { border-right: none; }
         .main-content {
             max-width: 1000px;
             margin: 30px auto;
@@ -154,26 +174,84 @@
             border-radius: 6px;
             font-size: 1.2rem;
         }
+        .form-section {
+            background-color: #fff9f2;
+            border: 2px solid #ffdec2;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+        .form-section h3 {
+            margin-top: 0;
+            color: #7a2014;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #FF9933;
+            padding-bottom: 10px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444444;
+            font-size: 1rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1.1rem;
+        }
+        .submit-btn {
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        .submit-btn:hover { background-color: #E67E22; }
     </style>
 </head>
 <body>
 
-    <!-- Top Routing Language Switcher Bar -->
-    <div class="language-bar">
-        भाषा निवडा / Select Language: 
-        <a href="index.html" onclick="sessionStorage.setItem('languageSelected', 'true');">English</a> | 
-        <a href="hindi.html" onclick="sessionStorage.setItem('languageSelected', 'true');">हिंदी (Hindi)</a> | 
-        <a href="#" class="current-lang">मराठी (Marathi)</a>
+    <div class="lang-popup-overlay" id="langPopup">
+        <div class="lang-popup-box">
+            <h2>जय माता दी / सत श्री अकाल</h2>
+            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
+            <a href="hindi.html" class="lang-btn" onclick="saveLanguageChoice()">हिंदी (Hindi)</a>
+            <button class="lang-btn" onclick="closeLanguagePopup()">English</button>
+            <a href="marathi.html" class="lang-btn" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
+        </div>
     </div>
 
-    <!-- Header Block -->
+    <div class="language-bar">
+        Select Site Language: 
+        <a href="#" class="current-lang">English</a> | 
+        <a href="hindi.html" onclick="saveLanguageChoice()">हिंदी (Hindi)</a> | 
+        <a href="marathi.html" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
+    </div>
+
     <div class="header-container">
         <div class="baba-image-box">
-            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबांचे छायाचित्र\n[Photo]';">
+            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='Baba Logo';">
         </div>
         <div class="header-center-title">
-            <h3>"मानव सेवा ही खरी ईश्वर सेवा आहे"</h3>
-            <h1>संत मोनी बाबा साहिब वृद्धानंद आश्रम</h1>
+            <h3>"Service to Humanity is Service to God"</h3>
+            <h1>Sant Moni Baba Sahib Vriddhanand Ashram</h1>
         </div>
         <div class="header-right-box">
             <div class="white-square">
@@ -182,25 +260,61 @@
         </div>
     </div>
 
-    <!-- Navigation Grid Buttons -->
     <div class="nav-grid">
-        <a href="#" class="nav-item" style="background-color: #E67E22;">देणगी द्या (Donate)</a>
-        <a href="https://google.com" target="_blank" class="nav-item">आपल्या जवळच्या व्यक्तींची नोंदणी करा</a>
-        <a href="#" class="nav-item">संपर्क करा</a>
-        <a href="#" class="nav-item">आमच्याबद्दल माहिती</a>
+        <a href="#" class="nav-item" style="background-color: #E67E22;">Donate Us</a>
+        <a href="#registerSection" class="nav-item">Register your loved ones</a>
+        <a href="#" class="nav-item">Contact Us</a>
+        <a href="#" class="nav-item">Help / About Us</a>
     </div>
 
-    <!-- Main Body Content Area -->
     <div class="main-content">
-        <h2>आश्रम मध्ये आपले स्वागत आहे</h2>
-        <p>हा विभाग आपल्या संस्थेची सविस्तर माहिती, दैनंदिन उपक्रम आणि बातम्या प्रदर्शित करण्यासाठी आहे.</p>
+        <h2>Welcome to the Ashram</h2>
+        <p>This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.</p>
         
         <div class="image-placeholder">
-            📸 [ संत मोनी बाबा आश्रम आणि लंगर सेवेचे फोटो येथे दिसतील ]
+            📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]
         </div>
         
-        <p>परम पूज्य संत मोनी बाबा जी यांच्या आशीर्वाद आणि प्रेरणेने हे पवित्र कार्य निरंतर सुरू आहे.</p>
+        <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
+
+        <div class="form-section" id="registerSection">
+            <h3>Elder Registration Form</h3>
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <label for="elderName">Full Name of Elder:</label>
+                    <input type="text" name="Elder Name" id="elderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="elderAge">Age:</label>
+                    <input type="number" name="Age" id="elderAge" required>
+                </div>
+                <div class="form-group">
+                    <label for="medical">Medical History / Conditions:</label>
+                    <textarea name="Medical Issues" id="medical" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="guardianPhone">Guardian / Contact Number:</label>
+                    <input type="tel" name="Contact Number" id="guardianPhone" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit Registration Details</button>
+            </form>
+        </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            if (!sessionStorage.getItem('languageSelected')) {
+                document.getElementById('langPopup').style.display = 'flex';
+            }
+        };
+        function closeLanguagePopup() {
+            sessionStorage.setItem('languageSelected', 'true');
+            document.getElementById('langPopup').style.display = 'none';
+        }
+        function saveLanguageChoice() {
+            sessionStorage.setItem('languageSelected', 'true');
+        }
+    </script>
 
 </body>
 </html>
