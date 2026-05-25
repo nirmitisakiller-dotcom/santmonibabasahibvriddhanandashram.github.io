@@ -182,10 +182,63 @@
         <a href="#" class="current-lang">हिंदी (Hindi)</a> | 
         <a href="marathi.html" onclick="sessionStorage.setItem('languageSelected', 'true');">मराठी (Marathi)</a>
     </div>
-<!-- SACRED TOP BANNER SYMBOL -->
-<div style="background-color: #ffffff; text-align: center; padding: 15px 0; border-bottom: 2px solid #fbeed5;">
-    <img src="ekonkar.jpg" alt="Ek Onkar" style="max-height: 100px; width: auto; max-width: 90%; height: auto;">
+<!-- SACRED TOP BANNER SYMBOL WITH KHANDA IMAGES -->
+<style>
+    .sacred-banner-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 15px 30px;
+        border-bottom: 2px solid #fbeed5;
+        gap: 15px;
+    }
+    .banner-side-box {
+        flex: 1;
+        max-width: 40%;
+        height: 100px;
+        border: 3px solid #800080; /* Purple Outline */
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #FFC000; /* Matches image background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .banner-side-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .banner-center-box {
+        flex-shrink: 0;
+        text-align: center;
+        padding: 0 10px;
+    }
+    .banner-center-box img {
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        display: block;
+    }
+    @media (max-width: 600px) {
+        .sacred-banner-container { flex-direction: column; padding: 15px; }
+        .banner-side-box { max-width: 100%; width: 100%; height: 120px; }
+    }
+</style>
+
+<div class="sacred-banner-container">
+    <div class="banner-side-box">
+        <img src="khanda-banner.jpg" alt="Khanda Symbol Left" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';">
+    </div>
+    <div class="banner-center-box">
+        <img src="ekonkar.jpg" alt="Ek Onkar">
+    </div>
+    <div class="banner-side-box">
+        <img src="khanda-banner.jpg" alt="Khanda Symbol Right" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';">
+    </div>
 </div>
+
     <div class="header-container">
         <div class="baba-image-box">
             <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबा चित्र\n[Photo]';">
