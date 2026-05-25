@@ -324,9 +324,120 @@
         <h2>Welcome to the Ashram</h2>
         <p>This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.</p>
         
-        <div class="image-placeholder">
-            📸 [ Ashram & Langar Seva Photos Will Be Displayed Here ]
+                <!-- STORY-DRIVEN IMAGE CARDS SECTION (ENGLISH) -->
+        <style>
+            .ashram-story-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 25px;
+                margin: 35px 0;
+                padding: 10px;
+            }
+            .story-card {
+                background: #ffffff;
+                border: 1px solid #e6dfd3;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+            }
+            .story-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(230,126,34,0.15);
+                border-color: #FF9933;
+            }
+            .story-image-wrapper {
+                width: 100%;
+                height: 220px;
+                overflow: hidden;
+                position: relative;
+                background-color: #f9f9f9;
+            }
+            .story-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .story-content {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+            .story-icon {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                display: inline-block;
+            }
+            .story-title {
+                font-size: 1.25rem;
+                color: #7a2014;
+                margin: 0 0 10px 0;
+                font-weight: bold;
+                border-bottom: 1px dashed #ffdec2;
+                padding-bottom: 5px;
+            }
+            .story-text {
+                font-size: 0.95rem;
+                color: #555555;
+                line-height: 1.5;
+                margin: 0;
+            }
+        </style>
+
+        <div class="ashram-story-container">
+            <!-- Card 1: Healthcare Seva -->
+            <div class="story-card">
+                <div class="story-image-wrapper">
+                    <img src="care.jpg" alt="Healthcare Service" onerror="this.style.display='none'; this.parentNode.innerText='📸 Medical Care Photo';">
+                </div>
+                <div class="story-content">
+                    <span class="story-icon">🩺</span>
+                    <h4 class="story-title">Free Healthcare Seva</h4>
+                    <p class="story-text">Regular health checkups and dedicated medical attention ensure our elders receive complete physical and mental care.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Holy Langar Service -->
+            <div class="story-card">
+                <div class="story-image-wrapper">
+                    <img src="langar.jpg" alt="Sacred Langar Service" onerror="this.style.display='none'; this.parentNode.innerText='📸 Sacred Langar Photo';">
+                </div>
+                <div class="story-content">
+                    <span class="story-icon">🍲</span>
+                    <h4 class="story-title">Sacred Langar Service</h4>
+                    <p class="story-text">All residents are served fresh, pure, and nutritious meals daily with utmost love, respect, and devotion.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Spiritual Devotion -->
+            <div class="story-card">
+                <div class="story-image-wrapper">
+                    <img src="bhajan.jpg" alt="Spiritual Peace" onerror="this.style.display='none'; this.parentNode.innerText='📸 Spiritual Devotion Photo';">
+                </div>
+                <div class="story-content">
+                    <span class="story-icon">🙏</span>
+                    <h4 class="story-title">Spiritual Peace & Devotion</h4>
+                    <p class="story-text">Through daily prayers, kirtan, and meditation, the ashram maintains a serene, uplifting, and divine atmosphere.</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Peaceful Environment -->
+            <div class="story-card">
+                <div class="story-image-wrapper">
+                    <img src="garden.jpg" alt="Joyful Living" onerror="this.style.display='none'; this.parentNode.innerText='📸 Community Living Photo';">
+                </div>
+                <div class="story-content">
+                    <span class="story-icon">🏡</span>
+                    <h4 class="story-title">Joyful Community Living</h4>
+                    <p class="story-text">By sharing conversations, gardening, and relaxing in open courtyards, our elders live happily together as one warm family.</p>
+                </div>
+            </div>
         </div>
+
         
         <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
 
