@@ -474,10 +474,10 @@
 
         
         <p>Driven and blessed directly by the spiritual vision and core principles of Sant Moni Baba Ji.</p>
-
-        <div class="form-section" id="registerSection">
-            <h3>Elder Registration Form</h3>
+            <!-- UPGRADED FORM WITH STRUCTURED MEDICAL SUB-SECTIONS -->
             <form action="https://formspree.io" method="POST">
+                
+                <!-- Basic Information -->
                 <div class="form-group">
                     <label for="elderName">Full Name of Elder:</label>
                     <input type="text" name="Elder Name" id="elderName" required>
@@ -486,16 +486,66 @@
                     <label for="elderAge">Age:</label>
                     <input type="number" name="Age" id="elderAge" required>
                 </div>
-                <div class="form-group">
-                    <label for="medical">Medical History / Conditions:</label>
-                    <textarea name="Medical Issues" id="medical" rows="3" required></textarea>
+
+                <!-- NEW MEDICAL SUB-SECTION CONTAINER -->
+                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                    <h5 style="margin: 0 0 15px 0; color: #7a2014; font-size: 1.1rem; border-bottom: 1px solid #ffdec2; padding-bottom: 5px;">Medical History / Health Conditions</h5>
+                    
+                    <!-- Blood Pressure & Diabetes Row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group" style="margin: 0;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                                <input type="checkbox" name="Condition_BP" value="Yes" style="width: auto; transform: scale(1.2);"> High Blood Pressure (Hypertension)
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                                <input type="checkbox" name="Condition_Diabetes" value="Yes" id="diabetesCheck" onchange="document.getElementById('diabetesTypeBox').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.2);"> Diabetes (Sugar)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dependent Diabetes Type Dropdown (Toggles via JavaScript inline) -->
+                    <div class="form-group" id="diabetesTypeBox" style="display: none; margin-bottom: 15px; padding-left: 25px;">
+                        <label for="diabetesType" style="font-size: 0.9rem; color: #555;">Select Diabetes Type:</label>
+                        <select name="Diabetes_Type" id="diabetesType" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;">
+                            <option value="Not Specified">-- Select Type --</option>
+                            <option value="Type 1">Type 1 (Insulin Dependent)</option>
+                            <option value="Type 2">Type 2 (Non-Insulin Dependent)</option>
+                            <option value="Pre-diabetic">Pre-diabetic</option>
+                        </select>
+                    </div>
+
+                    <!-- Neurological Conditions Row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="form-group" style="margin: 0;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                                <input type="checkbox" name="Condition_Alzheimers" value="Yes" style="width: auto; transform: scale(1.2);"> Alzheimer's / Dementia
+                            </label>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                                <input type="checkbox" name="Condition_Schizophrenia" value="Yes" style="width: auto; transform: scale(1.2);"> Schizophrenia
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Other Illnesses / Notes Box -->
+                    <div class="form-group" style="margin: 0;">
+                        <label for="medicalNotes" style="font-size: 0.95rem;">Other Operations, Allergies or Special Care Needs:</label>
+                        <textarea name="Other_Medical_Details" id="medicalNotes" rows="2" placeholder="List any other diseases, ongoing medications, or physical limitations..."></textarea>
+                    </div>
                 </div>
+
+                <!-- Guardian Contact Info -->
                 <div class="form-group">
                     <label for="guardianPhone">Guardian / Contact Number:</label>
                     <input type="tel" name="Contact Number" id="guardianPhone" required>
                 </div>
+
                 <button type="submit" class="submit-btn">Submit Registration Details</button>
             </form>
+
         </div>
     </div>
 
