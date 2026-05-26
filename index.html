@@ -442,6 +442,7 @@
         
         <p>With the holy blessings and inspiration of Param Pujya Sant Moni Baba Ji, this divine work is being continued uninterrupted.</p>
     <!-- POP-UP REGISTRATION FORM -->
+        <!-- CORRECTED POP-UP REGISTRATION FORM -->
     <div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
         
         <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
@@ -457,11 +458,11 @@
                 <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
                     <div style="margin: 0;">
                         <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Full Name of Elder:</label>
-                        <input type="text" name="Elder Name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                        <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                     <div style="margin: 0;">
                         <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Age:</label>
-                        <input type="number" name="Age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                        <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                 </div>
 
@@ -472,29 +473,29 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="Condition_BP" value="Yes" style="width: auto; transform: scale(1.1);"> High Blood Pressure
+                                <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> High Blood Pressure
                             </label>
                         </div>
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="Condition_Diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBox').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> Diabetes (Sugar)
+                                <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBox').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> Diabetes (Sugar)
                             </label>
                         </div>
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="Condition_Alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> Alzheimer's / Dementia
+                                <input type="checkbox" name="condition_alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> Alzheimer's / Dementia
                             </label>
                         </div>
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="Condition_Schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> Schizophrenia
+                                <input type="checkbox" name="condition_schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> Schizophrenia
                             </label>
                         </div>
                     </div>
 
                     <!-- Diabetes Dropdown -->
                     <div id="modalDbTypeBox" style="display: none; margin: 8px 0; padding-left: 15px;">
-                        <select name="Diabetes_Type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
+                        <select name="diabetes_type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
                             <option value="Not Specified">-- Select Diabetes Type --</option>
                             <option value="Type 1">Type 1 (Insulin Dependent)</option>
                             <option value="Type 2">Type 2 (Non-Insulin Dependent)</option>
@@ -504,19 +505,21 @@
 
                     <!-- Extra Notes -->
                     <div style="margin-top: 6px;">
-                        <textarea name="Other_Medical_Details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="Other illnesses, ongoing medications..."></textarea>
+                        <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="Other illnesses, ongoing medications..."></textarea>
                     </div>
                 </div>
 
                 <!-- Guardian Phone -->
                 <div style="margin-bottom: 15px;">
                     <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Guardian / Contact Number:</label>
-                    <input type="tel" name="Contact Number" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                    <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                 </div>
 
                 <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">Submit Registration Details</button>
             </form>
         </div>
+    </div>
+
     </div>
 
 
