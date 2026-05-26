@@ -319,17 +319,16 @@
         <a href="#" class="nav-item">Contact Us</a>
         <a href="#" class="nav-item">Help / About Us</a>
     </div>
-
     <div class="main-content">
         <h2>Welcome to the Ashram</h2>
-        <p>This section is reserved for your detailed organization information, daily updates, and dynamic operational logs.</p>
+        <p>This section is reserved for your detailed organization information, daily updates and dynamic operational logs.</p>
         
-                <!-- STORY-DRIVEN IMAGE CARDS SECTION (ENGLISH) -->
+        <!-- UNIFIED DESIGN GRID FROM HINDI PAGE -->
         <style>
             .ashram-story-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 25px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
                 margin: 35px 0;
                 padding: 10px;
             }
@@ -351,7 +350,7 @@
             }
             .story-image-wrapper {
                 width: 100%;
-                height: 220px;
+                height: 160px;
                 overflow: hidden;
                 position: relative;
                 background-color: #f9f9f9;
@@ -362,83 +361,111 @@
                 object-fit: cover;
             }
             .story-content {
-                padding: 20px;
+                padding: 15px;
                 display: flex;
                 flex-direction: column;
                 flex-grow: 1;
             }
             .story-icon {
-                font-size: 1.5rem;
-                margin-bottom: 8px;
+                font-size: 1.4rem;
+                margin-bottom: 6px;
                 display: inline-block;
             }
             .story-title {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
                 color: #7a2014;
-                margin: 0 0 10px 0;
+                margin: 0 0 8px 0;
                 font-weight: bold;
                 border-bottom: 1px dashed #ffdec2;
                 padding-bottom: 5px;
             }
             .story-text {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
                 color: #555555;
-                line-height: 1.5;
+                line-height: 1.4;
                 margin: 0;
+            }
+            @media (max-width: 900px) {
+                .ashram-story-container { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 600px) {
+                .ashram-story-container { grid-template-columns: 1fr; }
             }
         </style>
 
         <div class="ashram-story-container">
-                   <!-- REAL ELDER HEALTHCARE CARE CARDS SECTION (ENGLISH) -->
-        <div class="ashram-story-container">
-            <!-- Card 1: Daily Nurse Monitoring -->
+            <!-- Card 1 -->
             <div class="story-card">
                 <div class="story-image-wrapper">
-                    <img src="care1.jpeg" alt="Daily Health Monitoring" onerror="this.style.display='none'; this.parentNode.innerText='📸 Daily Monitoring Photo';">
+                    <img src="care1.jpeg" alt="Daily Health Monitoring" onerror="this.src='care1.jpg';">
                 </div>
                 <div class="story-content">
                     <span class="story-icon">🩺</span>
                     <h4 class="story-title">Daily Health Monitoring</h4>
-                    <p class="story-text">Our qualified nursing team performs regular checkups and monitors vital health parameters to keep residents secure and healthy.</p>
+                    <p class="story-text">Our qualified nursing team performs regular checkups and monitors vital parameters to keep residents secure.</p>
                 </div>
             </div>
-
-            <!-- Card 2: Physical Support -->
+            <!-- Card 2 -->
             <div class="story-card">
                 <div class="story-image-wrapper">
-                    <img src="care2.jpeg" alt="Physical Assistance" onerror="this.style.display='none'; this.parentNode.innerText='📸 Bedside Care Photo';">
+                    <img src="care2.jpeg" alt="Personalized Bedside Support" onerror="this.src='care2.jpg';">
                 </div>
                 <div class="story-content">
                     <span class="story-icon">🛌</span>
                     <h4 class="story-title">Personalized Bedside Support</h4>
-                    <p class="story-text">Specialized mobility assistance and comfort adjustments are provided daily to help residents resting in medical beds stay strain-free.</p>
+                    <p class="story-text">Specialized mobility assistance and comfort adjustments are provided daily to help elders resting in beds.</p>
                 </div>
             </div>
-
-            <!-- Card 3: Doctor Checkups -->
+            <!-- Card 3 -->
             <div class="story-card">
                 <div class="story-image-wrapper">
-                    <img src="care3.jpeg" alt="Regular Medical Consultations" onerror="this.style.display='none'; this.parentNode.innerText='📸 Doctor Consultation Photo';">
+                    <img src="care3.jpeg" alt="Regular Medical Checkups" onerror="this.src='care3.jpg';">
                 </div>
                 <div class="story-content">
                     <span class="story-icon">👨‍⚕️</span>
                     <h4 class="story-title">Regular Medical Checkups</h4>
-                    <p class="story-text">Visiting expert physicians conduct thorough physical evaluations using proper clinical equipment to maintain ongoing preventative health tracks.</p>
+                    <p class="story-text">Visiting expert physicians conduct thorough physical evaluations using proper clinical tools.</p>
                 </div>
             </div>
-
-            <!-- Card 4: Bedridden Critical Care -->
+            <!-- Card 4 -->
             <div class="story-card">
                 <div class="story-image-wrapper">
-                    <img src="care4.jpeg" alt="Intensive Geriatric Care" onerror="this.style.display='none'; this.parentNode.innerText='📸 Intensive Care Photo';">
+                    <img src="care4.jpeg" alt="Dedicated Critical Care" onerror="this.src='care4.jpg';">
                 </div>
                 <div class="story-content">
                     <span class="story-icon">❤️</span>
                     <h4 class="story-title">Dedicated Critical Care</h4>
-                    <p class="story-text">We practice strict safety, hygiene, and masking protocols while delivering round-the-clock intensive care to frail and dependent elderly residents.</p>
+                    <p class="story-text">We practice strict safety protocols while delivering intensive care to completely dependent elders.</p>
                 </div>
             </div>
         </div>
+        
+        <p>With the holy blessings and inspiration of Param Pujya Sant Moni Baba Ji, this divine work is being continued uninterrupted.</p>
+
+        <div class="form-section" id="registerSection">
+            <h3>Elderly Person Registration Form</h3>
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <label for="elderName">Full Name of Elder:</label>
+                    <input type="text" name="Elder Name" id="elderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="elderAge">Age:</label>
+                    <input type="number" name="Age" id="elderAge" required>
+                </div>
+                <div class="form-group">
+                    <label for="medical">Health Status / Medical Issues:</label>
+                    <textarea name="Medical Issues" id="medical" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="guardianPhone">Guardian / Contact Number:</label>
+                    <input type="tel" name="Contact Number" id="guardianPhone" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit Registration Details</button>
+            </form>
+        </div>
+    </div>
+
 
                     <p class="story-text">By sharing conversations, gardening, and relaxing in open courtyards, our elders live happily together as one warm family.</p>
                 </div>
