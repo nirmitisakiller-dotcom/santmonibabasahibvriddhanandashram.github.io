@@ -376,29 +376,84 @@
         
         <p>परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को न[...]
 
-        <div class="form-section" id="registerSection">
-            <h3>वृद्ध जन पंजीकरण फॉर्म</h3>
+           <!-- POP-UP REGISTRATION FORM (HINDI) -->
+    <div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+        
+        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+            
+            <!-- Close Button (X) -->
+            <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+            
+            <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">वृद्ध जन पंजीकरण फॉर्म</h3>
+            
             <form action="https://formspree.io" method="POST">
-                <div class="form-group">
-                    <label for="elderName">बुजुर्ग का पूरा नाम:</label>
-                    <input type="text" name="Elder Name" id="elderName" required>
+                
+                <!-- Name & Age Row -->
+                <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div style="margin: 0;">
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">बुजुर्ग का पूरा नाम:</label>
+                        <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                    </div>
+                    <div style="margin: 0;">
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आयु (Age):</label>
+                        <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="elderAge">आयु (Age):</label>
-                    <input type="number" name="Age" id="elderAge" required>
+
+                <!-- Medical Checklist Box -->
+                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">चिकित्सा इतिहास / स्वास्थ्य की स्थिति</h5>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                                <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> हाई ब्लड प्रेशर (BP)
+                            </label>
+                        </div>
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                                <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBoxHindi').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> डायबिटीज (शुगर)
+                            </label>
+                        </div>
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                                <input type="checkbox" name="condition_alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> अल्जाइमर / डिमेंशिया
+                            </label>
+                        </div>
+                        <div>
+                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                                <input type="checkbox" name="condition_schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> सिजोफ्रेनिया
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Diabetes Dropdown -->
+                    <div id="modalDbTypeBoxHindi" style="display: none; margin: 8px 0; padding-left: 15px;">
+                        <select name="diabetes_type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
+                            <option value="Not Specified">-- डायबिटीज का प्रकार चुनें --</option>
+                            <option value="Type 1">टाइप 1 (इंसुलिन पर निर्भर)</option>
+                            <option value="Type 2">टाइप 2 (गैर-इंसुलिन निर्भर)</option>
+                            <option value="Pre-diabetic">प्री-डायबिटिक</option>
+                        </select>
+                    </div>
+
+                    <!-- Extra Notes -->
+                    <div style="margin-top: 6px;">
+                        <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="अन्य बीमारियाँ, चल रही दवाएं या एलर्जी..."></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="medical">स्वास्थ्य की स्थिति / बीमारियाँ:</label>
-                    <textarea name="Medical Issues" id="medical" rows="3" required></textarea>
+
+                <!-- Guardian Phone -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">अभिभावक / संपर्क नंबर:</label>
+                    <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                 </div>
-                <div class="form-group">
-                    <label for="guardianPhone">अभिभावक / संपर्क नंबर:</label>
-                    <input type="tel" name="Contact Number" id="guardianPhone" required>
-                </div>
-                <button type="submit" class="submit-btn">पंजीकरण विवरण जमा करें</button>
+
+                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">पंजीकरण विवरण जमा करें</button>
             </form>
         </div>
     </div>
+
 
 </body>
 </html>
