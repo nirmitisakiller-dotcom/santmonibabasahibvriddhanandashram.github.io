@@ -251,7 +251,7 @@
     <div class="nav-grid">
         <a href="#" class="nav-item" style="background-color: #E67E22;">दान दें (Donate)</a>
       <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'" class="nav-item">अपनों का पंजीकरण करें</a>
-        <a href="#" class="nav-item">संपर्क करें</a>
+       <a href="#contactSection" class="nav-item">संपर्क करें</a>
         <a href="#" class="nav-item">हमारे बारे में</a>
     </div>
 
@@ -453,6 +453,130 @@
             </form>
         </div>
     </div>
+    <!-- UNIFIED 3-COLUMN FOOTER SECTION (HINDI) -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .ashram-footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 20px 20px 20px;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            border-top: 4px solid #FF9933;
+        }
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 30px;
+        }
+        .footer-col h4 {
+            color: #FF9933;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444444;
+            padding-bottom: 8px;
+        }
+        .footer-links a {
+            display: block;
+            color: #cccccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #FF9933;
+        }
+        .footer-contact p {
+            margin: 0 0 10px 0;
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .footer-donate-box {
+            background-color: #444444;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #FF9933;
+        }
+        .footer-btn {
+            display: block;
+            text-align: center;
+            background-color: #E67E22;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-btn:hover {
+            background-color: #FF9933;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 30px auto 0 auto;
+            padding-top: 15px;
+            border-top: 1px solid #444444;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999999;
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+        }
+    </style>
+
+    <footer class="ashram-footer">
+        <div class="footer-grid">
+            
+            <!-- Column 1: Quick Navigation -->
+            <div class="footer-col footer-links">
+                <h4>मुख्य नेविगेशन</h4>
+                <a href="#">↑ वापस ऊपर जाएँ</a>
+                <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'">अपनों का पंजीकरण करें</a>
+                <a href="index.html">English Website</a>
+                <a href="hindi.html">हिंदी वेबसाइट</a>
+                <a href="marathi.html">मराठी वेबसाईट</a>
+            </div>
+
+            <!-- Column 2: Donation Details -->
+            <div class="footer-col">
+                <h4>सेवा कार्यों में सहयोग दें</h4>
+                <div class="footer-donate-box">
+                    <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #eee;">आपका एक छोटा सा योगदान हमारी दैनिक पवित्र लंगर सेवा और मुफ्त चिकित्सा देखभाल कार्यक्रमों को शक्ति प्रदान करता है।</p>
+                    <a href="#" class="footer-btn">दान के लिए बैंक विवरण देखें</a>
+                </div>
+            </div>
+
+            <!-- Column 3: Contact & Target Scroll Area Location Info -->
+            <div class="footer-col footer-contact" id="contactSection">
+                <h4>आधिकारिक संपर्क विवरण</h4>
+                <p><strong>📍 पंजीकृत पता (सरकारी पंजीकृत):</strong><br>
+                संत बाबा मोनी साहिब वृद्ध आनंद आश्रम<br>
+                सर्वे नंबर १३३/१, गुरुद्वारा रोड, आकुर्डी स्टेशन के पास, वाल्हेकरवाड़ी, पुणे - ४११०३३।</p>
+                
+                <p><strong>📞 संपर्क सूत्र (फ़ोन):</strong><br>
+                +91 7745070544 / +91 9561836815</p>
+                
+                <p><strong>🌐 जीपीएस लाइव मैप लोकेशन:</strong><br>
+                <a href="https://google.com" target="_blank" style="color: #FF9933; text-decoration: underline; font-size: 0.9rem;">
+                    गूगल मैप्स पर रास्ता देखने के लिए यहाँ क्लिक करें 🗺️
+                </a></p>
+            </div>
+
+        </div>
+
+        <!-- Copyright Line Bar -->
+        <div class="footer-bottom">
+            &copy; 2026 संत बाबा मोनी साहिब वृद्ध आनंद आश्रम। सर्वाधिकार सुरक्षित। | सरकारी पंजीकृत संस्था।
+        </div>
+    </footer>
 
 
 </body>
