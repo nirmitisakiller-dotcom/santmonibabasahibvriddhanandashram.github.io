@@ -458,4 +458,130 @@
             </form>
         </div>
     </div>
+    <!-- UNIFIED 3-COLUMN FOOTER SECTION (MARATHI) -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .ashram-footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 20px 20px 20px;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            border-top: 4px solid #FF9933;
+        }
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 30px;
+        }
+        .footer-col h4 {
+            color: #FF9933;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444444;
+            padding-bottom: 8px;
+        }
+        .footer-links a {
+            display: block;
+            color: #cccccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            color: #FF9933;
+        }
+        .footer-contact p {
+            margin: 0 0 10px 0;
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .footer-donate-box {
+            background-color: #444444;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #FF9933;
+        }
+        .footer-btn {
+            display: block;
+            text-align: center;
+            background-color: #E67E22;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .footer-btn:hover {
+            background-color: #FF9933;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 30px auto 0 auto;
+            padding-top: 15px;
+            border-top: 1px solid #444444;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999999;
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+        }
+    </style>
 
+    <footer class="ashram-footer">
+        <div class="footer-grid">
+            
+            <!-- Column 1: Quick Navigation -->
+            <div class="footer-col footer-links">
+                <h4>मुख्य नेव्हिगेशन</h4>
+                <a href="#">↑ परत वर जा</a>
+                <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'">अपल्या माणसांची नोंदणी करा</a>
+                <a href="index.html">English Website</a>
+                <a href="hindi.html">हिंदी वेबसाइट</a>
+                <a href="marathi.html">मराठी वेबसाईट</a>
+            </div>
+
+            <!-- Column 2: Donation Details -->
+            <div class="footer-col">
+                <h4>सेवा कार्यात सहकार्य करा</h4>
+                <div class="footer-donate-box">
+                    <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #eee;">तुमचे छोटेसे योगदान आमची दैनंदिन पवित्र लंगर सेवा आणि मोफत वैद्यकीय काळजी कार्यक्रमांना बळ देते.</p>
+                    <a href="#" class="footer-btn">देणगीसाठी बँकेचा तपशील पहा</a>
+                </div>
+            </div>
+
+            <!-- Column 3: Contact & Target Scroll Area Location Info -->
+            <div class="footer-col footer-contact" id="contactSection">
+                <h4>अधिकृत संपर्क तपशील</h4>
+                <p><strong>📍 नोंदणीकृत पत्ता (शासकीय नोंदणीकृत):</strong><br>
+                संत बाबा मोनी साहिब वृद्ध आनंद आश्रम<br>
+                सर्व्हे नंबर १३३/१, गुरुद्वारा रोड, आकुर्डी स्टेशन जवळ, वाल्हेकरवाडी, पुणे - ४११०३३.</p>
+                
+                <p><strong>📞 संपर्क क्रमांक (फोन):</strong><br>
+                +91 7745070544 / +91 9561836815</p>
+                
+                <p><strong>🌐 जीपीएस लाईव्ह मॅप लोकेशन:</strong><br>
+                <a href="https://google.com" target="_blank" style="color: #FF9933; text-decoration: underline; font-size: 0.9rem;">
+                    गुगल मॅप्सवर रस्ता पाहण्यासाठी येथे क्लिक करा 🗺️
+                </a></p>
+            </div>
+
+        </div>
+
+        <!-- Copyright Line Bar -->
+        <div class="footer-bottom">
+            &copy; 2026 संत बाबा मोनी साहिब वृद्ध आनंद आश्रम. सर्व हक्क सुरक्षित. | शासकीय नोंदणीकृत संस्था.
+        </div>
+    </footer>
+
+</body>
+</html>
