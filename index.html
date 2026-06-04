@@ -545,6 +545,116 @@
             </form>
         </div>
     </div>
+    <!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
+    <div id="volunteerModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+            
+            <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+            <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">Volunteer Registration Form</h3>
+            
+            <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
+                <!-- Name & Age Row -->
+                <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Full Name:</label>
+                        <input type="text" name="volunteer_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Age:</label>
+                        <input type="number" name="volunteer_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                    </div>
+                </div>
+
+                <!-- Occupation Select -->
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Current Occupation:</label>
+                    <select name="volunteer_occupation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Occupation --</option>
+                        <option value="High School Student">High School Student</option>
+                        <option value="College Student">College Student</option>
+                        <option value="Post-Graduation Student">Post-Graduation Student</option>
+                        <option value="Doing Job / Working Professional">Doing Job / Working Professional</option>
+                    </select>
+                </div>
+
+                <!-- Operational Help Categories Box -->
+                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">Operational Help Categories</h5>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 8px; color: #444444;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_medical" value="Yes"> Medical / Nursing Support</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_langar" value="Yes"> Langar Seva (Kitchen & Serving)</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_companionship" value="Yes"> Elders Companionship & Interaction</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_admin" value="Yes"> Administrative / IT Support</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 4px;"><input type="checkbox" name="help_any_all" value="Yes"> All of the above / Any Option</label>
+                    </div>
+                </div>
+
+                <!-- Reason Selection (Internship vs Help) -->
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Purpose of Joining:</label>
+                    <select id="volunteerPurpose" name="volunteer_purpose" onchange="toggleAttachmentFields(this.value)" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Purpose --</option>
+                        <option value="General Help">General Help / Voluntary Service</option>
+                        <option value="Internship">Official Internship Program</option>
+                    </select>
+                </div>
+
+                <!-- DYNAMIC FILE ATTACHMENTS GRID -->
+                <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">Required Document Uploads (PDF format)</h5>
+                    <div id="appFormUpload" style="margin-bottom: 10px; display: none;">
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">Upload Application Form (PDF):</label>
+                        <input type="file" id="appFileInput" name="attachment_application_form" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                    </div>
+                    <div id="aadhaarUpload" style="margin-bottom: 4px; display: none;">
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">Upload Aadhaar Card (PDF):</label>
+                        <input type="file" id="aadhaarInput" name="attachment_aadhaar_card" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                    </div>
+                </div>
+
+                <!-- Availability Options Dropdown -->
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Availability Schedule:</label>
+                    <select name="volunteer_availability" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Schedule --</option>
+                        <option value="Weekends Only (Sat / Sun)">Weekends Only (Sat / Sun)</option>
+                        <option value="Weekdays Only (Mon to Fri)">Weekdays Only (Mon to Fri)</option>
+                        <option value="Flexible / On-Call Support">Flexible / On-Call Support</option>
+                    </select>
+                </div>
+
+                <!-- Brief Message / Past Experience Text Box -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Brief Message / Past Experience:</label>
+                    <textarea name="volunteer_experience_notes" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="Past work or remarks..."></textarea>
+                </div>
+
+                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->
+    <script>
+        function toggleAttachmentFields(purposeValue) {
+            var box = document.getElementById('attachmentsBox');
+            var appBox = document.getElementById('appFormUpload');
+            var appInput = document.getElementById('appFileInput');
+            var aadhaarBox = document.getElementById('aadhaarUpload');
+            var aadhaarInput = document.getElementById('aadhaarInput');
+
+            if (purposeValue === "Internship") {
+                box.style.display = "block"; appBox.style.display = "block"; appInput.required = true;
+                aadhaarBox.style.display = "block"; aadhaarInput.required = true;
+            } else if (purposeValue === "General Help") {
+                box.style.display = "block"; appBox.style.display = "none"; appInput.required = false;
+                aadhaarBox.style.display = "block"; aadhaarInput.required = true;
+            } else {
+                box.style.display = "none"; appBox.style.display = "none"; appInput.required = false;
+                aadhaarBox.style.display = "none"; aadhaarInput.required = false;
+            }
+        }
+    </script>
 
     </div>
 
