@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title><h1>संत बाबा मोनी साहिब वृद्धानन्द आश्रम</h1>
+    <title>संत बाबा मोनी साहिब वृद्धानन्द आश्रम</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,6 +12,56 @@
             background-color: #fdfbf7;
             color: #333333;
         }
+        .lang-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            display: none;
+        }
+        .lang-popup-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid #FF9933;
+            max-width: 400px;
+            width: 90%;
+        }
+        .lang-popup-box h2 {
+            color: #7a2014;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .lang-popup-box p {
+            font-size: 1.1rem;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+        .lang-btn {
+            display: block;
+            width: 100%;
+            background-color: #FF9933;
+            color: white;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .lang-btn:hover { background-color: #E67E22; }
         .language-bar {
             background-color: #fbeed5;
             text-align: center;
@@ -178,10 +228,20 @@
 </head>
 <body>
 
+    <div class="lang-popup-overlay" id="langPopup">
+        <div class="lang-popup-box">
+            <h2>जय माता दी / सत श्री अकाल</h2>
+            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
+            <a href="index.html" class="lang-btn" onclick="saveLanguageChoice()">English</a>
+            <a href="hindi.html" class="lang-btn" onclick="saveLanguageChoice()">हिंदी (Hindi)</a>
+            <button class="lang-btn" onclick="closeLanguagePopup()">मराठी (Marathi)</button>
+        </div>
+    </div>
+
     <div class="language-bar">
         भाषा निवडा / Select Language: 
-        <a href="index.html" onclick="sessionStorage.setItem('languageSelected', 'true');">English</a> | 
-        <a href="hindi.html" onclick="sessionStorage.setItem('languageSelected', 'true');">हिंदी (Hindi)</a> | 
+        <a href="index.html" onclick="saveLanguageChoice();">English</a> | 
+        <a href="hindi.html" onclick="saveLanguageChoice();">हिंदी (Hindi)</a> | 
         <a href="#" class="current-lang">मराठी (Marathi)</a>
     </div>
 <!-- SACRED TOP BANNER SYMBOL WITH KHANDA IMAGES -->
@@ -241,6 +301,7 @@
     </div>
 </div>
 
+    <!-- CORRECTED HEADER CONTAINER -->
     <div class="header-container">
         <div class="baba-image-box">
             <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबांचे छायाचित्र';">
@@ -252,14 +313,13 @@
     </div>
 
     <div class="nav-grid">
-        <a href="#" class="nav-item" style="background-color: #E67E22;">देणगी द्या (Donate)</a>
+        <a href="#" class="nav-item" style="background-color: #E67E22;">देणगी द्या</a>
         <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'" class="nav-item">अपनों का पंजीकरण करें</a>
-       <a href="#contactSection" class="nav-item">संपर्क साधा</a>
-<a href="javascript:void(0);" onclick="document.getElementById('volunteerModal').style.display='flex'" class="nav-item">स्वयंसेवक व्हा</a>
+        <a href="#contactSection" class="nav-item">संपर्क साधा</a>
+        <a href="javascript:void(0);" onclick="document.getElementById('volunteerModal').style.display='flex'" class="nav-item">स्वयंसेवक व्हा</a>
     </div>
 
-      <div class="main-content">
-        <div class="main-content">
+    <div class="main-content">
         <h2>आश्रमात आपले स्वागत आहे</h2>
         
         <!-- OFFICIAL HISTORICAL NARRATIVE AND VISION SECTION (MARATHI) -->
@@ -269,15 +329,15 @@
             </p>
             
             <p style="margin-bottom: 12px;">
-                सन <strong>२०M५</strong> मध्ये स्थापित, आमच्या वृद्ध आश्रमाची स्थापना ज्येष्ठ नागरिकांना हक्काचा निवारा, प्रेमळ काळजी आणि आत्मिक शांतता मिळवून देण्याच्या पवित्र हेतूने करण्यात आली होती. गेल्या अनेक वर्षांत, या आश्रमाने सर्व समाजातील आणि स्तरांतील <strong>९०+ पेक्षा जास्त वृद्ध नागरिकांना</strong> (महिला व पुरुष) सुरक्षित आणि आदरयुक्त जीवन दिले आहे. येथे राहणाऱ्या ज्येष्ठांना उत्तम निवास व्यवस्था, सकस सात्विक भोजन आणि २४ तास वैद्यकीय व नर्सिंग सेवा पुरवली जाते.
+                सन <strong>2005</strong> मध्ये स्थापित, आमच्या वृद्ध आश्रमाची स्थापना ज्येष्ठ नागरिकांना आश्रय, करुणा आणि आध्यात्मिक सांत्वना प्रदान करण्याच्या शुद्ध, अटूट हेतूने केली गेली.
             </p>
             
             <p style="margin-bottom: 12px;">
-                २०M५ मधील आमच्या छोट्याशा सुरुवातीनंतर, ट्रस्टने एक मोठा आणि यशस्वी टप्पा गाठला आहे. समाजातील गरजू वृद्धांची वाढती संख्या लक्षात घेऊन, ट्रस्टने आपले <strong>दुसरे आश्रम केंद्र मौजे कर्जत, मावल (पुणे जिल्हा) येथे यशस्वीरित्या सुरू केले</strong>. निसर्गरम्य, अतीव शांत आणि सुंदर परिसरात बांधण्यात आलेल्या या भव्य केंद्रात सध्या २५ वृद्ध व्यक्ती अतिशय सुखी, सुरक्षित आणि कौटुंबिक वातावरणात स्वतंत्र कॉटेजमध्ये राहत आहेत.
+                2005 मधील आमच्या छोट्याशा सुरुवातीनंतर, ट्रस्टने एक मोठा आणि यशस्वी प्रवास केला आहे, आव्हानांना सामर्थ्याच्या मीलफलकांमध्ये रूपांतरित केले आहे.
             </p>
             
             <p style="margin-bottom: 15px;">
-                समाजातील असहाय आणि गरजू ज्येष्ठांची संख्या दिवसेंदिवस वाढत असल्याचे पाहून, ट्रस्टने आपल्या पुढील पवित्र कार्यास सुरुवात केली आहे: <strong>लोणावळा येथे तिसऱ्या वृद्ध आश्रमाचे बांधकाम</strong> वेगाने सुरू आहे. आम्ही सर्व दानशूर आणि संवेदनशील नागरिकांना नम्र आवाहन करतो की, या मानवतेच्या कार्यात सढळ हाताने मदत करावी, जेणेकरून आपल्या समाजातील दुर्लक्षित, आजारी आणि गरजू वृद्धांना सन्मानाने आणि मायेने सांभाळता येईल.
+                समाजातील असहाय आणि गरजू ज्येष्ठांची संख्या दिवसेंदिवस वाढत असल्याने, ट्रस्ट सक्रियपणे आपल्या पुढील दयाळू मीलफलकाच्या दिशेने काम करत आहे.
             </p>
         </div>
 
@@ -360,7 +420,7 @@
                 <div class="story-content">
                     <span class="story-icon">🩺</span>
                     <h4 class="story-title">दैनिक आरोग्य देखरेख</h4>
-                    <p class="story-text">कुशल नर्सिंग स्टाफद्वारे वृद्धांच्या प्रकृतीची नियमित वैयक्तिक तपासणी आणि योग्य देखरेख केली जाते.</p>
+                    <p class="story-text">कुशल नर्सिंग स्टाफद्वारे वृद्धांच्या प्रकृतीची नियमित निरीक्षण केली जाते.</p>
                 </div>
             </div>
             <!-- Card 2 -->
@@ -371,7 +431,7 @@
                 <div class="story-content">
                     <span class="story-icon">🛌</span>
                     <h4 class="story-title">वैयक्तिक बेडसाईड साहाय्य</h4>
-                    <p class="story-text">बिछान्यावरील वृद्ध आजारी व्यक्तींची हालचाल सुलभ करण्यासाठी विशेष काळजी घेतली जाते.</p>
+                    <p class="story-text">बिछान्यावरील वृद्ध जनांची हालचाल आणि आराम सुधारण्यासाठी विशेष साहाय्य दिले जाते.</p>
                 </div>
             </div>
             <!-- Card 3 -->
@@ -382,7 +442,7 @@
                 <div class="story-content">
                     <span class="story-icon">👨‍⚕️</span>
                     <h4 class="story-title">नियमित डॉक्टरांची तपासणी</h4>
-                    <p class="story-text">तज्ज्ञ डॉक्टरांच्या पथकाद्वारे वेळेवर सखोल आरोग्य तपासणी आणि वैद्यकीय सल्ला दिला जातो.</p>
+                    <p class="story-text">विशेषज्ञ डॉक्टरांची टीम योग्य नैदानिक साधनांचा वापर करून संपूर्ण मूल्यांकन करते.</p>
                 </div>
             </div>
             <!-- Card 4 -->
@@ -393,26 +453,27 @@
                 <div class="story-content">
                     <span class="story-icon">❤️</span>
                     <h4 class="story-title">समर्पित अतिदक्षता काळजी</h4>
-                    <p class="story-text">अंथरूणाला खिळलेल्या रुग्णांसाठी २४ तास पूर्ण स्वच्छता आणि मास्क नियमांसह सेवा दिली जाते.</p>
+                    <p class="story-text">आम्ही कठोर सुरक्षा प्रोटोकॉल अनुसरण करत पूर्णत: असहाय वृद्धांना गहन काळजी प्रदान करतो.</p>
                 </div>
             </div>
         </div>
         
-        <p style="text-align: center; font-style: italic; color: #666666;">परम पूज्य संत बाबा मोनी जी यांच्या आशीर्वादाने आणि प्रेरणेने हे पवित्र कार्य निरंतर पुढे नेले जात आहे.</p>
+        <p style="text-align: center; font-style: italic; color: #666666;">परम पूज्य संत बाबा मोनी जी यांच्या आशीर्वादाने आणि प्रेरणेने हे पवित्र कार्य निरंतर चालू आहे.</p>
     </div>
 
+    <p>परम पूज्य संत मोनी बाबा जी यांच्या आशीर्वाद आणि प्रेरणेने हे पवित्र कार्य निरंतर सुरू आहे.</p>
 
-           <!-- POP-UP REGISTRATION FORM (MARATHI) -->
-    <div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <!-- POP-UP REGISTRATION FORM -->
+    <div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
         
-        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; overflow-y: auto; max-height: 90vh;">
             
             <!-- Close Button (X) -->
-            <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+            <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">✕</span>
             
             <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">वृद्ध जन नोंदणी फॉर्म</h3>
             
-                        <form action="https://api.web3forms.com/submit" method="POST">
+            <form action="https://api.web3forms.com/submit" method="POST">
                 <!-- Web3Forms Security Token -->
                 <input type="hidden" name="access_key" value="9ebbeac0-1e22-445a-9c27-5f3ff7b71ed3">
 
@@ -424,24 +485,24 @@
                         <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                     <div style="margin: 0;">
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय (Age):</label>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय:</label>
                         <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                 </div>
 
                 <!-- Medical Checklist Box -->
                 <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
-                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">वैद्यकीय इतिहास / आरोग्याची स्थिती</h5>
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">वैद्यकीय इतिहास / आरोग्य स्थिती</h5>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> हाय ब्लड प्रेशर (BP)
+                                <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> उच्च रक्तदाब
                             </label>
                         </div>
                         <div>
                             <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBoxMarathi').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> मधुमेह (शुगर)
+                                <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBoxMarathi').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> मधुमेह
                             </label>
                         </div>
                         <div>
@@ -460,15 +521,15 @@
                     <div id="modalDbTypeBoxMarathi" style="display: none; margin: 8px 0; padding-left: 15px;">
                         <select name="diabetes_type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
                             <option value="Not Specified">-- मधुमेहाचा प्रकार निवडा --</option>
-                            <option value="Type 1">टाइप १ (इन्सुलिनवर अवलंबून)</option>
-                            <option value="Type 2">टाइप २ (इन्सुलिनशिवाय)</option>
+                            <option value="Type 1">टाइप 1 (इन्सुलिनवर अवलंबून)</option>
+                            <option value="Type 2">टाइप 2 (इन्सुलिनशिवाय)</option>
                             <option value="Pre-diabetic">प्री-डायबिटिक</option>
                         </select>
                     </div>
 
                     <!-- Extra Notes -->
                     <div style="margin-top: 6px;">
-                        <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="इतर आजार, चालू औषधे किंवा ॲलर्जी..."></textarea>
+                        <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="अन्य वैद्यकीय विवरण..."></textarea>
                     </div>
                 </div>
 
@@ -478,11 +539,29 @@
                     <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                 </div>
 
-                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">नोंदणी तपशील सबमिट करा</button>
+                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">जमा करा</button>
+                
+                <!-- SAFE ALTERNATIVE BACKUP METHOD NOTICE -->
+                <div style="margin-top: 15px; padding: 10px; background-color: #f2dede; border: 1px solid #ebccd1; border-radius: 6px; text-align: center;">
+                    <p style="margin: 0; font-size: 0.8rem; color: #a94442; line-height: 1.4;">
+                        <strong>⚠️ अर्ज सबमिट करताना अडचण येत आहे?</strong><br>
+                        कृपया तुमचा तपशील आणि पीडीएफ दस्तऐवज थेट आम्हाला या ईमेलवर पाठवा:<br>
+                        <a href="mailto:ashram@santmonibabasahibvriddhanandashram.org" style="color: #7a2014; font-weight: bold; text-decoration: underline;">ashram@santmonibabasahibvriddhanandashram.org</a>
+                    </p>
+                </div>
             </form>
+         
         </div>
     </div>
-                          <!-- FINAL OPERATIONAL VOLUNTEER REGISTRATION FORM (MARATHI) -->
+
+    <!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
+    <div id="volunteerModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; overflow-y: auto; max-height: 90vh;">
+            
+            <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">✕</span>
+            <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">स्वयंसेवक नोंदणी फॉर्म</h3>
+            
+            <!-- FINAL OPERATIONAL VOLUNTEER REGISTRATION FORM -->
             <form action="https://formspree.io/f/mbdeogyr" method="POST" enctype="multipart/form-data">
                 
                 <!-- Name & Age Input Row -->
@@ -492,7 +571,7 @@
                         <input type="text" name="Volunteer_Full_Name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                     <div>
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय (Age):</label>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय:</label>
                         <input type="number" name="Volunteer_Age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                 </div>
@@ -513,11 +592,11 @@
                 <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
                     <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">सेवा सहकार्य श्रेणी</h5>
                     <div style="display: grid; grid-template-columns: 1fr; gap: 8px; color: #444444;">
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Medical" value="Yes"> वैद्यकीय / नर्सिंग साहाय्य</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Langar" value="Yes"> लंगर सेवा (स्वयंपाक आणि वाढणे)</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Companionship" value="Yes"> वृद्धांशी संवाद आणि वेळ घालवणे</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Admin" value="Yes"> प्रशासकीय / आयटी साहाय्य</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 4px;"><input type="checkbox" name="Help_Category_All_Any" value="Yes"> वरील सर्व / कोणताही पर्याय</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Medical" value="Yes"> वैद्यकीय साहाय्य</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Langar" value="Yes"> लंगर / खाद्य व्यवस्थापन</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Companionship" value="Yes"> सहचर्य / मनोरंजन</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Admin" value="Yes"> प्रशासकीय काम</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 6px;"><input type="checkbox" name="Help_Category_Other" value="Yes"> इतर विकल्प</label>
                     </div>
                 </div>
 
@@ -533,20 +612,20 @@
 
                 <!-- DYNAMIC FILE ATTACHMENTS GRID -->
                 <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
-                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">आवश्यक कागदपत्रे अपलोड (PDF फॉरमॅट)</h5>
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">आवश्यक कागदपत्रे अपलोड (पीडीएफ स्वरूप)</h5>
                     <div id="appFormUpload" style="margin-bottom: 10px; display: none;">
-                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">अर्ज फॉर्म अपलोड करा (PDF):</label>
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">अर्ज फॉर्म अपलोड करा (पीडीएफ):</label>
                         <input type="file" id="appFileInput" name="Attached_Application_Form_PDF" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
                     </div>
                     <div id="aadhaarUpload" style="margin-bottom: 4px; display: none;">
-                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">आधार कार्ड अपलोड करा (PDF):</label>
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">आधार कार्ड अपलोड करा (पीडीएफ):</label>
                         <input type="file" id="aadhaarInput" name="Attached_Aadhaar_Card_PDF" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
                     </div>
                 </div>
 
                 <!-- Availability Options Dropdown -->
                 <div style="margin-bottom: 12px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वेळेची उपलब्धता (Schedule):</label>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वेळेची उपलब्धता:</label>
                     <select name="Availability_Schedule" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
                         <option value="">-- वेळेची उपलब्धता निवडा --</option>
                         <option value="Weekends Only (Sat / Sun)">फक्त शनिवार आणि रविवार</option>
@@ -558,12 +637,11 @@
                 <!-- Brief Message / Past Experience Text Box -->
                 <div style="margin-bottom: 15px;">
                     <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">संक्षिप्त संदेश / पूर्वीचा अनुभव:</label>
-                    <textarea name="Volunteer_Experience_Remarks" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="पूर्वीच्या सामाजिक कामाचा किंवा विशेष टिप्पणीचा उल्लेख करा..."></textarea>
+                    <textarea name="Volunteer_Experience_Remarks" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="तुमचा अनुभव शेअर करा..."></textarea>
                 </div>
 
-                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">नोंदणी अर्ज सबमिट करा</button>
+                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">जमा करा</button>
                 
-                <!-- SAFE ALTERNATIVE BACKUP METHOD NOTICE (MARATHI) -->
                 <div style="margin-top: 15px; padding: 10px; background-color: #f2dede; border: 1px solid #ebccd1; border-radius: 6px; text-align: center;">
                     <p style="margin: 0; font-size: 0.8rem; color: #a94442; line-height: 1.4;">
                         <strong>⚠️ अर्ज सबमिट करताना अडचण येत आहे?</strong><br>
@@ -576,7 +654,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->
     <script>
         function toggleAttachmentFields(purposeValue) {
             var box = document.getElementById('attachmentsBox');
@@ -598,10 +676,25 @@
         }
     </script>
 
-    <!-- UNIFIED 3-COLUMN FOOTER SECTION (MARATHI) -->
+    <script>
+        window.onload = function() {
+            if (!sessionStorage.getItem('languageSelected')) {
+                document.getElementById('langPopup').style.display = 'flex';
+            }
+        };
+        function closeLanguagePopup() {
+            sessionStorage.setItem('languageSelected', 'true');
+            document.getElementById('langPopup').style.display = 'none';
+        }
+        function saveLanguageChoice() {
+            sessionStorage.setItem('languageSelected', 'true');
+        }
+    </script>
+
+    <!-- UNIFIED 3-COLUMN FOOTER SECTION WITH TARGET SCROLL MARKERS -->
     <style>
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* Makes the page slide smoothly down when clicked */
         }
         .ashram-footer {
             background-color: #333333;
@@ -694,7 +787,7 @@
             <div class="footer-col">
                 <h4>सेवा कार्यात सहकार्य करा</h4>
                 <div class="footer-donate-box">
-                    <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #eee;">तुमचे छोटेसे योगदान आमची दैनंदिन पवित्र लंगर सेवा आणि मोफत वैद्यकीय काळजी कार्यक्रमांना बळ देते.</p>
+                    <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #eee;">तुमचे छोटेसे योगदान आमची दैनंदिन पवित्र लंगर आणि वैद्यकीय वितरण कार्यक्रमांना शक्ती देते.</p>
                     <a href="#" class="footer-btn">देणगीसाठी बँकेचा तपशील पहा</a>
                 </div>
             </div>
@@ -704,7 +797,7 @@
                 <h4>अधिकृत संपर्क तपशील</h4>
                 <p><strong>📍 नोंदणीकृत पत्ता (शासकीय नोंदणीकृत):</strong><br>
                 संत बाबा मोनी साहिब वृद्ध आनंद आश्रम<br>
-                सर्व्हे नंबर १३३/१, गुरुद्वारा रोड, आकुर्डी स्टेशन जवळ, वाल्हेकरवाडी, पुणे - ४११०३३.</p>
+                सर्व्हे नंबर 133/1, गुरुद्वारा रोड, आकुर्डी स्टेशन जवळ, वाल्हेकरवाडी, पुणे - 411033.</p>
                 
                 <p><strong>📞 संपर्क क्रमांक (फोन):</strong><br>
                 +91 7745070544 / +91 9561836815</p>
