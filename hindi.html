@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <!-- FAVORITE ICON LOGO FOR BROWSER TABS AND GOOGLE SEARCH -->
-<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1957361882441200"
-     crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1957361882441200"
+        crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>संत बाबा मोनी साहिब वृद्धानन्द आश्रम</title>
+    <title>संत बाबा मोनी साहेब वृद्ध आनंद आश्रम</title>
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,19 +23,20 @@
             background-color: #fdfbf7;
             color: #333333;
         }
+
         .lang-popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 100000;
-            display: none;
         }
+
         .lang-popup-box {
             background-color: #ffffff;
             padding: 40px;
@@ -41,16 +47,19 @@
             max-width: 400px;
             width: 90%;
         }
+
         .lang-popup-box h2 {
             color: #7a2014;
             margin-top: 0;
             font-size: 1.8rem;
         }
+
         .lang-popup-box p {
             font-size: 1.1rem;
             color: #555555;
             margin-bottom: 25px;
         }
+
         .lang-btn {
             display: block;
             width: 100%;
@@ -67,7 +76,11 @@
             box-sizing: border-box;
             text-align: center;
         }
-        .lang-btn:hover { background-color: #E67E22; }
+
+        .lang-btn:hover {
+            background-color: #E67E22;
+        }
+
         .language-bar {
             background-color: #fbeed5;
             text-align: center;
@@ -75,17 +88,23 @@
             font-weight: bold;
             border-bottom: 1px solid #e3d3b0;
         }
+
         .language-bar a {
             margin: 0 15px;
             color: #7a2014;
             text-decoration: none;
         }
-        .language-bar a:hover { text-decoration: underline; }
+
+        .language-bar a:hover {
+            text-decoration: underline;
+        }
+
         .current-lang {
             color: #333333 !important;
             cursor: default;
             text-decoration: none !important;
         }
+
         .header-container {
             display: flex;
             background-color: #FF9933;
@@ -94,11 +113,23 @@
             align-items: center;
             border-bottom: 4px solid #E67E22;
         }
+
         @media (max-width: 768px) {
-            .header-container { flex-direction: column; text-align: center; gap: 20px; }
-            .baba-image-box { margin-right: 0 !important; }
-            .header-right-box { margin-left: 0 !important; }
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .baba-image-box {
+                margin-right: 0 !important;
+            }
+
+            .header-right-box {
+                margin-left: 0 !important;
+            }
         }
+
         .baba-image-box {
             width: 120px;
             height: 120px;
@@ -112,12 +143,18 @@
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
+
         .baba-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .header-center-title { flex: 2; text-align: center; }
+
+        .header-center-title {
+            flex: 2;
+            text-align: center;
+        }
+
         .header-center-title h3 {
             margin: 0 0 10px 0;
             font-style: italic;
@@ -125,31 +162,24 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-        .header-center-title h1 { margin: 0; font-size: 2.2rem; }
-        .header-right-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-left: 20px;
+
+        .header-center-title h1 {
+            margin: 0;
+            font-size: 2.2rem;
         }
-        .white-square {
-            background-color: #ffffff;
-            width: 75px;
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .khanda-symbol { font-size: 3.8rem; color: #FF9933; line-height: 1; }
+
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background-color: #333333;
         }
-        @media (max-width: 768px) { .nav-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .nav-item {
             color: white;
             text-align: center;
@@ -159,8 +189,11 @@
             border-right: 1px solid #444444;
             font-size: 1.1rem;
         }
-        .nav-item:hover { background-color: #FF9933; }
-        .nav-item:last-child { border-right: none; }
+
+        .nav-item:hover {
+            background-color: #FF9933;
+        }
+
         .main-content {
             max-width: 1000px;
             margin: 30px auto;
@@ -171,537 +204,133 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
-        .image-placeholder {
-            background-color: #f9f9f9;
-            border: 2px dashed #FF9933;
-            padding: 80px 20px;
-            margin: 25px 0;
-            color: #666666;
-            border-radius: 6px;
-            font-size: 1.2rem;
+
+        .sacred-banner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 15px 30px;
+            border-bottom: 2px solid #fbeed5;
+            gap: 15px;
         }
-        .form-section {
-            background-color: #fff9f2;
-            border: 2px solid #ffdec2;
+
+        .banner-side-box {
+            flex: 1;
+            max-width: 40%;
+            height: 100px;
+            border: 3px solid #800080;
             border-radius: 8px;
-            padding: 25px;
-            margin-top: 40px;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: border-box;
+            overflow: hidden;
+            background-color: #FFC000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .form-section h3 {
-            margin-top: 0;
-            color: #7a2014;
+
+        .banner-side-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .banner-center-box {
+            flex-shrink: 0;
             text-align: center;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #FF9933;
-            padding-bottom: 10px;
+            padding: 0 10px;
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
+
+        .banner-center-box img {
+            max-height: 100px;
+            width: auto;
+            height: auto;
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #444444;
-            font-size: 1rem;
         }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1.1rem;
-        }
-        .submit-btn {
-            background-color: #FF9933;
-            color: white;
-            border: none;
-            padding: 16px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            box-sizing: border-box;
-        }
-        .submit-btn:hover { background-color: #E67E22; }
-    </style>
-</head>
-<body>
 
-    <div class="lang-popup-overlay" id="langPopup">
-        <div class="lang-popup-box">
-            <h2>जय माता दी / सत श्री अकाल</h2>
-            <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
-            <button class="lang-btn" onclick="closeLanguagePopup()">हिंदी (Hindi)</button>
-            <a href="index.html" class="lang-btn" onclick="saveLanguageChoice()">English</a>
-            <a href="marathi.html" class="lang-btn" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
-        </div>
-    </div>
-
-    <div class="language-bar">
-        भाषा चुनें / Select Language: 
-        <a href="index.html" onclick="saveLanguageChoice()">English</a> | 
-        <a href="#" class="current-lang">हिंदी (Hindi)</a> | 
-        <a href="marathi.html" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
-    </div>
-<!-- SACRED TOP BANNER SYMBOL WITH KHANDA IMAGES -->
-<style>
-    .sacred-banner-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #ffffff;
-        padding: 15px 30px;
-        border-bottom: 2px solid #fbeed5;
-        gap: 15px;
-    }
-    .banner-side-box {
-        flex: 1;
-        max-width: 40%;
-        height: 100px;
-        border: 3px solid #800080; /* Purple Outline */
-        border-radius: 8px;
-        overflow: hidden;
-        background-color: #FFC000; /* Matches image background */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .banner-side-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-    .banner-center-box {
-        flex-shrink: 0;
-        text-align: center;
-        padding: 0 10px;
-    }
-    .banner-center-box img {
-        max-height: 100px;
-        width: auto;
-        height: auto;
-        display: block;
-    }
-    @media (max-width: 600px) {
-        .sacred-banner-container { flex-direction: column; padding: 15px; }
-        .banner-side-box { max-width: 100%; width: 100%; height: 120px; }
-    }
-</style>
-
-<div class="sacred-banner-container">
-    <div class="banner-side-box">
-        <img src="khanda-banner.jpg" alt="Khanda Symbol Left" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';">
-    </div>
-    <div class="banner-center-box">
-        <img src="ekonkar.jpg" alt="Ek Onkar">
-    </div>
-    <div class="banner-side-box">
-        <img src="khanda-banner.jpg" alt="Khanda Symbol Right" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';">
-    </div>
-</div>
-
-    <!-- CORRECTED HEADER CONTAINER -->
-    <div class="header-container">
-        <div class="baba-image-box">
-            <img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='बाबा चित्र';">
-        </div>
-        <div class="header-center-title">
-            <h3>"मानव सेवा ही माधव सेवा है"</h3>
-            <h1>संत बाबा मोनी साहिब वृद्धानन्द आश्रम</h1>
-        </div>
-    </div>
-
-    <div class="nav-grid">
-        <a href="#" class="nav-item" style="background-color: #E67E22;">दान दें</a>
-        <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'" class="nav-item">अपनों का पंजीकरण करें</a>
-        <a href="#contactSection" class="nav-item">संपर्क करें</a>
-        <a href="javascript:void(0);" onclick="document.getElementById('volunteerModal').style.display='flex'" class="nav-item">स्वयंसेवक बनें</a>
-    </div>
-
-    <div class="main-content">
-        <h2>आश्रम में आपका स्वागत है</h2>
-        
-        <!-- OFFICIAL HISTORICAL NARRATIVE AND VISION SECTION -->
-        <div style="text-align: left; margin: 20px 0; line-height: 1.6; color: #444444; font-size: 1rem;">
-            <p style="font-weight: bold; color: #7a2014; font-size: 1.15rem; border-left: 4px solid #FF9933; padding-left: 10px; margin-bottom: 15px; font-style: italic;">
-                "संत बाबा मोनी साहिब वृद्ध आनंद आश्रम का संक्षिप्त परिचय"
-            </p>
-            
-            <p style="margin-bottom: 12px;">
-                सन <strong>2005</strong> में स्थापित, हमारे वृद्ध आश्रम की नींव समाज के बुजुर्गों को आश्रय, करुणामय देखभाल और आध्यात्मिक सांत्वना प्रदान करने के शुद्ध, अटूट इरादे के साथ रखी गई थी।
-            </p>
-            
-            <p style="margin-bottom: 12px;">
-                2005 में अपनी विनम्र शुरुआत के बाद से, हमारे ट्रस्ट ने एक लंबा सफर तय किया है, चुनौतियों को ताकत के मील के पत्थरों में बदल दिया है। अपने बुजुर्ग समुदाय की बढ़ती जरूरतों के जवाब में, हमारा ट्रस्ट अपने अगले दयालु मील के पत्थर की ओर सक्रिय रूप से काम कर रहा है।
-            </p>
-            
-            <p style="margin-bottom: 15px;">
-                समाज के जरूरतमंद बुजुर्गों की संख्या में प्रतिदिन वृद्धि को देखते हुए, ट्रस्ट ने अपने अगले सहानुभूतिपूर्ण लक्ष्य की ओर सक्रिय रूप से काम करना शुरू किया है।
-            </p>
-        </div>
-
-        <!-- UNIFIED DESIGN GRID -->
-        <style>
-            .ashram-story-container {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-                margin: 35px 0;
-                padding: 10px;
-            }
-            .story-card {
-                background: #ffffff;
-                border: 1px solid #e6dfd3;
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: 0 6px 15px rgba(0,0,0,0.04);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                display: flex;
+        @media (max-width: 600px) {
+            .sacred-banner-container {
                 flex-direction: column;
-                text-align: left;
-            }
-            .story-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 24px rgba(230,126,34,0.15);
-                border-color: #FF9933;
-            }
-            .story-image-wrapper {
-                width: 100%;
-                height: 160px;
-                overflow: hidden;
-                position: relative;
-                background-color: #f9f9f9;
-            }
-            .story-image-wrapper img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            .story-content {
                 padding: 15px;
-                display: flex;
-                flex-direction: column;
-                flex-grow: 1;
             }
-            .story-icon {
-                font-size: 1.4rem;
-                margin-bottom: 6px;
-                display: inline-block;
-            }
-            .story-title {
-                font-size: 1.1rem;
-                color: #7a2014;
-                margin: 0 0 8px 0;
-                font-weight: bold;
-                border-bottom: 1px dashed #ffdec2;
-                padding-bottom: 5px;
-            }
-            .story-text {
-                font-size: 0.85rem;
-                color: #555555;
-                line-height: 1.4;
-                margin: 0;
-            }
-            @media (max-width: 900px) {
-                .ashram-story-container { grid-template-columns: repeat(2, 1fr); }
-            }
-            @media (max-width: 600px) {
-                .ashram-story-container { grid-template-columns: 1fr; }
-            }
-        </style>
 
-        <div class="ashram-story-container">
-            <!-- Card 1 -->
-            <div class="story-card">
-                <div class="story-image-wrapper">
-                    <img src="care1.jpeg" alt="दैनिक स्वास्थ्य निगरानी" onerror="this.src='care1.jpg';">
-                </div>
-                <div class="story-content">
-                    <span class="story-icon">🩺</span>
-                    <h4 class="story-title">दैनिक स्वास्थ्य निगरानी</h4>
-                    <p class="story-text">योग्य नर्सिंग टीम नियमित जांच करती है और महत्वपूर्ण मापदंडों की निगरानी करती है।</p>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="story-card">
-                <div class="story-image-wrapper">
-                    <img src="care2.jpeg" alt="व्यक्तिगत बिस्तर सहायता" onerror="this.src='care2.jpg';">
-                </div>
-                <div class="story-content">
-                    <span class="story-icon">🛌</span>
-                    <h4 class="story-title">व्यक्तिगत बिस्तर सहायता</h4>
-                    <p class="story-text">विशेष गतिविधि सहायता और आराम समायोजन दैनिक रूप से प्रदान किए जाते हैं।</p>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="story-card">
-                <div class="story-image-wrapper">
-                    <img src="care3.jpeg" alt="नियमित चिकित्सा जांच" onerror="this.src='care3.jpg';">
-                </div>
-                <div class="story-content">
-                    <span class="story-icon">👨‍⚕️</span>
-                    <h4 class="story-title">नियमित चिकित्सा जांच</h4>
-                    <p class="story-text">विशेषज्ञ डॉक्टर उचित नैदानिक उपकरणों का उपयोग करके संपूर्ण मूल्यांकन करते हैं।</p>
-                </div>
-            </div>
-            <!-- Card 4 -->
-            <div class="story-card">
-                <div class="story-image-wrapper">
-                    <img src="care4.jpeg" alt="समर्पित गहन देखभाल" onerror="this.src='care4.jpg';">
-                </div>
-                <div class="story-content">
-                    <span class="story-icon">❤️</span>
-                    <h4 class="story-title">समर्पित गहन देखभाल</h4>
-                    <p class="story-text">हम सख्त सुरक्षा प्रोटोकॉल का पालन करते हुए पूरी तरह आश्रित बुजुर्गों को गहन देखभाल प्रदान करते हैं।</p>
-                </div>
-            </div>
-        </div>
-        
-        <p style="text-align: center; font-style: italic; color: #666666;">परम पूज्य संत बाबा मोनी जी के आशीर्वाद और प्रेरणा के साथ, यह दिव्य कार्य निरंतर जारी है।</p>
-    </div>
-
-    <p>परम पूज्य संत मोनी बाबा जी के आशीर्वाद और प्रेरणा से इस पवित्र कार्य को निरंतर जारी रखा जा रहा है।</p>
-
-    <!-- POP-UP REGISTRATION FORM -->
-    <div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
-        
-        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; overflow-y: auto; max-height: 90vh;">
-            
-            <!-- Close Button (X) -->
-            <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">✕</span>
-            
-            <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">वृद्ध जन पंजीकरण फॉर्म</h3>
-            
-            <form action="https://api.web3forms.com/submit" method="POST">
-                <!-- Web3Forms Security Token -->
-                <input type="hidden" name="access_key" value="9ebbeac0-1e22-445a-9c27-5f3ff7b71ed3">
-
-                
-                <!-- Name & Age Row -->
-                <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
-                    <div style="margin: 0;">
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">बुजुर्ग का पूरा नाम:</label>
-                        <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
-                    </div>
-                    <div style="margin: 0;">
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आयु:</label>
-                        <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
-                    </div>
-                </div>
-
-                <!-- Medical Checklist Box -->
-                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
-                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">चिकित्सा इतिहास / स्वास्थ्य स्थितियाँ</h5>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-                        <div>
-                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> उच्च रक्त चाप
-                            </label>
-                        </div>
-                        <div>
-                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBoxHindi').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> मधुमेह (डायबिटीज)
-                            </label>
-                        </div>
-                        <div>
-                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> अल्जाइमर / डिमेंशिया
-                            </label>
-                        </div>
-                        <div>
-                            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
-                                <input type="checkbox" name="condition_schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> सिजोफ्रेनिया
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Diabetes Dropdown -->
-                    <div id="modalDbTypeBoxHindi" style="display: none; margin: 8px 0; padding-left: 15px;">
-                        <select name="diabetes_type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
-                            <option value="Not Specified">-- मधुमेह का प्रकार चुनें --</option>
-                            <option value="Type 1">टाइप 1 (इंसुलिन पर निर्भर)</option>
-                            <option value="Type 2">टाइप 2 (गैर-इंसुलिन निर्भर)</option>
-                            <option value="Pre-diabetic">प्री-डायबिटिक</option>
-                        </select>
-                    </div>
-
-                    <!-- Extra Notes -->
-                    <div style="margin-top: 6px;">
-                        <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="अन्य चिकित्सा विवरण..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Guardian Phone -->
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">अभिभावक / संपर्क नंबर:</label>
-                    <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
-                </div>
-
-                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">जमा करें</button>
-                
-                <!-- SAFE ALTERNATIVE BACKUP METHOD NOTICE -->
-                <div style="margin-top: 15px; padding: 10px; background-color: #f2dede; border: 1px solid #ebccd1; border-radius: 6px; text-align: center;">
-                    <p style="margin: 0; font-size: 0.8rem; color: #a94442; line-height: 1.4;">
-                        <strong>⚠️ जमा करने में त्रुटि आ रही है?</strong><br>
-                        कृपया अपना विवरण सीधे हमें इस ईमेल पर भेजें:<br>
-                        <a href="mailto:ashram@santmonibabasahibvriddhanandashram.org" style="color: #7a2014; font-weight: bold; text-decoration: underline;">ashram@santmonibabasahibvriddhanandashram.org</a>
-                    </p>
-                </div>
-            </form>
-         
-        </div>
-    </div>
-
-    <!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
-    <div id="volunteerModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
-        <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; overflow-y: auto; max-height: 90vh;">
-            
-            <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">✕</span>
-            <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">स्वयंसेवक पंजीकरण फॉर्म</h3>
-            
-            <!-- FINAL OPERATIONAL VOLUNTEER REGISTRATION FORM -->
-            <form action="https://formspree.io/f/mbdeogyr" method="POST" enctype="multipart/form-data">
-                
-                <!-- Name & Age Input Row -->
-                <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
-                    <div>
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">पूरा नाम:</label>
-                        <input type="text" name="Volunteer_Full_Name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
-                    </div>
-                    <div>
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आयु:</label>
-                        <input type="number" name="Volunteer_Age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
-                    </div>
-                </div>
-
-                <!-- Occupation Dropdown Selection -->
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वर्तमान व्यवसाय:</label>
-                    <select name="Volunteer_Current_Occupation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
-                        <option value="">-- व्यवसाय चुनें --</option>
-                        <option value="High School Student">हाई स्कूल छात्र</option>
-                        <option value="College Student">कॉलेज छात्र</option>
-                        <option value="Post-Graduation Student">पोस्ट-ग्रेजुएशन छात्र</option>
-                        <option value="Doing Job / Working Professional">नौकरी / कामकाजी पेशेवर</option>
-                    </select>
-                </div>
-
-                <!-- Operational Help Categories Checkboxes Box -->
-                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
-                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">सेवा सहयोग श्रेणियाँ</h5>
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 8px; color: #444444;">
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Medical" value="Yes"> चिकित्सा सहायता</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Langar" value="Yes"> लंगर / भोजन प्रबंधन</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Companionship" value="Yes"> सहचर्य / मनोरंजन</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="Help_Category_Admin" value="Yes"> प्रशासनिक काम</label>
-                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 6px;"><input type="checkbox" name="Help_Category_Other" value="Yes"> अन्य विकल्प</label>
-                    </div>
-                </div>
-
-                <!-- Reason Selection (Internship vs Help Dropdown) -->
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आश्रम से जुड़ने का उद्देश्य:</label>
-                    <select id="volunteerPurpose" name="Joining_Purpose_Reason" onchange="toggleAttachmentFields(this.value)" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
-                        <option value="">-- उद्देश्य चुनें --</option>
-                        <option value="General Help">सामान्य सहायता / स्वैच्छिक सेवा</option>
-                        <option value="Internship">आधिकारिक इंटर्नशिप कार्यक्रम</option>
-                    </select>
-                </div>
-
-                <!-- DYNAMIC FILE ATTACHMENTS GRID -->
-                <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
-                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">आवश्यक दस्तावेज़ अपलोड (PDF फॉर्मेट)</h5>
-                    <div id="appFormUpload" style="margin-bottom: 10px; display: none;">
-                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">आवेदन फॉर्म अपलोड करें (PDF):</label>
-                        <input type="file" id="appFileInput" name="Attached_Application_Form_PDF" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
-                    </div>
-                    <div id="aadhaarUpload" style="margin-bottom: 4px; display: none;">
-                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">आधार कार्ड अपलोड करें (PDF):</label>
-                        <input type="file" id="aadhaarInput" name="Attached_Aadhaar_Card_PDF" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
-                    </div>
-                </div>
-
-                <!-- Availability Options Dropdown -->
-                <div style="margin-bottom: 12px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">उपलब्धता अनुसूची:</label>
-                    <select name="Availability_Schedule" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
-                        <option value="">-- समय उपलब्धता चुनें --</option>
-                        <option value="Weekends Only (Sat / Sun)">केवल सप्ताहांत (शनिवार / रविवार)</option>
-                        <option value="Weekdays Only (Mon to Fri)">केवल कार्यदिवस (सोमवार से शुक्रवार)</option>
-                        <option value="Flexible / On-Call Support">लचीला समय / ऑन-कॉल सहायता</option>
-                    </select>
-                </div>
-
-                <!-- Brief Message / Past Experience Text Box -->
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">संक्षिप्त संदेश / पिछला अनुभव:</label>
-                    <textarea name="Volunteer_Experience_Remarks" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="अपना अनुभव साझा करें..."></textarea>
-                </div>
-
-                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">जमा करें</button>
-                
-                <div style="margin-top: 15px; padding: 10px; background-color: #f2dede; border: 1px solid #ebccd1; border-radius: 6px; text-align: center;">
-                    <p style="margin: 0; font-size: 0.8rem; color: #a94442; line-height: 1.4;">
-                        <strong>⚠️ फॉर्म जमा करने में त्रुटि आ रही है?</strong><br>
-                        कृपया अपना विवरण और पीडीएफ दस्तावेज़ सीधे हमें इस ईमेल पर भेजें:<br>
-                        <a href="mailto:ashram@santmonibabasahibvriddhanandashram.org" style="color: #7a2014; font-weight: bold; text-decoration: underline;">ashram@santmonibabasahibvriddhanandashram.org</a>
-                    </p>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-    <!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->
-    <script>
-        function toggleAttachmentFields(purposeValue) {
-            var box = document.getElementById('attachmentsBox');
-            var appBox = document.getElementById('appFormUpload');
-            var appInput = document.getElementById('appFileInput');
-            var aadhaarBox = document.getElementById('aadhaarUpload');
-            var aadhaarInput = document.getElementById('aadhaarInput');
-
-            if (purposeValue === "Internship") {
-                box.style.display = "block"; appBox.style.display = "block"; appInput.required = true;
-                aadhaarBox.style.display = "block"; aadhaarInput.required = true;
-            } else if (purposeValue === "General Help") {
-                box.style.display = "block"; appBox.style.display = "none"; appInput.required = false;
-                aadhaarBox.style.display = "block"; aadhaarInput.required = true;
-            } else {
-                box.style.display = "none"; appBox.style.display = "none"; appInput.required = false;
-                aadhaarBox.style.display = "none"; aadhaarInput.required = false;
+            .banner-side-box {
+                max-width: 100%;
+                width: 100%;
+                height: 120px;
             }
         }
-    </script>
 
-    <script>
-        window.onload = function() {
-            if (!sessionStorage.getItem('languageSelected')) {
-                document.getElementById('langPopup').style.display = 'flex';
-            }
-        };
-        function closeLanguagePopup() {
-            sessionStorage.setItem('languageSelected', 'true');
-            document.getElementById('langPopup').style.display = 'none';
+        .ashram-story-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 35px 0;
+            padding: 10px;
         }
-        function saveLanguageChoice() {
-            sessionStorage.setItem('languageSelected', 'true');
-        }
-    </script>
 
-    <!-- UNIFIED 3-COLUMN FOOTER SECTION WITH TARGET SCROLL MARKERS -->
-    <style>
+        .story-card {
+            background: #ffffff;
+            border: 1px solid #e6dfd3;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(230,126,34,0.15);
+            border-color: #FF9933;
+        }
+
+        .story-image-wrapper {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+
+        .story-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .story-icon {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
+        .story-title {
+            font-size: 1.1rem;
+            color: #7a2014;
+            margin: 0 0 8px 0;
+            font-weight: bold;
+            border-bottom: 1px dashed #ffdec2;
+            padding-bottom: 5px;
+        }
+
+        .story-text {
+            font-size: 0.85rem;
+            color: #555555;
+            line-height: 1.4;
+            margin: 0;
+        }
+
         html {
-            scroll-behavior: smooth; /* Makes the page slide smoothly down when clicked */
+            scroll-behavior: smooth;
         }
+
         .ashram-footer {
             background-color: #333333;
             color: #ffffff;
@@ -710,6 +339,7 @@
             margin-top: 50px;
             border-top: 4px solid #FF9933;
         }
+
         .footer-grid {
             max-width: 1100px;
             margin: 0 auto;
@@ -717,6 +347,7 @@
             grid-template-columns: 1fr 1fr 1.2fr;
             gap: 30px;
         }
+
         .footer-col h4 {
             color: #FF9933;
             font-size: 1.2rem;
@@ -725,6 +356,7 @@
             border-bottom: 2px solid #444444;
             padding-bottom: 8px;
         }
+
         .footer-links a {
             display: block;
             color: #cccccc;
@@ -732,21 +364,25 @@
             margin-bottom: 10px;
             font-size: 0.95rem;
         }
+
         .footer-links a:hover {
             color: #FF9933;
         }
+
         .footer-contact p {
             margin: 0 0 10px 0;
             color: #cccccc;
             font-size: 0.9rem;
             line-height: 1.5;
         }
+
         .footer-donate-box {
             background-color: #444444;
             padding: 15px;
             border-radius: 8px;
             border: 1px dashed #FF9933;
         }
+
         .footer-btn {
             display: block;
             text-align: center;
@@ -759,9 +395,7 @@
             margin-top: 10px;
             font-size: 0.95rem;
         }
-        .footer-btn:hover {
-            background-color: #FF9933;
-        }
+
         .footer-bottom {
             max-width: 1100px;
             margin: 30px auto 0 auto;
@@ -771,56 +405,457 @@
             font-size: 0.85rem;
             color: #999999;
         }
+
+        @media (max-width: 900px) {
+            .ashram-story-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ashram-story-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
+</head>
 
-    <footer class="ashram-footer">
-        <div class="footer-grid">
-            
-            <!-- Column 1: Quick Navigation -->
-            <div class="footer-col footer-links">
-                <h4>मुख्य नेविगेशन</h4>
-                <a href="#">↑ वापस ऊपर जाएँ</a>
-                <a href="javascript:void(0);" onclick="document.getElementById('registerModal').style.display='flex'">अपनों का पंजीकरण करें</a>
-                <a href="index.html">English Website</a>
-                <a href="hindi.html">हिंदी वेबसाइट</a>
-                <a href="marathi.html">मराठी वेबसाईट</a>
+<body>
+
+<div class="lang-popup-overlay" id="langPopup">
+    <div class="lang-popup-box">
+        <h2>जय माता दी / सत श्री अकाल</h2>
+        <p>कृपया अपनी भाषा चुनें<br>Please Select Your Language</p>
+
+        <a href="hindi.html" class="lang-btn" onclick="saveLanguageChoice()">हिंदी (Hindi)</a>
+
+        <a href="index.html" class="lang-btn" onclick="saveLanguageChoice()">English</a>
+
+        <a href="marathi.html" class="lang-btn" onclick="saveLanguageChoice()">मराठी (Marathi)</a>
+    </div>
+</div>
+
+<div class="language-bar">
+    साइट की भाषा चुनें:
+    <a href="index.html">English</a> |
+    <a href="#" class="current-lang">हिंदी (Hindi)</a> |
+    <a href="marathi.html">मराठी (Marathi)</a>
+</div>
+
+<div class="sacred-banner-container">
+    <div class="banner-side-box">
+        <img src="khanda-banner.jpg" alt="खण्डा प्रतीक">
+    </div>
+
+    <div class="banner-center-box">
+        <img src="ekonkar.jpg" alt="एक ओंकार">
+    </div>
+
+    <div class="banner-side-box">
+        <img src="khanda-banner.jpg" alt="खण्डा प्रतीक">
+    </div>
+</div>
+
+<div class="header-container">
+    <div class="baba-image-box">
+        <img src="baba.jpg" alt="संत मोनी बाबा">
+    </div>
+
+    <div class="header-center-title">
+        <h3>"मानव सेवा ही ईश्वर सेवा है"</h3>
+        <h1>संत बाबा मोनी साहेब वृद्ध आनंद आश्रम</h1>
+    </div>
+</div>
+
+<div class="nav-grid">
+    <a href="#" class="nav-item" style="background-color:#E67E22;">दान करें</a>
+
+    <a href="javascript:void(0);"
+       onclick="document.getElementById('registerModal').style.display='flex'"
+       class="nav-item">
+       अपने प्रियजनों का पंजीकरण
+    </a>
+
+    <a href="#contactSection" class="nav-item">संपर्क करें</a>
+
+    <a href="javascript:void(0);"
+       onclick="document.getElementById('volunteerModal').style.display='flex'"
+       class="nav-item">
+       स्वयंसेवक बनें
+    </a>
+</div>
+
+<div class="main-content">
+
+    <h2>आश्रम में आपका स्वागत है</h2>
+
+    <div style="text-align:left;margin:20px 0;line-height:1.6;color:#444;font-size:1rem;">
+
+        <p style="font-weight:bold;color:#7a2014;font-size:1.15rem;border-left:4px solid #FF9933;padding-left:10px;margin-bottom:15px;font-style:italic;">
+            "संत बाबा मोनी साहेब वृद्ध आनंद आश्रम के बारे में संक्षिप्त जानकारी"
+        </p>
+
+        <p style="margin-bottom:12px;">
+            वर्ष <strong>2005</strong> में स्थापित हमारा वृद्धाश्रम वरिष्ठ नागरिकों को आश्रय, करुणामय देखभाल और आध्यात्मिक सहारा प्रदान करने के पवित्र उद्देश्य से शुरू किया गया था।
+        </p>
+
+        <p style="margin-bottom:12px;">
+            वर्ष 2005 में अपनी विनम्र शुरुआत के बाद से ट्रस्ट ने अनेक चुनौतियों को पार करते हुए निरंतर प्रगति की है और बुजुर्गों की बढ़ती आवश्यकताओं के अनुसार अपनी सेवाओं का विस्तार किया है।
+        </p>
+
+        <p style="margin-bottom:15px;">
+            हमारे समुदाय में जरूरतमंद वरिष्ठ नागरिकों की संख्या दिन-प्रतिदिन बढ़ रही है। इसी कारण ट्रस्ट ने अपने अगले महत्वपूर्ण सेवा कार्य के रूप में आश्रम के विस्तार और नई सुविधाओं के निर्माण की दिशा में कदम बढ़ाया है।
+        </p>
+    </div>
+
+    <section id="aboutSection"
+        style="text-align:left;margin:35px 0;padding:25px;background:#fff9f2;border:1px solid #ffdec2;border-radius:10px;">
+
+        <h2 style="color:#7a2014;text-align:center;margin-top:0;">
+            संत बाबा मोनी साहेब वृद्ध आनंद आश्रम के बारे में
+        </h2>
+
+        <p style="line-height:1.7;color:#444;">
+            अकुर्डी स्थित संत बाबा मोनी साहेब वृद्ध आनंद आश्रम एक वृद्धाश्रम है, जहाँ बुजुर्गों की सेवा के साथ-साथ लंगर सेवा भी की जाती है। आश्रम प्रतिदिन कार्य करता है और अपने द्वार पर आने वाले लोगों को भोजन उपलब्ध कराता है तथा वृद्ध निवासियों की देखभाल करता है।
+        </p>
+
+        <p style="line-height:1.7;color:#444;">
+            दिन में परोसे जाने वाले भोजन की व्यवस्था के लिए आश्रम में प्रतिदिन दो बार भोजन तैयार किया जाता है। इसके अतिरिक्त बड़े लंगरों और भोजन दान के माध्यम से भी भोजन प्राप्त होता है।
+        </p>
+
+        <p style="line-height:1.7;color:#444;margin-bottom:0;">
+            आश्रम की दैनिक सेवा निरंतर जारी रखने के लिए सहयोग, सेवा और भागीदारी की आवश्यकता रहती है।
+        </p>
+    </section>
+
+    <section id="langarSection"
+        style="text-align:left;margin:35px 0;padding:25px;background:#ffffff;border:1px solid #e6dfd3;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.03);">
+
+        <h2 style="color:#7a2014;text-align:center;margin-top:0;">
+            लंगर सेवा
+        </h2>
+
+        <p style="line-height:1.7;color:#444;">
+            लंगर आश्रम की दैनिक सेवा का एक महत्वपूर्ण हिस्सा है। आश्रम में दिन में दो बार भोजन बनाया जाता है, जिससे दिन के भोजन की व्यवस्था में सहायता मिलती है। आश्रम में आने वाले सभी लोगों का भोजन के लिए स्वागत किया जाता है, केवल वृद्ध निवासी ही नहीं।
+        </p>
+
+        <p style="line-height:1.7;color:#444;margin-bottom:0;">
+            भोजन सेवा को बड़े लंगरों से प्राप्त तैयार भोजन और भोजन दान से भी सहयोग मिलता है। यह सामूहिक प्रयास आश्रम को अपनी दैनिक सेवा जारी रखने में सहायता करता है।
+        </p>
+    </section>
+
+    <div class="ashram-story-container">
+
+        <div class="story-card">
+            <div class="story-image-wrapper">
+                <img src="care1.jpeg" alt="दैनिक स्वास्थ्य निगरानी"
+                     onerror="this.src='care1.jpg';">
             </div>
 
-            <!-- Column 2: Donation Details -->
-            <div class="footer-col">
-                <h4>सेवा कार्यों में सहयोग दें</h4>
-                <div class="footer-donate-box">
-                    <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #eee;">आपका एक छोटा सा योगदान हमारी दैनिक पवित्र लंगर और चिकित्सा वितरण कार्यक्रमों को शक्ति देता है।</p>
-                    <a href="#" class="footer-btn">दान के लिए बैंक विवरण देखें</a>
+            <div class="story-content">
+                <span class="story-icon">🩺</span>
+                <h4 class="story-title">दैनिक स्वास्थ्य निगरानी</h4>
+                <p class="story-text">
+                    हमारी योग्य नर्सिंग टीम नियमित जांच करती है और निवासियों के महत्वपूर्ण स्वास्थ्य मानकों की निगरानी करती है।
+                </p>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <div class="story-image-wrapper">
+                <img src="care2.jpeg" alt="व्यक्तिगत देखभाल"
+                     onerror="this.src='care2.jpg';">
+            </div>
+
+            <div class="story-content">
+                <span class="story-icon">🛌</span>
+                <h4 class="story-title">व्यक्तिगत देखभाल</h4>
+                <p class="story-text">
+                    बिस्तर पर रहने वाले बुजुर्गों के लिए दैनिक रूप से आवश्यक गतिशीलता सहायता और आराम की व्यवस्था की जाती है।
+                </p>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <div class="story-image-wrapper">
+                <img src="care3.jpeg" alt="नियमित चिकित्सा जांच"
+                     onerror="this.src='care3.jpg';">
+            </div>
+
+            <div class="story-content">
+                <span class="story-icon">👨‍⚕️</span>
+                <h4 class="story-title">नियमित चिकित्सा जांच</h4>
+                <p class="story-text">
+                    विशेषज्ञ चिकित्सक नियमित रूप से स्वास्थ्य परीक्षण करते हैं और आवश्यक चिकित्सा जांच करते हैं।
+                </p>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <div class="story-image-wrapper">
+                <img src="care4.jpeg" alt="समर्पित देखभाल"
+                     onerror="this.src='care4.jpg';">
+            </div>
+
+            <div class="story-content">
+                <span class="story-icon">❤️</span>
+                <h4 class="story-title">समर्पित देखभाल</h4>
+                <p class="story-text">
+                    पूरी तरह निर्भर बुजुर्गों की देखभाल करते समय हम सुरक्षा नियमों का पालन करते हुए आवश्यक सहायता प्रदान करते हैं।
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="text-align:center;font-style:italic;color:#666;">
+        परम पूज्य संत बाबा मोनी जी के पवित्र आशीर्वाद और प्रेरणा से यह दिव्य सेवा कार्य निरंतर जारी है।
+    </p>
+
+</div>
+
+<!-- Registration Modal -->
+<div id="registerModal"
+     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+
+    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;max-height:90vh;overflow-y:auto;">
+
+        <h2 style="color:#7a2014;text-align:center;">
+            प्रियजन का पंजीकरण
+        </h2>
+
+        <form>
+
+            <label><strong>नाम</strong></label>
+            <input type="text" required
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+            <label><strong>आयु</strong></label>
+            <input type="number" required
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+            <label><strong>संपर्क नंबर</strong></label>
+            <input type="tel" required
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+            <label><strong>अतिरिक्त जानकारी</strong></label>
+            <textarea rows="5"
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;"></textarea>
+
+            <button type="submit"
+                style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">
+                पंजीकरण जमा करें
+            </button>
+
+            <button type="button"
+                onclick="document.getElementById('registerModal').style.display='none'"
+                style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;">
+                बंद करें
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<!-- Volunteer Modal -->
+<div id="volunteerModal"
+     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+
+    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;">
+
+        <h2 style="color:#7a2014;text-align:center;">
+            स्वयंसेवक बनें
+        </h2>
+
+        <form>
+
+            <label><strong>पूरा नाम</strong></label>
+            <input type="text" required
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+            <label><strong>मोबाइल नंबर</strong></label>
+            <input type="tel" required
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+            <label><strong>सेवा का उद्देश्य</strong></label>
+            <select onchange="toggleAttachmentFields(this.value)"
+                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
+
+                <option value="">चुनें</option>
+                <option value="Internship">इंटर्नशिप</option>
+                <option value="General Help">सामान्य सहायता</option>
+                <option value="Other">अन्य</option>
+            </select>
+
+            <div id="attachmentsBox" style="display:none;">
+
+                <div id="appFormUpload" style="display:none;">
+                    <label><strong>आवेदन पत्र</strong></label>
+                    <input type="file" id="appFileInput"
+                        style="width:100%;margin:8px 0 15px;">
                 </div>
+
+                <div id="aadhaarUpload" style="display:none;">
+                    <label><strong>आधार कार्ड</strong></label>
+                    <input type="file" id="aadhaarInput"
+                        style="width:100%;margin:8px 0 15px;">
+                </div>
+
             </div>
 
-            <!-- Column 3: Contact & Target Scroll Area Location Info -->
-            <div class="footer-col footer-contact" id="contactSection">
-                <h4>आधिकारिक संपर्क विवरण</h4>
-                <p><strong>📍 पंजीकृत पता (सरकारी पंजीकृत):</strong><br>
-                संत बाबा मोनी साहिब वृद्ध आनंद आश्रम<br>
-                सर्वे नंबर 133/1, गुरुद्वारा रोड, आकुर्डी स्टेशन के पास, वाल्हेकरवाड़ी, पुणे - 411033।</p>
-                
-                <p><strong>📞 संपर्क सूत्र (फ़ोन):</strong><br>
-                +91 7745070544 / +91 9561836815</p>
-                
-                <p><strong>🌐 जीपीएस लाइव मैप लोकेशन:</strong><br>
-                <a href="https://google.com" target="_blank" style="color: #FF9933; text-decoration: underline; font-size: 0.9rem;">
-                    गूगल मैप्स पर रास्ता देखने के लिए यहाँ क्लिक करें 🗺️
-                </a></p>
+            <button type="submit"
+                style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">
+                आवेदन जमा करें
+            </button>
+
+            <button type="button"
+                onclick="document.getElementById('volunteerModal').style.display='none'"
+                style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;">
+                बंद करें
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<footer class="ashram-footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-col footer-links">
+            <h4>त्वरित नेविगेशन</h4>
+
+            <a href="#">↑ ऊपर जाएँ</a>
+
+            <a href="javascript:void(0);"
+               onclick="document.getElementById('registerModal').style.display='flex'">
+               प्रियजन का पंजीकरण
+            </a>
+
+            <a href="index.html">अंग्रेज़ी वेबसाइट</a>
+            <a href="hindi.html">हिंदी वेबसाइट</a>
+            <a href="marathi.html">मराठी वेबसाइट</a>
+        </div>
+
+        <div class="footer-col">
+
+            <h4>हमारे मिशन का समर्थन करें</h4>
+
+            <div class="footer-donate-box">
+
+                <p style="margin:0 0 8px 0;font-size:0.85rem;color:#eee;">
+                    आपका छोटा सा योगदान हमारे दैनिक पवित्र लंगर और चिकित्सा सेवा कार्यक्रमों को चलाने में सहायता करता है।
+                </p>
+
+                <a href="#" class="footer-btn">
+                    दान के लिए बैंक विवरण देखें
+                </a>
+
             </div>
-
         </div>
 
-        <!-- Copyright Line Bar -->
-        <div class="footer-bottom">
-            &copy; 2026 संत बाबा मोनी साहिब वृद्ध आनंद आश्रम। सर्वाधिकार सुरक्षित। | सरकारी पंजीकृत संगठन।
+        <div class="footer-col footer-contact" id="contactSection">
+
+            <h4>आधिकारिक संपर्क जानकारी</h4>
+
+            <p>
+                <strong>📍 पंजीकृत पता (सरकारी पंजीकृत):</strong><br>
+                SANT BABA MONI SAHEB VRIDDH ANAND ASHRAM<br>
+                Survey No.133/1, Gurudwara Road, Near Akurdi Station,
+                Walhekarwadi, Pune - 411033.
+            </p>
+
+            <p>
+                <strong>📞 फोन नंबर:</strong><br>
+                +91 7745070544 / +91 9561836815
+            </p>
+
+            <p>
+                <strong>🌐 GPS लाइव मैप लोकेशन:</strong><br>
+
+                <a href="https://google.com"
+                   target="_blank"
+                   style="color:#FF9933;text-decoration:underline;font-size:0.9rem;">
+                    Google Maps में नेविगेशन खोलने के लिए क्लिक करें 🗺️
+                </a>
+            </p>
+
         </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 संत बाबा मोनी साहेब वृद्ध आनंद आश्रम।
+        सर्वाधिकार सुरक्षित। | सरकारी पंजीकृत संस्था।
+    </div>
+
+</footer>
+
+<script>
+
+function toggleAttachmentFields(purposeValue) {
+
+    var box = document.getElementById('attachmentsBox');
+    var appBox = document.getElementById('appFormUpload');
+    var appInput = document.getElementById('appFileInput');
+    var aadhaarBox = document.getElementById('aadhaarUpload');
+    var aadhaarInput = document.getElementById('aadhaarInput');
+
+    if (purposeValue === "Internship") {
+
+        box.style.display = "block";
+        appBox.style.display = "block";
+        appInput.required = true;
+
+        aadhaarBox.style.display = "block";
+        aadhaarInput.required = true;
+
+    } else if (purposeValue === "General Help") {
+
+        box.style.display = "block";
+        appBox.style.display = "none";
+        appInput.required = false;
+
+        aadhaarBox.style.display = "block";
+        aadhaarInput.required = true;
+
+    } else {
+
+        box.style.display = "none";
+        appBox.style.display = "none";
+        appInput.required = false;
+
+        aadhaarBox.style.display = "none";
+        aadhaarInput.required = false;
+    }
+}
+
+window.onload = function() {
+
+    if (!sessionStorage.getItem('languageSelected')) {
+        document.getElementById('langPopup').style.display = 'flex';
+    }
+
+};
+
+function closeLanguagePopup() {
+
+    sessionStorage.setItem('languageSelected', 'true');
+    document.getElementById('langPopup').style.display = 'none';
+
+}
+
+function saveLanguageChoice() {
+    sessionStorage.setItem('languageSelected', 'true');
+}
+
+</script>
 
 </body>
 </html>
