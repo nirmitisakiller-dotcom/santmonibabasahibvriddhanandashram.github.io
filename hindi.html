@@ -475,8 +475,12 @@
 </div>
 
 <div class="nav-grid">
-    <a href="#" class="nav-item" style="background-color:#E67E22;">दान करें</a>
-
+<a href="javascript:void(0);"
+   onclick="document.getElementById('donationModal').style.display='flex'"
+   class="nav-item"
+   style="background-color:#E67E22;">
+   दान करें
+</a>
     <a href="javascript:void(0);"
        onclick="document.getElementById('registerModal').style.display='flex'"
        class="nav-item">
@@ -724,7 +728,58 @@
         </form>
     </div>
 </div>
+<!-- Donation Modal -->
+<div id="donationModal"
+     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;
+     background-color:rgba(0,0,0,0.65);align-items:center;justify-content:center;">
 
+    <div style="background:#ffffff;padding:40px;border-radius:14px;width:90%;max-width:680px;
+        max-height:90vh;overflow-y:auto;border:4px solid #FF9933;
+        box-shadow:0 10px 30px rgba(0,0,0,0.3);box-sizing:border-box;">
+
+        <h2 style="color:#7a2014;text-align:center;margin-top:0;font-size:1.8rem;">
+            🙏 हमारे मिशन का समर्थन करें
+        </h2>
+
+        <p style="text-align:center;font-size:1.1rem;font-weight:bold;
+            color:#555;line-height:1.6;margin-bottom:25px;">
+            आपका योगदान संत बाबा मोनी साहेब वृद्ध आनंद आश्रम की
+            वृद्ध सेवा और दैनिक लंगर सेवा को जारी रखने में सहायता करता है।
+        </p>
+
+        <div style="background:#fff9f2;border:1px solid #ffdec2;border-radius:10px;
+            padding:25px;box-sizing:border-box;">
+
+            <h3 style="color:#7a2014;text-align:center;margin-top:0;">
+                दान का विवरण
+            </h3>
+
+            <p style="font-size:1.05rem;line-height:1.7;color:#444;">
+                <strong>संस्था:</strong><br>
+                Sant Baba Moni Saheb Vriddh Anand Ashram
+            </p>
+
+            <p style="font-size:1.05rem;line-height:1.7;color:#444;">
+                <strong>बैंक विवरण:</strong><br>
+                दान का बैंक विवरण यहाँ प्रदर्शित किया जाएगा।
+            </p>
+
+            <p style="text-align:center;color:#777;font-weight:bold;">
+                कृपया सत्यापित दान संबंधी जानकारी के लिए आश्रम से संपर्क करें।
+            </p>
+
+        </div>
+
+        <button type="button"
+            onclick="document.getElementById('donationModal').style.display='none'"
+            style="width:100%;padding:15px;background:#FF9933;color:white;
+            border:0;border-radius:6px;font-weight:bold;font-size:1.1rem;
+            margin-top:25px;cursor:pointer;">
+            बंद करें
+        </button>
+
+    </div>
+</div>
 <footer class="ashram-footer">
 
     <div class="footer-grid">
@@ -754,10 +809,11 @@
                     आपका छोटा सा योगदान हमारे दैनिक पवित्र लंगर और चिकित्सा सेवा कार्यक्रमों को चलाने में सहायता करता है।
                 </p>
 
-                <a href="#" class="footer-btn">
-                    दान के लिए बैंक विवरण देखें
-                </a>
-
+               <a href="javascript:void(0);"
+   onclick="document.getElementById('donationModal').style.display='flex'"
+   class="footer-btn">
+    दान के लिए बैंक विवरण देखें
+</a>
             </div>
         </div>
 
