@@ -1,0 +1,82 @@
+name: Phase 2 SEO metadata
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'hindi.html'
+      - 'marathi.html'
+      - '.github/workflows/seo-phase2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add SEO metadata
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          base = 'https://santmonibabasahibvriddhanandashram.org/'
+          pages = {
+              'index.html': {
+                  'lang': 'en',
+                  'description': 'Sant Baba Moni Sahib Vriddhanand Ashram in Akurdi, Pune, serving elderly people and continuing daily Langar Seva with care and compassion.',
+                  'canonical': base,
+              },
+              'hindi.html': {
+                  'lang': 'hi',
+                  'description': 'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, अकरुडी, पुणे में बुजुर्गों की सेवा और दैनिक लंगर सेवा के लिए समर्पित आश्रम।',
+                  'canonical': base + 'hindi.html',
+              },
+              'marathi.html': {
+                  'lang': 'mr',
+                  'description': 'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, आकुर्डी, पुणे येथे ज्येष्ठ नागरिकांची सेवा आणि दैनंदिन लंगर सेवा सुरू ठेवणारा आश्रम.',
+                  'canonical': base + 'marathi.html',
+              },
+          }
+
+          alternates = {
+              'en': base,
+              'hi': base + 'hindi.html',
+              'mr': base + 'marathi.html',
+          }
+
+          marker = '<!-- PHASE 2 SEO METADATA -->'
+
+          for filename, data in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+
+              if marker in text:
+                  continue
+
+              metadata = f'''\n    {marker}\n    <meta name="description" content="{data['description']}">\n    <link rel="canonical" href="{data['canonical']}">\n    <link rel="alternate" hreflang="en" href="{alternates['en']}">\n    <link rel="alternate" hreflang="hi" href="{alternates['hi']}">\n    <link rel="alternate" hreflang="mr" href="{alternates['mr']}">\n    <link rel="alternate" hreflang="x-default" href="{alternates['en']}">\n    <meta property="og:title" content="Sant Baba Moni Sahib Vriddhanand Ashram">\n    <meta property="og:description" content="{data['description']}">\n    <meta property="og:type" content="website">\n    <meta property="og:url" content="{data['canonical']}">\n'''
+
+              needle = '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
+              if needle not in text:
+                  raise SystemExit(f'Viewport meta tag not found in {filename}')
+
+              text = text.replace(needle, needle + metadata, 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit SEO changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html hindi.html marathi.html
+          if git diff --cached --quiet; then
+            echo 'No SEO changes needed.'
+          else
+            git commit -m 'Add SEO metadata to multilingual pages'
+            git push
+          fi
