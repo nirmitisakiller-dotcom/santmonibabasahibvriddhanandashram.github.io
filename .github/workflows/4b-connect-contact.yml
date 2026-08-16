@@ -1,0 +1,72 @@
+name: Phase 4B - Connect Contact Page
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  connect-contact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update site navigation links
+        shell: python
+        run: |
+          from pathlib import Path
+
+          files = [Path("index.html"), Path("hindi.html"), Path("marathi.html")]
+          changed = []
+
+          replacements = [
+              ('href="#contactSection"', 'href="contact.html"'),
+              ('<a href="javascript:void(0);" onclick="document.getElementById(\'registerModal\').style.display=\'flex\'">Register Loved Ones</a>', '<a href="javascript:void(0);" onclick="document.getElementById(\'registerModal\').style.display=\'flex\'">Register Loved Ones</a>\n                <a href="contact.html">Contact Page</a>'),
+              ('<a href="javascript:void(0);" onclick="document.getElementById(\'registerModal\').style.display=\'flex\'">प्रियजनांची नोंदणी</a>', '<a href="javascript:void(0);" onclick="document.getElementById(\'registerModal\').style.display=\'flex\'">प्रियजनांची नोंदणी</a>\n                <a href="contact.html">संपर्क पृष्ठ</a>'),
+          ]
+
+          for path in files:
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding="utf-8")
+              original = text
+              for old, new in replacements:
+                  text = text.replace(old, new)
+              if text != original:
+                  path.write_text(text, encoding="utf-8")
+                  changed.append(str(path))
+
+          print("Updated:", ", ".join(changed) if changed else "none")
+
+      - name: Commit and push changes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No site changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html hindi.html marathi.html
+          git commit -m "Phase 4B: link contact page in site navigation"
+          git push
+
+      - name: Remove one-time workflow
+        if: always()
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/4b-connect-contact.yml 2>/dev/null || true
+          git rm -f .github/workflows/4b-connect-contact.yml 2>/dev/null || true
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Remove one-time Phase 4B workflow"
+          git push
