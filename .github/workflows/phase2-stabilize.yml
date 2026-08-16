@@ -1,0 +1,93 @@
+name: Phase 2 Site Stabilization
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  stabilize:
+    if: github.event.head_commit.message != 'chore: phase 2 site stabilization'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Apply safe technical fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = {
+              'index.html': (
+                  'en',
+                  'Sant Baba Moni Saheb Vriddh Anand Ashram in Akurdi provides care for elderly people and daily Langar Seva, with opportunities to support and participate in its services.',
+                  'https://santmonibabasahibvriddhanandashram.org/'
+              ),
+              'hindi.html': (
+                  'hi',
+                  'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, अकुर्डी में बुजुर्गों की सेवा और दैनिक लंगर सेवा के साथ जरूरतमंद लोगों के लिए सेवा कार्य करता है।',
+                  'https://santmonibabasahibvriddhanandashram.org/hindi.html'
+              ),
+              'marathi.html': (
+                  'mr',
+                  'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, आकुर्डी येथे ज्येष्ठ नागरिकांची सेवा आणि दैनंदिन लंगर सेवा तसेच विविध सेवाभावी उपक्रम चालवतो.',
+                  'https://santmonibabasahibvriddhanandashram.org/marathi.html'
+              ),
+          }
+
+          for filename, (lang, description, canonical) in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              # Add a language-appropriate SEO description once.
+              if 'name="description"' not in text:
+                  viewport = re.search(r'(<meta\s+name="viewport"[^>]*>)', text, flags=re.I)
+                  if viewport:
+                      insertion = f'\n    <meta name="description" content="{description}">'
+                      text = text[:viewport.end()] + insertion + text[viewport.end():]
+
+              # Add one canonical URL per language page.
+              if 'rel="canonical"' not in text:
+                  title_end = re.search(r'</title>', text, flags=re.I)
+                  if title_end:
+                      insertion = f'\n    <link rel="canonical" href="{canonical}">'
+                      text = text[:title_end.end()] + insertion + text[title_end.end():]
+
+              # The repository contains a 1-byte favicon.ico placeholder; the valid
+              # favicon.jpg/png declarations are already present, so remove the broken
+              # /favicon.ico references rather than pointing browsers at a bad asset.
+              text = re.sub(r'^\s*<link rel="icon" href="/favicon\.ico" type="image/x-icon">\s*\n?', '', text, flags=re.M)
+              text = re.sub(r'^\s*<link rel="shortcut icon" href="/favicon\.ico" type="image/x-icon">\s*\n?', '', text, flags=re.M)
+
+              # Make external new-tab links safer.
+              text = re.sub(
+                  r'target="_blank"(?!\s+rel=)',
+                  'target="_blank" rel="noopener noreferrer"',
+                  text,
+              )
+
+              # Lazy-load the four care photos without changing their appearance.
+              text = re.sub(
+                  r'(<img\s+src="care[1-4]\.jpeg"\s+alt="[^"]*")',
+                  r'\1 loading="lazy" decoding="async"',
+                  text,
+              )
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/phase2-stabilize.yml
+          git add index.html hindi.html marathi.html .github/workflows/phase2-stabilize.yml
+          git diff --cached --quiet || git commit -m "chore: phase 2 site stabilization"
+          git push
