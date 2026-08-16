@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://santmonibabasahibvriddhanandashram.org/sitemap.xml
