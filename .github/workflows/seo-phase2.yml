@@ -20,12 +20,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Add SEO metadata
+      - name: Add SEO metadata and structured data
         run: |
           python3 <<'PY'
           from pathlib import Path
+          import json
 
           base = 'https://santmonibabasahibvriddhanandashram.org/'
+          organization_name = 'Sant Baba Moni Sahib Vriddhanand Ashram'
+
           pages = {
               'index.html': {
                   'lang': 'en',
@@ -50,22 +53,42 @@ jobs:
               'mr': base + 'marathi.html',
           }
 
-          marker = '<!-- PHASE 2 SEO METADATA -->'
+          metadata_marker = '<!-- PHASE 2 SEO METADATA -->'
+          schema_marker = '<!-- PHASE 3 STRUCTURED DATA -->'
 
           for filename, data in pages.items():
               path = Path(filename)
               text = path.read_text(encoding='utf-8')
 
-              if marker in text:
-                  continue
+              if metadata_marker not in text:
+                  metadata = f'''\n    {metadata_marker}\n    <meta name="description" content="{data['description']}">\n    <link rel="canonical" href="{data['canonical']}">\n    <link rel="alternate" hreflang="en" href="{alternates['en']}">\n    <link rel="alternate" hreflang="hi" href="{alternates['hi']}">\n    <link rel="alternate" hreflang="mr" href="{alternates['mr']}">\n    <link rel="alternate" hreflang="x-default" href="{alternates['en']}">\n    <meta property="og:title" content="{organization_name}">\n    <meta property="og:description" content="{data['description']}">\n    <meta property="og:type" content="website">\n    <meta property="og:url" content="{data['canonical']}">\n'''
 
-              metadata = f'''\n    {marker}\n    <meta name="description" content="{data['description']}">\n    <link rel="canonical" href="{data['canonical']}">\n    <link rel="alternate" hreflang="en" href="{alternates['en']}">\n    <link rel="alternate" hreflang="hi" href="{alternates['hi']}">\n    <link rel="alternate" hreflang="mr" href="{alternates['mr']}">\n    <link rel="alternate" hreflang="x-default" href="{alternates['en']}">\n    <meta property="og:title" content="Sant Baba Moni Sahib Vriddhanand Ashram">\n    <meta property="og:description" content="{data['description']}">\n    <meta property="og:type" content="website">\n    <meta property="og:url" content="{data['canonical']}">\n'''
+                  needle = '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
+                  if needle not in text:
+                      raise SystemExit(f'Viewport meta tag not found in {filename}')
+                  text = text.replace(needle, needle + metadata, 1)
 
-              needle = '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
-              if needle not in text:
-                  raise SystemExit(f'Viewport meta tag not found in {filename}')
+              if schema_marker not in text:
+                  schema = {
+                      '@context': 'https://schema.org',
+                      '@type': 'Organization',
+                      'name': organization_name,
+                      'url': base,
+                      'description': data['description'],
+                      'telephone': ['+91 7745070544', '+91 9561836815'],
+                      'address': {
+                          '@type': 'PostalAddress',
+                          'streetAddress': 'Survey No.133/1, Gurudwara Road, Near Akurdi Station, Walhekarwadi',
+                          'addressLocality': 'Pune',
+                          'postalCode': '411033',
+                          'addressCountry': 'IN'
+                      },
+                      'sameAs': [base, base + 'hindi.html', base + 'marathi.html']
+                  }
 
-              text = text.replace(needle, needle + metadata, 1)
+                  schema_block = f'''\n    {schema_marker}\n    <script type="application/ld+json">\n{json.dumps(schema, ensure_ascii=False, indent=4)}\n    </script>\n'''
+                  text = text.replace('</head>', schema_block + '</head>', 1)
+
               path.write_text(text, encoding='utf-8')
           PY
 
@@ -77,6 +100,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No SEO changes needed.'
           else
-            git commit -m 'Add SEO metadata to multilingual pages'
+            git commit -m 'Add structured data to multilingual pages'
             git push
           fi
