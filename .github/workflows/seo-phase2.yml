@@ -92,6 +92,38 @@ jobs:
               path.write_text(text, encoding='utf-8')
           PY
 
+      - name: Fix footer donation buttons
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          for filename in ('index.html', 'hindi.html', 'marathi.html'):
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+
+              text = text.replace(
+                  '<a href="#" class="footer-btn">View Bank Details For Donation</a>',
+                  '<a href="javascript:void(0);" onclick="document.getElementById(\'donateModal\').style.display=\'flex\'" class="footer-btn">View Bank Details For Donation</a>'
+              )
+
+              pattern = re.compile(
+                  r'<a\s+href="javascript:void\(0\);"\s*\n?'
+                  r'\s*onclick="document\.getElementById\(\'donateModal\'\)\.style\.display=\'flex\'"\s*\n?'
+                  r'\s*class="footer-btn">\s*'
+                  r'View Bank Details For Donation\s*>\s*'
+                  r'</a>',
+                  re.MULTILINE
+              )
+              text = pattern.sub(
+                  '<a href="javascript:void(0);" onclick="document.getElementById(\'donateModal\').style.display=\'flex\'" class="footer-btn">\n                    View Bank Details For Donation\n                </a>',
+                  text,
+                  count=1
+              )
+
+              path.write_text(text, encoding='utf-8')
+          PY
+
       - name: Commit SEO changes
         run: |
           git config user.name 'github-actions[bot]'
@@ -100,6 +132,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No SEO changes needed.'
           else
-            git commit -m 'Add structured data to multilingual pages'
+            git commit -m 'Fix footer donation buttons'
             git push
           fi
