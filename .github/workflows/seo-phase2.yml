@@ -9,7 +9,6 @@ on:
       - 'hindi.html'
       - 'marathi.html'
       - '.github/workflows/seo-phase2.yml'
-      - '.github/workflows/phase1-footer-fix.yml'
 
 permissions:
   contents: write
@@ -93,40 +92,14 @@ jobs:
               path.write_text(text, encoding='utf-8')
           PY
 
-      - name: Fix footer donation button
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import re
-
-          path = Path('index.html')
-          text = path.read_text(encoding='utf-8')
-          pattern = re.compile(
-              r'<a(?=[^>]*class=["\'][^"\']*\bfooter-btn\b[^"\']*["\'])[^>]*>.*?View Bank Details For Donation\s*>?\s*</a>',
-              re.DOTALL | re.IGNORECASE,
-          )
-          replacement = '''<a href="javascript:void(0);"
-   onclick="document.getElementById('donateModal').style.display='flex'"
-   class="footer-btn">
-    View Bank Details For Donation
-</a>'''
-          text2, count = pattern.subn(replacement, text, count=1)
-          if count != 1:
-              raise SystemExit(f'Expected exactly one footer donation button, found {count}')
-          path.write_text(text2, encoding='utf-8')
-          PY
-
-      - name: Commit changes and remove temporary workflow
+      - name: Commit SEO changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html hindi.html marathi.html
-          if [ -f .github/workflows/phase1-footer-fix.yml ]; then
-            git rm .github/workflows/phase1-footer-fix.yml
-          fi
           if git diff --cached --quiet; then
-            echo 'No changes needed.'
+            echo 'No SEO changes needed.'
           else
-            git commit -m 'Fix footer donation button and clean temporary workflow'
+            git commit -m 'Add structured data to multilingual pages'
             git push
           fi
