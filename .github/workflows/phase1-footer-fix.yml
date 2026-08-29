@@ -1,0 +1,51 @@
+name: Temporary footer donation fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/phase1-footer-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-footer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix footer donation button
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          pattern = re.compile(
+              r'<a\\b(?=[^>]*class=["\'][^"\']*\\bfooter-btn\\b[^"\']*["\'])[^>]*>.*?View Bank Details For Donation\\s*>?\\s*</a>',
+              re.DOTALL | re.IGNORECASE,
+          )
+          replacement = '''<a href="javascript:void(0);"
+   onclick="document.getElementById('donateModal').style.display='flex'"
+   class="footer-btn">
+    View Bank Details For Donation
+</a>'''
+
+          text2, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected exactly one footer donation button, found {count}')
+          path.write_text(text2, encoding='utf-8')
+          PY
+
+      - name: Commit fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/phase1-footer-fix.yml
+          git commit -m "fix: connect footer donation button to donation popup"
+          git push
