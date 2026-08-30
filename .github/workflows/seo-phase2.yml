@@ -12,216 +12,30 @@ on:
       - '.github/workflows/seo-phase2.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  seo:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install shared register popup system
+      - name: Validate required site files
         run: |
-          cat > modal-system.js <<'EOF'
-          (function () {
-              'use strict';
-
-              function setupRegisterModal() {
-                  var modal = document.getElementById('registerModal');
-                  if (!modal || modal.dataset.modalSystemReady === 'true') return;
-
-                  modal.dataset.modalSystemReady = 'true';
-                  modal.setAttribute('role', 'dialog');
-                  modal.setAttribute('aria-modal', 'true');
-                  modal.setAttribute('aria-label', 'Register Loved Ones');
-
-                  Object.assign(modal.style, {
-                      display: modal.style.display || 'none',
-                      position: 'fixed',
-                      inset: '0',
-                      width: '100%',
-                      height: '100%',
-                      boxSizing: 'border-box',
-                      padding: '20px',
-                      backgroundColor: 'rgba(0,0,0,0.65)',
-                      zIndex: '2000',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      overflowY: 'auto'
-                  });
-
-                  var panel = modal.firstElementChild;
-                  if (panel) {
-                      panel.style.position = 'relative';
-                      panel.style.boxSizing = 'border-box';
-                      panel.style.width = 'min(680px, 100%)';
-                      panel.style.maxWidth = '680px';
-                      panel.style.maxHeight = 'calc(100vh - 40px)';
-                      panel.style.overflowY = 'auto';
-                      panel.style.backgroundColor = '#ffffff';
-                      panel.style.borderRadius = '12px';
-                      panel.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
-                      panel.style.padding = '28px';
-
-                      var closeButton = document.createElement('button');
-                      closeButton.type = 'button';
-                      closeButton.className = 'register-modal-close';
-                      closeButton.setAttribute('aria-label', 'Close registration form');
-                      closeButton.textContent = '×';
-                      Object.assign(closeButton.style, {
-                          position: 'absolute',
-                          top: '8px',
-                          right: '12px',
-                          width: '40px',
-                          height: '40px',
-                          border: '0',
-                          borderRadius: '50%',
-                          background: 'transparent',
-                          color: '#7a2014',
-                          fontSize: '32px',
-                          lineHeight: '40px',
-                          textAlign: 'center',
-                          cursor: 'pointer',
-                          zIndex: '2'
-                      });
-                      closeButton.addEventListener('click', closeModal);
-                      panel.insertBefore(closeButton, panel.firstChild);
-                  }
-
-                  modal.addEventListener('click', function (event) {
-                      if (event.target === modal) closeModal();
-                  });
-
-                  document.addEventListener('keydown', function (event) {
-                      if (event.key === 'Escape' && modal.style.display !== 'none') {
-                          closeModal();
-                      }
-                  });
-
-                  function closeModal() {
-                      modal.style.display = 'none';
-                      document.body.style.overflow = '';
-                  }
-              }
-
-              function init() {
-                  setupRegisterModal();
-                  var modal = document.getElementById('registerModal');
-                  if (!modal) return;
-
-                  var observer = new MutationObserver(function () {
-                      if (modal.style.display !== 'none') {
-                          document.body.style.overflow = 'hidden';
-                      } else {
-                          document.body.style.overflow = '';
-                      }
-                  });
-                  observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
-              }
-
-              if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', init);
-              } else {
-                  init();
-              }
-          }());
-          EOF
-
           python3 <<'PY'
           from pathlib import Path
 
-          script_tag = '<script src="modal-system.js"></script>'
+          required = ('index.html', 'hindi.html', 'marathi.html', 'modal-system.js')
+          for filename in required:
+              path = Path(filename)
+              if not path.is_file():
+                  raise SystemExit(f'Missing required file: {filename}')
+
           for filename in ('index.html', 'hindi.html', 'marathi.html'):
-              path = Path(filename)
-              text = path.read_text(encoding='utf-8')
-              if script_tag not in text:
-                  if '</body>' not in text:
-                      raise SystemExit(f'Closing body tag not found in {filename}')
-                  text = text.replace('</body>', f'    {script_tag}\n</body>', 1)
-                  path.write_text(text, encoding='utf-8')
+              text = Path(filename).read_text(encoding='utf-8')
+              if '<script src="modal-system.js"></script>' not in text:
+                  raise SystemExit(f'Shared modal system is not loaded by {filename}')
+
+          print('Site files and shared modal system references validated successfully.')
           PY
-
-      - name: Add SEO metadata and structured data
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import json
-
-          base = 'https://santmonibabasahibvriddhanandashram.org/'
-          organization_name = 'Sant Baba Moni Sahib Vriddhanand Ashram'
-
-          pages = {
-              'index.html': {
-                  'lang': 'en',
-                  'description': 'Sant Baba Moni Sahib Vriddhanand Ashram in Akurdi, Pune, serving elderly people and continuing daily Langar Seva with care and compassion.',
-                  'canonical': base,
-              },
-              'hindi.html': {
-                  'lang': 'hi',
-                  'description': 'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, अकरुडी, पुणे में बुजुर्गों की सेवा और दैनिक लंगर सेवा के लिए समर्पित आश्रम।',
-                  'canonical': base + 'hindi.html',
-              },
-              'marathi.html': {
-                  'lang': 'mr',
-                  'description': 'संत बाबा मोनी साहेब वृद्ध आनंद आश्रम, आकुर्डी, पुणे येथे ज्येष्ठ नागरिकांची सेवा आणि दैनंदिन लंगर सेवा सुरू ठेवणारा आश्रम.',
-                  'canonical': base + 'marathi.html',
-              },
-          }
-
-          alternates = {
-              'en': base,
-              'hi': base + 'hindi.html',
-              'mr': base + 'marathi.html',
-          }
-
-          metadata_marker = '<!-- PHASE 2 SEO METADATA -->'
-          schema_marker = '<!-- PHASE 3 STRUCTURED DATA -->'
-
-          for filename, data in pages.items():
-              path = Path(filename)
-              text = path.read_text(encoding='utf-8')
-
-              if metadata_marker not in text:
-                  metadata = f'''\n    {metadata_marker}\n    <meta name="description" content="{data['description']}">\n    <link rel="canonical" href="{data['canonical']}">\n    <link rel="alternate" hreflang="en" href="{alternates['en']}">\n    <link rel="alternate" hreflang="hi" href="{alternates['hi']}">\n    <link rel="alternate" hreflang="mr" href="{alternates['mr']}">\n    <link rel="alternate" hreflang="x-default" href="{alternates['en']}">\n    <meta property="og:title" content="{organization_name}">\n    <meta property="og:description" content="{data['description']}">\n    <meta property="og:type" content="website">\n    <meta property="og:url" content="{data['canonical']}">\n'''
-
-                  needle = '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
-                  if needle not in text:
-                      raise SystemExit(f'Viewport meta tag not found in {filename}')
-                  text = text.replace(needle, needle + metadata, 1)
-
-              if schema_marker not in text:
-                  schema = {
-                      '@context': 'https://schema.org',
-                      '@type': 'Organization',
-                      'name': organization_name,
-                      'url': base,
-                      'description': data['description'],
-                      'telephone': ['+91 7745070544', '+91 9561836815'],
-                      'address': {
-                          '@type': 'PostalAddress',
-                          'streetAddress': 'Survey No.133/1, Gurudwara Road, Near Akurdi Station, Walhekarwadi',
-                          'addressLocality': 'Pune',
-                          'postalCode': '411033',
-                          'addressCountry': 'IN'
-                      },
-                      'sameAs': [base, base + 'hindi.html', base + 'marathi.html']
-                  }
-
-                  schema_block = f'''\n    {schema_marker}\n    <script type="application/ld+json">\n{json.dumps(schema, ensure_ascii=False, indent=4)}\n    </script>\n'''
-                  text = text.replace('</head>', schema_block + '</head>', 1)
-
-              path.write_text(text, encoding='utf-8')
-          PY
-
-      - name: Commit changes
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html hindi.html marathi.html modal-system.js
-          if git diff --cached --quiet; then
-            echo 'No changes needed.'
-          else
-            git commit -m 'fix: register popup'
-            git push
-          fi
