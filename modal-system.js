@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    function setupModal(modalId, ariaLabel, closeLabel, closeClass) {
-        var modal = document.getElementById(modalId);
-        if (!modal || modal.dataset.modalSystemReady === 'true') return null;
+    function setupRegisterModal() {
+        var modal = document.getElementById('registerModal');
+        if (!modal || modal.dataset.modalSystemReady === 'true') return;
 
         modal.dataset.modalSystemReady = 'true';
         modal.setAttribute('role', 'dialog');
         modal.setAttribute('aria-modal', 'true');
-        modal.setAttribute('aria-label', ariaLabel);
+        modal.setAttribute('aria-label', 'Register Loved Ones');
 
         Object.assign(modal.style, {
             display: modal.style.display || 'none',
@@ -27,23 +27,21 @@
 
         var panel = modal.firstElementChild;
         if (panel) {
-            Object.assign(panel.style, {
-                position: 'relative',
-                boxSizing: 'border-box',
-                width: 'min(680px, 100%)',
-                maxWidth: '680px',
-                maxHeight: 'calc(100vh - 40px)',
-                overflowY: 'auto',
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                boxShadow: '0 12px 35px rgba(0,0,0,0.3)',
-                padding: '28px'
-            });
+            panel.style.position = 'relative';
+            panel.style.boxSizing = 'border-box';
+            panel.style.width = 'min(680px, 100%)';
+            panel.style.maxWidth = '680px';
+            panel.style.maxHeight = 'calc(100vh - 40px)';
+            panel.style.overflowY = 'auto';
+            panel.style.backgroundColor = '#ffffff';
+            panel.style.borderRadius = '12px';
+            panel.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
+            panel.style.padding = '28px';
 
             var closeButton = document.createElement('button');
             closeButton.type = 'button';
-            closeButton.className = closeClass;
-            closeButton.setAttribute('aria-label', closeLabel);
+            closeButton.className = 'register-modal-close';
+            closeButton.setAttribute('aria-label', 'Close registration form');
             closeButton.textContent = '×';
             Object.assign(closeButton.style, {
                 position: 'absolute',
@@ -69,41 +67,31 @@
             if (event.target === modal) closeModal();
         });
 
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && modal.style.display !== 'none') {
+                closeModal();
+            }
+        });
+
         function closeModal() {
             modal.style.display = 'none';
-            updateBodyScroll();
+            document.body.style.overflow = '';
         }
-
-        return {
-            modal: modal,
-            close: closeModal
-        };
-    }
-
-    var modalInstances = [];
-
-    function updateBodyScroll() {
-        var anyOpen = modalInstances.some(function (instance) {
-            return instance && instance.modal && instance.modal.style.display !== 'none';
-        });
-        document.body.style.overflow = anyOpen ? 'hidden' : '';
     }
 
     function init() {
-        modalInstances = [
-            setupModal('registerModal', 'Register Loved Ones', 'Close registration form', 'register-modal-close'),
-            setupModal('volunteerModal', 'Volunteer', 'Close volunteer form', 'volunteer-modal-close')
-        ].filter(Boolean);
+        setupRegisterModal();
+        var modal = document.getElementById('registerModal');
+        if (!modal) return;
 
-        modalInstances.forEach(function (instance) {
-            var observer = new MutationObserver(updateBodyScroll);
-            observer.observe(instance.modal, {
-                attributes: true,
-                attributeFilter: ['style']
-            });
+        var observer = new MutationObserver(function () {
+            if (modal.style.display !== 'none') {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
-
-        updateBodyScroll();
+        observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
     }
 
     if (document.readyState === 'loading') {
@@ -111,14 +99,4 @@
     } else {
         init();
     }
-
-    document.addEventListener('keydown', function (event) {
-        if (event.key !== 'Escape') return;
-
-        var openModal = modalInstances.find(function (instance) {
-            return instance && instance.modal && instance.modal.style.display !== 'none';
-        });
-
-        if (openModal) openModal.close();
-    });
 }());
