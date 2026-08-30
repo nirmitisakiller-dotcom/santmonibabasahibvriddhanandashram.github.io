@@ -122,6 +122,24 @@
         return { modal: modal, close: closeModal };
     }
 
+    function addDonationQr(modal) {
+        if (!modal || modal.dataset.donationQrAdded === 'true') return;
+
+        var panel = modal.firstElementChild;
+        if (!panel) return;
+
+        var qrSection = document.createElement('div');
+        qrSection.style.cssText = 'text-align:center;margin-top:20px;padding:18px;background:#fff9f2;border:2px solid #ffdec2;border-radius:10px;';
+        qrSection.innerHTML = `
+            <h3 style="margin:0 0 12px;color:#7a2014;">Scan to Donate</h3>
+            <img src="IMG-20260828-WA0003.jpg" alt="Donation QR Code" style="display:block;width:min(320px,100%);height:auto;margin:0 auto;border-radius:8px;">
+            <p style="margin:12px 0 0;color:#555;font-weight:bold;">Scan this QR code to make a donation.</p>
+        `;
+
+        panel.appendChild(qrSection);
+        modal.dataset.donationQrAdded = 'true';
+    }
+
     var modalInstances = [];
 
     function updateBodyScroll() {
@@ -142,6 +160,10 @@
         ].filter(Boolean);
 
         modalInstances.forEach(function (instance) {
+            if (instance.modal.id === 'donateModal' || instance.modal.id === 'donationModal') {
+                addDonationQr(instance.modal);
+            }
+
             var observer = new MutationObserver(updateBodyScroll);
             observer.observe(instance.modal, {
                 attributes: true,
