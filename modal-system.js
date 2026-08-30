@@ -136,7 +136,9 @@
 
         modalInstances = [
             setupModal('registerModal', 'Register Loved Ones', 'Close registration form', 'register-modal-close'),
-            setupModal('volunteerModal', 'Volunteer', 'Close volunteer form', 'volunteer-modal-close')
+            setupModal('volunteerModal', 'Volunteer', 'Close volunteer form', 'volunteer-modal-close'),
+            setupModal('donateModal', 'Donation Details', 'Close donation details', 'donation-modal-close'),
+            setupModal('donationModal', 'Donation Details', 'Close donation details', 'donation-modal-close')
         ].filter(Boolean);
 
         modalInstances.forEach(function (instance) {
