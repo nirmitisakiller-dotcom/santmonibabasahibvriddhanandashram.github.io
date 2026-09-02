@@ -161,6 +161,13 @@
     function init() {
         ensureModals();
 
+        // Remove duplicate static Volunteer modal blocks. Keep the first OG block,
+        // which prevents duplicate close (×) controls without changing its form.
+        var volunteerModals = document.querySelectorAll('#volunteerModal');
+        for (var i = 1; i < volunteerModals.length; i++) {
+            volunteerModals[i].remove();
+        }
+
         // The static Register Loved Ones form in index.html is the original/OG form.
         // Do NOT restyle it or intercept its native Formspree submission.
         var registerModal = getModal('registerModal');
