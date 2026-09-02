@@ -42,7 +42,7 @@ jobs:
           print('Site files and shared modal system references validated successfully.')
           PY
 
-      - name: Restore OG Register Loved Ones modal
+      - name: Restore OG Register Loved Ones and Volunteer modals
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -75,32 +75,37 @@ jobs:
               text=True,
           )
 
-          _, _, old_block = extract_div(old, '<div id="registerModal"')
-          cur_start, cur_end, _ = extract_div(current, '<div id="registerModal"')
-          updated = current[:cur_start] + old_block + current[cur_end:]
+          updated = current
+
+          _, _, old_register = extract_div(old, '<div id="registerModal"')
+          cur_start, cur_end, _ = extract_div(updated, '<div id="registerModal"')
+          updated = updated[:cur_start] + old_register + updated[cur_end:]
+
+          _, _, old_volunteer = extract_div(old, '<div id="volunteerModal"')
+          cur_start, cur_end, _ = extract_div(updated, '<div id="volunteerModal"')
+          updated = updated[:cur_start] + old_volunteer + updated[cur_end:]
 
           old_handler = 'onclick="document.getElementById(\'registerModal\').style.display=\'flex\'"'
           new_handler = ('onclick="var m=document.getElementById(\'registerModal\');'
                          'if(m){m.style.setProperty(\'display\',\'flex\',\'important\');'
                          'm.style.setProperty(\'visibility\',\'visible\',\'important\');'
                          'm.style.setProperty(\'opacity\',\'1\',\'important\');} return false;"')
-          if old_handler not in updated:
-              raise SystemExit('Register Loved Ones navigation handler not found')
-          updated = updated.replace(old_handler, new_handler, 1)
+          if old_handler in updated:
+              updated = updated.replace(old_handler, new_handler, 1)
 
           if updated != current:
               current_path.write_text(updated, encoding='utf-8')
-              print('OG Register Loved Ones modal restored and click handler hardened.')
+              print('Exact OG Register Loved Ones and Volunteer modals restored from historical working commit.')
           else:
-              print('Register modal already matches the restored implementation.')
+              print('OG Register Loved Ones and Volunteer modals already match the historical implementation.')
           PY
 
           if git diff --quiet -- index.html; then
-            echo 'No registration changes needed.'
+            echo 'No modal restoration changes needed.'
           else
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add index.html
-            git commit -m 'fix: restore OG Register Loved Ones modal'
+            git commit -m 'fix: restore OG Volunteer Registration Form'
             git push
           fi
