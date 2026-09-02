@@ -55,17 +55,21 @@
                 padding: '28px'
             });
 
-            var close = document.createElement('button');
-            close.type = 'button';
-            close.textContent = '×';
-            close.setAttribute('aria-label', 'Close');
-            Object.assign(close.style, {
-                position: 'absolute', top: '8px', right: '12px', width: '40px', height: '40px',
-                border: '0', borderRadius: '50%', background: 'transparent', color: '#7a2014',
-                fontSize: '32px', lineHeight: '40px', cursor: 'pointer', zIndex: '2'
-            });
-            close.addEventListener('click', function () { closeSiteModal(modal.id); });
-            panel.insertBefore(close, panel.firstChild);
+            // The historical/OG Volunteer form already has its own close (×) control.
+            // Do not add a second one on that modal.
+            if (modal.id !== 'volunteerModal') {
+                var close = document.createElement('button');
+                close.type = 'button';
+                close.textContent = '×';
+                close.setAttribute('aria-label', 'Close');
+                Object.assign(close.style, {
+                    position: 'absolute', top: '8px', right: '12px', width: '40px', height: '40px',
+                    border: '0', borderRadius: '50%', background: 'transparent', color: '#7a2014',
+                    fontSize: '32px', lineHeight: '40px', cursor: 'pointer', zIndex: '2'
+                });
+                close.addEventListener('click', function () { closeSiteModal(modal.id); });
+                panel.insertBefore(close, panel.firstChild);
+            }
         }
 
         modal.addEventListener('click', function (event) {
