@@ -142,8 +142,6 @@
     }
 
     function installRegisterClickHandler() {
-        // Capture the click before the old inline onclick can run.
-        // This also works if the navigation link exists before this script initializes.
         document.addEventListener('click', function (event) {
             var target = event.target;
             var link = target && target.closest ? target.closest('a, button') : null;
@@ -158,7 +156,16 @@
 
     function init() {
         ensureModals();
-        styleModal(getModal('registerModal'), 'Register Loved Ones');
+
+        // The static Register Loved Ones form in index.html is the original/OG form.
+        // Do NOT restyle it or intercept its native Formspree submission.
+        var registerModal = getModal('registerModal');
+        if (registerModal) {
+            registerModal.setAttribute('role', 'dialog');
+            registerModal.setAttribute('aria-modal', 'true');
+            registerModal.setAttribute('aria-label', 'Register Loved Ones');
+        }
+
         styleModal(getModal('volunteerModal'), 'Volunteer');
         styleModal(getModal('donateModal'), 'Scan & Donate');
         styleModal(getModal('donationModal'), 'Scan & Donate');
@@ -166,7 +173,10 @@
         updateDonationModal('donateModal');
         updateDonationModal('donationModal');
 
-        attachForm(getModal('registerModal'));
+        // Only attach the helper handler to the dynamically-created fallback form.
+        if (registerModal && registerModal.dataset.generatedByModalSystem === 'true') {
+            attachForm(registerModal);
+        }
         attachForm(getModal('volunteerModal'));
         installRegisterClickHandler();
 
