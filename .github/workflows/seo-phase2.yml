@@ -77,13 +77,29 @@ jobs:
 
           updated = current
 
+          # Restore the historical Register Loved Ones modal by its stable element id.
           _, _, old_register = extract_div(old, '<div id="registerModal"')
           cur_start, cur_end, _ = extract_div(updated, '<div id="registerModal"')
           updated = updated[:cur_start] + old_register + updated[cur_end:]
 
-          _, _, old_volunteer = extract_div(old, '<div id="volunteerModal"')
-          cur_start, cur_end, _ = extract_div(updated, '<div id="volunteerModal"')
-          updated = updated[:cur_start] + old_volunteer + updated[cur_end:]
+          # Restore the historical Volunteer modal by its stable comment boundary.
+          volunteer_start = old.find('<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->')
+          volunteer_end = old.find('<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->')
+          if volunteer_start < 0 or volunteer_end < 0 or volunteer_end <= volunteer_start:
+              raise SystemExit('Could not find historical Volunteer modal boundaries')
+          old_volunteer = old[volunteer_start:volunteer_end]
+
+          current_start = updated.find('<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->')
+          current_end = updated.find('<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->')
+          if current_start >= 0 and current_end > current_start:
+              updated = updated[:current_start] + old_volunteer + updated[current_end:]
+          else:
+              anchor = updated.find('    <script>\n        function toggleAttachmentFields')
+              if anchor < 0:
+                  anchor = updated.find('</body>')
+              if anchor < 0:
+                  raise SystemExit('Could not find a safe insertion point for Volunteer modal')
+              updated = updated[:anchor] + old_volunteer + '\n' + updated[anchor:]
 
           old_handler = 'onclick="document.getElementById(\'registerModal\').style.display=\'flex\'"'
           new_handler = ('onclick="var m=document.getElementById(\'registerModal\');'
@@ -95,7 +111,7 @@ jobs:
 
           if updated != current:
               current_path.write_text(updated, encoding='utf-8')
-              print('Exact OG Register Loved Ones and Volunteer modals restored from historical working commit.')
+              print('Exact OG Register Loved Ones and Volunteer modals restored from the historical working commit.')
           else:
               print('OG Register Loved Ones and Volunteer modals already match the historical implementation.')
           PY
