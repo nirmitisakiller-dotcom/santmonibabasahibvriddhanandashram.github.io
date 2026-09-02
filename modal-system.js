@@ -12,31 +12,78 @@
     }
 
     function createVolunteerModalIfMissing() {
-        return createModal('volunteerModal', 'Become a Volunteer', `
-            <form>
-                <label><strong>Full Name</strong></label>
-                <input type="text" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-                <label><strong>Mobile Number</strong></label>
-                <input type="tel" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-                <label><strong>Purpose of Service</strong></label>
-                <select onchange="toggleAttachmentFields(this.value)" style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-                    <option value="">Select</option>
-                    <option value="Internship">Internship</option>
-                    <option value="General Help">General Help</option>
-                    <option value="Other">Other</option>
-                </select>
-                <div id="attachmentsBox" style="display:none;">
-                    <div id="appFormUpload" style="display:none;">
-                        <label><strong>Application Form</strong></label>
-                        <input type="file" id="appFileInput" style="width:100%;margin:8px 0 15px;">
+        return createModal('volunteerModal', 'Volunteer Registration Form', `
+            <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
+                <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Full Name:</label>
+                        <input type="text" name="volunteer_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
-                    <div id="aadhaarUpload" style="display:none;">
-                        <label><strong>Aadhaar Card</strong></label>
-                        <input type="file" id="aadhaarInput" style="width:100%;margin:8px 0 15px;">
+                    <div>
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Age:</label>
+                        <input type="number" name="volunteer_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                     </div>
                 </div>
-                <button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">Submit Application</button>
-                <button type="button" onclick="closeSiteModal('volunteerModal')" style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;">Close</button>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Current Occupation:</label>
+                    <select name="volunteer_occupation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Occupation --</option>
+                        <option value="High School Student">High School Student</option>
+                        <option value="College Student">College Student</option>
+                        <option value="Post-Graduation Student">Post-Graduation Student</option>
+                        <option value="Doing Job / Working Professional">Doing Job / Working Professional</option>
+                    </select>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">Operational Help Categories</h5>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 8px; color: #444444;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_medical" value="Yes"> Medical / Nursing Support</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_langar" value="Yes"> Langar Seva (Kitchen & Serving)</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_companionship" value="Yes"> Elders Companionship & Interaction</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_admin" value="Yes"> Administrative / IT Support</label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 4px;"><input type="checkbox" name="help_any_all" value="Yes"> All of the above / Any Option</label>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Purpose of Joining:</label>
+                    <select id="volunteerPurpose" name="volunteer_purpose" onchange="toggleAttachmentFields(this.value)" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Purpose --</option>
+                        <option value="General Help">General Help / Voluntary Service</option>
+                        <option value="Internship">Official Internship Program</option>
+                    </select>
+                </div>
+
+                <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                    <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">Required Document Uploads (PDF format)</h5>
+                    <div id="appFormUpload" style="margin-bottom: 10px; display: none;">
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">Upload Application Form (PDF):</label>
+                        <input type="file" id="appFileInput" name="attachment_application_form" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                    </div>
+                    <div id="aadhaarUpload" style="margin-bottom: 4px; display: none;">
+                        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">Upload Aadhaar Card (PDF):</label>
+                        <input type="file" id="aadhaarInput" name="attachment_aadhaar_card" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Availability Schedule:</label>
+                    <select name="volunteer_availability" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                        <option value="">-- Select Schedule --</option>
+                        <option value="Weekends Only (Sat / Sun)">Weekends Only (Sat / Sun)</option>
+                        <option value="Weekdays Only (Mon to Fri)">Weekdays Only (Mon to Fri)</option>
+                        <option value="Flexible / On-Call Support">Flexible / On-Call Support</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">Brief Message / Past Experience:</label>
+                    <textarea name="volunteer_experience_notes" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="Past work or remarks..."></textarea>
+                </div>
+
+                <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">Submit Application</button>
             </form>`);
     }
 
@@ -164,14 +211,13 @@
 
     window.closeSiteModal = closeSiteModal;
 
-    // Kept global because the existing volunteer form uses an inline onchange handler.
     window.toggleAttachmentFields = function (value) {
         var box = document.getElementById('attachmentsBox');
         var app = document.getElementById('appFormUpload');
         var aadhaar = document.getElementById('aadhaarUpload');
         if (!box) return;
 
-        var showAttachments = value === 'Internship' || value === 'Other';
+        var showAttachments = value === 'Internship';
         box.style.display = showAttachments ? 'block' : 'none';
         if (app) app.style.display = value === 'Internship' ? 'block' : 'none';
         if (aadhaar) aadhaar.style.display = showAttachments ? 'block' : 'none';
@@ -198,9 +244,6 @@
         createRegisterModalIfMissing();
         createDonationModalIfMissing();
 
-        // The English, Hindi, and Marathi pages already contain their own donation modal markup.
-        // Replace that content with the shared PhonePe QR donation design while preserving the
-        // shared modal system's close button, outside-click, and ESC behavior.
         updateExistingDonationModal('donateModal');
         updateExistingDonationModal('donationModal');
 
