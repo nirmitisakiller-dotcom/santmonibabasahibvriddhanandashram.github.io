@@ -82,17 +82,36 @@ jobs:
           cur_start, cur_end, _ = extract_div(updated, '<div id="registerModal"')
           updated = updated[:cur_start] + old_register + updated[cur_end:]
 
-          # Restore the historical Volunteer modal by its stable comment boundary.
+          # Restore exactly ONE historical Volunteer modal. Remove every existing
+          # Volunteer modal block first so repeated workflow runs can never create duplicates.
           volunteer_start = old.find('<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->')
           volunteer_end = old.find('<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->')
           if volunteer_start < 0 or volunteer_end < 0 or volunteer_end <= volunteer_start:
               raise SystemExit('Could not find historical Volunteer modal boundaries')
           old_volunteer = old[volunteer_start:volunteer_end]
 
-          current_start = updated.find('<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->')
-          current_end = updated.find('<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->')
-          if current_start >= 0 and current_end > current_start:
-              updated = updated[:current_start] + old_volunteer + updated[current_end:]
+          marker = '<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->'
+          inline_marker = '<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->'
+          first_volunteer = updated.find(marker)
+          if first_volunteer >= 0:
+              after_first = updated[first_volunteer:]
+              first_inline = after_first.find(inline_marker)
+              if first_inline < 0:
+                  raise SystemExit('Could not find Volunteer inline JavaScript boundary')
+              inline_position = first_volunteer + first_inline
+              # Everything from the first Volunteer marker through the inline JS boundary
+              # is the generated/static Volunteer modal area. Replace it with one OG block.
+              updated = updated[:first_volunteer] + old_volunteer + updated[inline_position:]
+
+              # Remove any additional Volunteer modal blocks that may follow the inline JS.
+              while True:
+                  extra_start = updated.find(marker, first_volunteer + len(old_volunteer))
+                  if extra_start < 0:
+                      break
+                  extra_inline = updated.find(inline_marker, extra_start)
+                  if extra_inline < 0:
+                      break
+                  updated = updated[:extra_start] + updated[extra_inline:]
           else:
               anchor = updated.find('    <script>\n        function toggleAttachmentFields')
               if anchor < 0:
@@ -111,9 +130,9 @@ jobs:
 
           if updated != current:
               current_path.write_text(updated, encoding='utf-8')
-              print('Exact OG Register Loved Ones and Volunteer modals restored from the historical working commit.')
+              print('Exact OG Register Loved Ones and exactly one OG Volunteer modal restored from the historical working commit.')
           else:
-              print('OG Register Loved Ones and Volunteer modals already match the historical implementation.')
+              print('OG Register Loved Ones and exactly one OG Volunteer modal already match the historical implementation.')
           PY
 
           if git diff --quiet -- index.html; then
@@ -122,6 +141,6 @@ jobs:
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add index.html
-            git commit -m 'fix: restore OG Volunteer Registration Form'
+            git commit -m 'fix: remove duplicate volunteer modal'
             git push
           fi
