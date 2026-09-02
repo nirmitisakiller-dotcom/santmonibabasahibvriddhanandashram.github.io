@@ -82,43 +82,53 @@ jobs:
           cur_start, cur_end, _ = extract_div(updated, '<div id="registerModal"')
           updated = updated[:cur_start] + old_register + updated[cur_end:]
 
-          # Restore exactly ONE historical Volunteer modal. Remove every existing
-          # Volunteer modal block first so repeated workflow runs can never create duplicates.
-          volunteer_start = old.find('<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->')
-          volunteer_end = old.find('<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->')
-          if volunteer_start < 0 or volunteer_end < 0 or volunteer_end <= volunteer_start:
-              raise SystemExit('Could not find historical Volunteer modal boundaries')
-          old_volunteer = old[volunteer_start:volunteer_end]
+          # Restore exactly ONE historical Volunteer modal. Work from the actual
+          # element id rather than relying on optional comments/inline-script markers.
+          _, _, old_volunteer_div = extract_div(old, '<div id="volunteerModal"')
+          volunteer_marker = '<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->'
+          first_volunteer_marker = updated.find(volunteer_marker)
+          first_volunteer_id = updated.find('<div id="volunteerModal"')
 
-          marker = '<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->'
-          inline_marker = '<!-- INLINE JAVASCRIPT LOGIC BLOCK FOR TOGGLING ATTACHMENTS -->'
-          first_volunteer = updated.find(marker)
-          if first_volunteer >= 0:
-              after_first = updated[first_volunteer:]
-              first_inline = after_first.find(inline_marker)
-              if first_inline < 0:
-                  raise SystemExit('Could not find Volunteer inline JavaScript boundary')
-              inline_position = first_volunteer + first_inline
-              # Everything from the first Volunteer marker through the inline JS boundary
-              # is the generated/static Volunteer modal area. Replace it with one OG block.
-              updated = updated[:first_volunteer] + old_volunteer + updated[inline_position:]
+          if first_volunteer_marker >= 0:
+              insertion_point = first_volunteer_marker
+          elif first_volunteer_id >= 0:
+              insertion_point = first_volunteer_id
+          else:
+              insertion_point = -1
 
-              # Remove any additional Volunteer modal blocks that may follow the inline JS.
+          if insertion_point >= 0:
+              # Remove every existing volunteer modal element, including duplicates.
               while True:
-                  extra_start = updated.find(marker, first_volunteer + len(old_volunteer))
-                  if extra_start < 0:
+                  pos = updated.find('<div id="volunteerModal"')
+                  if pos < 0:
                       break
-                  extra_inline = updated.find(inline_marker, extra_start)
-                  if extra_inline < 0:
-                      break
-                  updated = updated[:extra_start] + updated[extra_inline:]
+                  _, end, _ = extract_div(updated, '<div id="volunteerModal"')
+                  # Also remove the immediately preceding historical marker if present.
+                  marker_pos = updated.rfind(volunteer_marker, 0, pos + 1)
+                  if marker_pos >= 0 and pos - marker_pos < 200:
+                      pos = marker_pos
+                  updated = updated[:pos] + updated[end:]
+                  if pos < insertion_point:
+                      insertion_point -= (end - pos)
+
+              # Re-find a stable insertion point after duplicate removal.
+              anchor = updated.find('    <script>\n        function toggleAttachmentFields')
+              if anchor < 0:
+                  anchor = updated.find('</body>')
+              if anchor < 0:
+                  raise SystemExit('Could not find a safe insertion point for Volunteer modal')
+              updated = updated[:anchor] + volunteer_marker + '\n' + old_volunteer_div + '\n\n' + updated[anchor:]
           else:
               anchor = updated.find('    <script>\n        function toggleAttachmentFields')
               if anchor < 0:
                   anchor = updated.find('</body>')
               if anchor < 0:
                   raise SystemExit('Could not find a safe insertion point for Volunteer modal')
-              updated = updated[:anchor] + old_volunteer + '\n' + updated[anchor:]
+              updated = updated[:anchor] + volunteer_marker + '\n' + old_volunteer_div + '\n\n' + updated[anchor:]
+
+          # Make sure the Volunteer modal exists exactly once after the repair.
+          if updated.count('<div id="volunteerModal"') != 1:
+              raise SystemExit('Volunteer modal repair did not leave exactly one volunteerModal element')
 
           old_handler = 'onclick="document.getElementById(\'registerModal\').style.display=\'flex\'"'
           new_handler = ('onclick="var m=document.getElementById(\'registerModal\');'
