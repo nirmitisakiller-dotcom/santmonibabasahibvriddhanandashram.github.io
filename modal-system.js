@@ -54,17 +54,28 @@
             </form>`);
     }
 
-    function createDonationModalIfMissing() {
-        return createModal('donateModal', 'Donation Details', `
+    function donationBodyHtml() {
+        return `
             <div style="text-align:center;">
-                <p style="color:#555;line-height:1.5;">Your support helps the Ashram continue its service to elderly people and daily Langar Seva.</p>
+                <p style="color:#555;line-height:1.5;">Support Langar Seva &amp; Elderly Care</p>
                 <div style="text-align:center;margin-top:20px;padding:18px;background:#fff9f2;border:2px solid #ffdec2;border-radius:10px;">
-                    <h3 style="margin:0 0 12px;color:#7a2014;">Scan to Donate</h3>
-                    <img src="IMG-20260828-WA0003.jpg" alt="Donation QR Code" style="display:block;width:min(320px,100%);height:auto;margin:0 auto;border-radius:8px;">
-                    <p style="margin:12px 0 0;color:#555;font-weight:bold;">Scan this QR code to make a donation.</p>
+                    <h3 style="margin:0 0 12px;color:#7a2014;">Scan &amp; Donate</h3>
+                    <img src="IMG-20260828-WA0003.jpg" alt="PhonePe Donation QR Code" style="display:block;width:min(320px,100%);height:auto;margin:0 auto;border-radius:8px;">
                 </div>
-                <button type="button" onclick="closeSiteModal('donateModal')" style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:15px;">Close</button>
-            </div>`);
+                <button type="button" onclick="closeSiteModal('DONATION_MODAL_ID')" style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:15px;">Close</button>
+            </div>`;
+    }
+
+    function createDonationModalIfMissing() {
+        return createModal('donateModal', 'Scan & Donate', donationBodyHtml().replace('DONATION_MODAL_ID', 'donateModal'));
+    }
+
+    function updateExistingDonationModal(modalId) {
+        var modal = document.getElementById(modalId);
+        if (!modal) return;
+        var panel = modal.firstElementChild;
+        if (!panel) return;
+        panel.innerHTML = '<h2 style="color:#7a2014;text-align:center;margin-top:0;">Scan &amp; Donate</h2>' + donationBodyHtml().replace('DONATION_MODAL_ID', modalId);
     }
 
     function setupModal(modalId, ariaLabel, closeLabel, closeClass) {
@@ -187,11 +198,17 @@
         createRegisterModalIfMissing();
         createDonationModalIfMissing();
 
+        // The English, Hindi, and Marathi pages already contain their own donation modal markup.
+        // Replace that content with the shared PhonePe QR donation design while preserving the
+        // shared modal system's close button, outside-click, and ESC behavior.
+        updateExistingDonationModal('donateModal');
+        updateExistingDonationModal('donationModal');
+
         var instances = [
             setupModal('registerModal', 'Register Loved Ones', 'Close registration form', 'register-modal-close'),
             setupModal('volunteerModal', 'Volunteer', 'Close volunteer form', 'volunteer-modal-close'),
-            setupModal('donateModal', 'Donation Details', 'Close donation details', 'donation-modal-close'),
-            setupModal('donationModal', 'Donation Details', 'Close donation details', 'donation-modal-close')
+            setupModal('donateModal', 'Scan & Donate', 'Close donation details', 'donation-modal-close'),
+            setupModal('donationModal', 'Scan & Donate', 'Close donation details', 'donation-modal-close')
         ].filter(Boolean);
 
         instances.forEach(function (instance) {
