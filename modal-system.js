@@ -41,31 +41,17 @@
         modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-label', label);
         Object.assign(modal.style, {
-            position: 'fixed',
-            inset: '0',
-            width: '100%',
-            height: '100%',
-            boxSizing: 'border-box',
-            padding: '20px',
-            backgroundColor: 'rgba(0,0,0,0.65)',
-            zIndex: '2000',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflowY: 'auto'
+            position: 'fixed', inset: '0', width: '100%', height: '100%', boxSizing: 'border-box',
+            padding: '20px', backgroundColor: 'rgba(0,0,0,0.65)', zIndex: '99999',
+            alignItems: 'center', justifyContent: 'center', overflowY: 'auto'
         });
 
         var panel = modal.firstElementChild;
         if (panel) {
             Object.assign(panel.style, {
-                position: 'relative',
-                boxSizing: 'border-box',
-                width: 'min(680px, 100%)',
-                maxWidth: '680px',
-                maxHeight: 'calc(100vh - 40px)',
-                overflowY: 'auto',
-                backgroundColor: '#fff',
-                borderRadius: '12px',
-                boxShadow: '0 12px 35px rgba(0,0,0,0.3)',
+                position: 'relative', boxSizing: 'border-box', width: 'min(680px, 100%)',
+                maxWidth: '680px', maxHeight: 'calc(100vh - 40px)', overflowY: 'auto',
+                backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 12px 35px rgba(0,0,0,0.3)',
                 padding: '28px'
             });
 
@@ -96,14 +82,24 @@
         document.body.appendChild(modal);
     }
 
+    function ensureRegisterModal() {
+        if (getModal('registerModal')) return;
+        addSimpleModal('registerModal', 'Register Loved Ones',
+            '<form>' +
+            '<label><strong>Full Name</strong></label>' +
+            '<input type="text" name="full_name" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">' +
+            '<label><strong>Mobile Number</strong></label>' +
+            '<input type="tel" name="mobile" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">' +
+            '<label><strong>Details</strong></label>' +
+            '<textarea name="details" required rows="4" style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;resize:vertical;"></textarea>' +
+            '<button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">Submit Registration</button>' +
+            '</form>');
+        styleModal(getModal('registerModal'), 'Register Loved Ones');
+        attachForm(getModal('registerModal'));
+    }
+
     function ensureModals() {
-        if (!getModal('registerModal')) {
-            addSimpleModal('registerModal', 'Register Loved Ones',
-                '<form><label><strong>Full Name</strong></label><input type="text" name="full_name" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">' +
-                '<label><strong>Mobile Number</strong></label><input type="tel" name="mobile" required style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">' +
-                '<label><strong>Details</strong></label><textarea name="details" required rows="4" style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;resize:vertical;"></textarea>' +
-                '<button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">Submit Registration</button></form>');
-        }
+        ensureRegisterModal();
 
         if (!getModal('volunteerModal')) {
             addSimpleModal('volunteerModal', 'Volunteer Registration Form', '<p>Please fill in the volunteer application.</p>');
@@ -145,19 +141,19 @@
         });
     }
 
-    function fixRegisterButton() {
-        var links = document.querySelectorAll('a, button');
-        for (var i = 0; i < links.length; i++) {
-            var text = (links[i].textContent || '').trim();
-            if (text === 'Register Loved Ones') {
-                links[i].href = 'javascript:void(0);';
-                links[i].onclick = function (event) {
-                    if (event) event.preventDefault();
-                    openSiteModal('registerModal');
-                    return false;
-                };
-            }
-        }
+    function installRegisterClickHandler() {
+        // Capture the click before the old inline onclick can run.
+        // This also works if the navigation link exists before this script initializes.
+        document.addEventListener('click', function (event) {
+            var target = event.target;
+            var link = target && target.closest ? target.closest('a, button') : null;
+            if (!link) return;
+            if ((link.textContent || '').trim() !== 'Register Loved Ones') return;
+            event.preventDefault();
+            event.stopPropagation();
+            ensureRegisterModal();
+            openSiteModal('registerModal');
+        }, true);
     }
 
     function init() {
@@ -172,7 +168,7 @@
 
         attachForm(getModal('registerModal'));
         attachForm(getModal('volunteerModal'));
-        fixRegisterButton();
+        installRegisterClickHandler();
 
         if (getModal('registerModal')) getModal('registerModal').style.display = 'none';
         if (getModal('donateModal')) getModal('donateModal').style.display = 'none';
