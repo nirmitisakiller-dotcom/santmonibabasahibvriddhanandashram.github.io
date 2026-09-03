@@ -9,6 +9,7 @@ on:
       - 'hindi.html'
       - 'marathi.html'
       - 'modal-system.js'
+      - 'repair-marathi-modals.py'
       - '.github/workflows/seo-phase2.yml'
 
 permissions:
@@ -77,13 +78,10 @@ jobs:
 
           updated = current
 
-          # Restore the historical Register Loved Ones modal by its stable element id.
           _, _, old_register = extract_div(old, '<div id="registerModal"')
           cur_start, cur_end, _ = extract_div(updated, '<div id="registerModal"')
           updated = updated[:cur_start] + old_register + updated[cur_end:]
 
-          # Restore exactly ONE historical Volunteer modal. Work from the actual
-          # element id rather than relying on optional comments/inline-script markers.
           _, _, old_volunteer_div = extract_div(old, '<div id="volunteerModal"')
           volunteer_marker = '<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->'
           first_volunteer_marker = updated.find(volunteer_marker)
@@ -97,13 +95,11 @@ jobs:
               insertion_point = -1
 
           if insertion_point >= 0:
-              # Remove every existing volunteer modal element, including duplicates.
               while True:
                   pos = updated.find('<div id="volunteerModal"')
                   if pos < 0:
                       break
                   _, end, _ = extract_div(updated, '<div id="volunteerModal"')
-                  # Also remove the immediately preceding historical marker if present.
                   marker_pos = updated.rfind(volunteer_marker, 0, pos + 1)
                   if marker_pos >= 0 and pos - marker_pos < 200:
                       pos = marker_pos
@@ -111,7 +107,6 @@ jobs:
                   if pos < insertion_point:
                       insertion_point -= (end - pos)
 
-              # Re-find a stable insertion point after duplicate removal.
               anchor = updated.find('    <script>\n        function toggleAttachmentFields')
               if anchor < 0:
                   anchor = updated.find('</body>')
@@ -126,7 +121,6 @@ jobs:
                   raise SystemExit('Could not find a safe insertion point for Volunteer modal')
               updated = updated[:anchor] + volunteer_marker + '\n' + old_volunteer_div + '\n\n' + updated[anchor:]
 
-          # Make sure the Volunteer modal exists exactly once after the repair.
           if updated.count('<div id="volunteerModal"') != 1:
               raise SystemExit('Volunteer modal repair did not leave exactly one volunteerModal element')
 
@@ -152,5 +146,32 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add index.html
             git commit -m 'fix: remove duplicate volunteer modal'
+            git push
+          fi
+
+      - name: Restore Marathi OG modals
+        run: python3 repair-marathi-modals.py
+
+      - name: Verify Marathi modal counts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          text = Path('marathi.html').read_text(encoding='utf-8')
+          assert text.count('<div id="volunteerModal"') == 1
+          assert text.count('<div id="registerModal"') == 1
+          assert 'स्वयंसेवक व्हा' in text
+          assert 'आपल्या प्रिय व्यक्तीची नोंदणी करा' in text
+          print('Marathi modal verification passed.')
+          PY
+
+      - name: Commit Marathi repair
+        run: |
+          if git diff --quiet -- marathi.html; then
+            echo 'Marathi modals already repaired.'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add marathi.html
+            git commit -m 'fix: restore Marathi OG volunteer and register popups'
             git push
           fi
