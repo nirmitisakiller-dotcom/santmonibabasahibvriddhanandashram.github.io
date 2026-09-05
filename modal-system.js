@@ -266,7 +266,7 @@
         updateDonationModal('donateModal');
         updateDonationModal('donationModal');
 
-        if (registerModal && registerModal.dataset.generatedByModalSystem === 'true') attachForm(registerModal);
+        if (registerModal) attachForm(registerModal);
         attachForm(getModal('volunteerModal'));
         installRegisterClickHandler();
 
