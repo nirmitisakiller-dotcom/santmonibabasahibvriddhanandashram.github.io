@@ -763,56 +763,273 @@
 
 </div>
 
+<!-- DONATION POPUP -->
+<div id="donateModal" style="
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.65);
+    align-items: center;
+    justify-content: center;
+">
 
-<!-- Donation Modal -->
+    <div style="
+        background: #ffffff;
+        width: 90%;
+        max-width: 550px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 12px;
+        padding: 30px;
+        box-sizing: border-box;
+        border: 4px solid #FF9933;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        text-align: left;
+    ">
 
-<div id="donationModal"
-     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
-
-    <div style="background:white;padding:30px;border-radius:12px;width:90%;max-width:650px;max-height:90vh;overflow-y:auto;border:4px solid #FF9933;box-sizing:border-box;">
-
-        <h2 style="color:#7a2014;text-align:center;margin-top:0;">
+        <h2 style="
+            color: #7a2014;
+            text-align: center;
+            margin-top: 0;
+        ">
             🙏 आमच्या कार्याला सहकार्य करा
         </h2>
 
-        <p style="text-align:center;color:#555;font-size:1.05rem;line-height:1.6;">
+        <p style="
+            text-align: center;
+            color: #555;
+            line-height: 1.6;
+        ">
             आपले योगदान संत बाबा मोनी साहेब वृद्ध आनंद आश्रमातील
             ज्येष्ठ नागरिकांची सेवा आणि दैनंदिन लंगर सेवा सुरू ठेवण्यास मदत करते.
         </p>
 
-        <div style="background:#fff9f2;border:1px solid #ffdec2;border-radius:10px;padding:20px;margin-top:20px;">
+        <div style="
+            background: #fff9f2;
+            border: 1px solid #ffdec2;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        ">
 
-            <h3 style="color:#7a2014;text-align:center;margin-top:0;">
-                देणगीचे तपशील
+            <h3 style="
+                color: #7a2014;
+                margin-top: 0;
+                text-align: center;
+            ">
+                Donation Details
             </h3>
 
-            <p style="color:#444;line-height:1.6;">
-                <strong>संस्थेचे नाव:</strong><br>
-                SANT BABA MONI SAHEB VRIDDH ANAND ASHRAM
+            <p style="line-height: 1.7; color: #444;">
+                <strong>Organization:</strong><br>
+                Sant Baba Moni Saheb Vriddh Anand Ashram
             </p>
 
-            <p style="color:#444;line-height:1.6;">
-                <strong>बँक तपशील:</strong><br>
-                देणगीचे बँक तपशील येथे प्रदर्शित केले जातील.
+            <p style="line-height: 1.7; color: #444;">
+                <strong>Bank Details:</strong><br>
+                Donation details will be displayed here.
             </p>
 
-            <p style="text-align:center;color:#777;font-size:.95rem;">
-                कृपया देणगी करण्यापूर्वी आश्रमाशी संपर्क साधून
-                अधिकृत आणि पडताळलेली माहिती मिळवा.
+            <p style="
+                text-align: center;
+                color: #777;
+                font-size: 0.9rem;
+                margin-bottom: 0;
+            ">
+                Please contact the Ashram for verified donation information.
             </p>
 
         </div>
 
-        <button type="button"
-                onclick="document.getElementById('donationModal').style.display='none'"
-                style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;margin-top:20px;font-weight:bold;font-size:1rem;">
-            बंद करा
+        <button onclick="document.getElementById('donateModal').style.display='none'" 
+                style="
+                    width: 100%;
+                    margin-top: 20px;
+                    padding: 14px;
+                    background-color: #FF9933;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 1.1rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">
+            Close
         </button>
 
     </div>
-
 </div>
 
+<!-- POP-UP REGISTRATION FORM: OG STRUCTURE FROM index.html, ADAPTED TO MARATHI -->
+<div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+        <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+        <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">ज्येष्ठ नागरिक नोंदणी फॉर्म</h3>
+        <form action="https://formspree.io/f/mbdbkepd" method="POST">
+            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div style="margin: 0;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">ज्येष्ठ नागरिकाचे पूर्ण नाव:</label>
+                    <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+                <div style="margin: 0;">
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय:</label>
+                    <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+            </div>
+
+            <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">वैद्यकीय इतिहास / आरोग्यविषयक स्थिती</h5>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                    <div>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                            <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> उच्च रक्तदाब
+                        </label>
+                    </div>
+                    <div>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                            <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBox').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> मधुमेह (साखर)
+                        </label>
+                    </div>
+                    <div>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                            <input type="checkbox" name="condition_alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> अल्झायमर / स्मृतिभ्रंश
+                        </label>
+                    </div>
+                    <div>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                            <input type="checkbox" name="condition_schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> स्किझोफ्रेनिया
+                        </label>
+                    </div>
+                </div>
+
+                <div id="modalDbTypeBox" style="display: none; margin: 8px 0; padding-left: 15px;">
+                    <select name="diabetes_type" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; background: #fff;">
+                        <option value="Not Specified">-- मधुमेहाचा प्रकार निवडा --</option>
+                        <option value="Type 1">प्रकार 1 (इन्सुलिनवर अवलंबून)</option>
+                        <option value="Type 2">प्रकार 2 (इन्सुलिनवर अवलंबून नाही)</option>
+                        <option value="Pre-diabetic">प्री-डायबेटिक</option>
+                    </select>
+                </div>
+
+                <div style="margin-top: 6px;">
+                    <textarea name="other_medical_details" rows="2" style="width: 100%; padding: 8px; font-size: 0.85rem; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="इतर आजार, सुरू असलेली औषधे..."></textarea>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">पालक / संपर्क क्रमांक:</label>
+                <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+            </div>
+
+            <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">नोंदणी तपशील पाठवा</button>
+        </form>
+    </div>
+</div>
+
+<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
+<div id="volunteerModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+        <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+        <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">स्वयंसेवक नोंदणी फॉर्म</h3>
+        <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
+            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">पूर्ण नाव:</label>
+                    <input type="text" name="volunteer_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वय:</label>
+                    <input type="number" name="volunteer_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">सध्याचा व्यवसाय:</label>
+                <select name="volunteer_occupation" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                    <option value="">-- व्यवसाय निवडा --</option>
+                    <option value="High School Student">शाळेतील विद्यार्थी</option>
+                    <option value="College Student">महाविद्यालयीन विद्यार्थी</option>
+                    <option value="Post-Graduation Student">पदव्युत्तर शिक्षण घेणारा विद्यार्थी</option>
+                    <option value="Doing Job / Working Professional">नोकरी / कार्यरत व्यावसायिक</option>
+                </select>
+            </div>
+
+            <div style="background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">सेवेसाठी मदतीच्या प्रकार</h5>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 8px; color: #444444;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_medical" value="Yes"> वैद्यकीय / नर्सिंग सहाय्य</label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_langar" value="Yes"> लंगर सेवा (स्वयंपाकघर व वाटप)</label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_companionship" value="Yes"> ज्येष्ठ नागरिकांसोबत सहवास व संवाद</label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0;"><input type="checkbox" name="help_admin" value="Yes"> प्रशासकीय / IT सहाय्य</label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 0; font-weight: bold; color: #7a2014; border-top: 1px dashed #ffdec2; padding-top: 4px;"><input type="checkbox" name="help_any_all" value="Yes"> वरील सर्व / कोणताही पर्याय</label>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">सामील होण्याचा उद्देश:</label>
+                <select id="volunteerPurpose" name="volunteer_purpose" onchange="toggleAttachmentFields(this.value)" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                    <option value="">-- उद्देश निवडा --</option>
+                    <option value="General Help">सामान्य मदत / स्वयंसेवी सेवा</option>
+                    <option value="Internship">अधिकृत इंटर्नशिप कार्यक्रम</option>
+                </select>
+            </div>
+
+            <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">आवश्यक कागदपत्रे अपलोड (PDF स्वरूप)</h5>
+                <div id="appFormUpload" style="margin-bottom: 10px; display: none;">
+                    <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">अर्ज फॉर्म अपलोड करा (PDF):</label>
+                    <input type="file" id="appFileInput" name="attachment_application_form" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                </div>
+                <div id="aadhaarUpload" style="margin-bottom: 4px; display: none;">
+                    <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555555; font-weight: bold;">आधार कार्ड अपलोड करा (PDF):</label>
+                    <input type="file" id="aadhaarInput" name="attachment_aadhaar_card" accept=".pdf" style="font-size: 0.85rem; width: 100%;">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">उपलब्धतेचे वेळापत्रक:</label>
+                <select name="volunteer_availability" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff;" required>
+                    <option value="">-- वेळापत्रक निवडा --</option>
+                    <option value="Weekends Only (Sat / Sun)">फक्त शनिवार / रविवार</option>
+                    <option value="Weekdays Only (Mon to Fri)">फक्त सोमवार ते शुक्रवार</option>
+                    <option value="Flexible / On-Call Support">लवचिक / गरजेनुसार सेवा</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">थोडक्यात संदेश / पूर्वानुभव:</label>
+                <textarea name="volunteer_experience_notes" rows="2" style="width: 100%; padding: 10px; font-size: 0.9rem; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;" placeholder="पूर्वीचे काम किंवा सूचना..."></textarea>
+            </div>
+
+            <button type="submit" style="background-color: #FF9933; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%;">अर्ज पाठवा</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleAttachmentFields(purposeValue) {
+        var box = document.getElementById('attachmentsBox');
+        var appBox = document.getElementById('appFormUpload');
+        var appInput = document.getElementById('appFileInput');
+        var aadhaarBox = document.getElementById('aadhaarUpload');
+        var aadhaarInput = document.getElementById('aadhaarInput');
+
+        if (purposeValue === "Internship") {
+            box.style.display = "block"; appBox.style.display = "block"; appInput.required = true;
+            aadhaarBox.style.display = "block"; aadhaarInput.required = true;
+        } else if (purposeValue === "General Help") {
+            box.style.display = "block"; appBox.style.display = "none"; appInput.required = false;
+            aadhaarBox.style.display = "block"; aadhaarInput.required = true;
+        } else {
+            box.style.display = "none"; appBox.style.display = "none"; appInput.required = false;
+            aadhaarBox.style.display = "none"; aadhaarInput.required = false;
+        }
+    }
+</script>
 
 <footer class="ashram-footer">
 
@@ -910,44 +1127,6 @@
 
 <script>
 
-function toggleAttachmentFields(purposeValue) {
-
-    var box = document.getElementById('attachmentsBox');
-    var appBox = document.getElementById('appFormUpload');
-    var appInput = document.getElementById('appFileInput');
-    var aadhaarBox = document.getElementById('aadhaarUpload');
-    var aadhaarInput = document.getElementById('aadhaarInput');
-
-    if (purposeValue === "Internship") {
-
-        box.style.display = "block";
-        appBox.style.display = "block";
-        appInput.required = true;
-
-        aadhaarBox.style.display = "block";
-        aadhaarInput.required = true;
-
-    } else if (purposeValue === "General Help") {
-
-        box.style.display = "block";
-        appBox.style.display = "none";
-        appInput.required = false;
-
-        aadhaarBox.style.display = "block";
-        aadhaarInput.required = true;
-
-    } else {
-
-        box.style.display = "none";
-        appBox.style.display = "none";
-        appInput.required = false;
-
-        aadhaarBox.style.display = "none";
-        aadhaarInput.required = false;
-
-    }
-}
-
 window.onload = function() {
 
     if (!sessionStorage.getItem('languageSelected')) {
@@ -975,76 +1154,6 @@ function saveLanguageChoice() {
 </script>
 
     <script src="modal-system.js"></script>
-
-
-<!-- Registration Modal -->
-<div id="registerModal" style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
-    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;box-sizing:border-box;">
-        <span onclick="document.getElementById('registerModal').style.display='none'" style="position:absolute;right:15px;top:10px;font-size:28px;font-weight:bold;color:#777;cursor:pointer;line-height:1;">&times;</span>
-        <h3 style="margin:0 30px 18px 0;color:#7a2014;text-align:center;font-size:1.4rem;border-bottom:2px solid #FF9933;padding-bottom:8px;">आपल्या प्रिय व्यक्तीची नोंदणी करा</h3>
-        <form action="https://formspree.io/f/mbdbkepd" method="POST">
-            <label><strong>ज्येष्ठ नागरिकाचे नाव</strong></label>
-            <input type="text" name="resident_name" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                <div>
-                    <label><strong>वय</strong></label>
-                    <input type="number" name="age" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-                </div>
-                <div>
-                    <label><strong>लिंग</strong></label>
-                    <select name="gender" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-                        <option value="">निवडा</option>
-                        <option value="male">पुरुष</option>
-                        <option value="female">महिला</option>
-                        <option value="other">इतर</option>
-                    </select>
-                </div>
-            </div>
-            <label><strong>आपले नाव</strong></label>
-            <input type="text" name="contact_name" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <label><strong>मोबाईल क्रमांक</strong></label>
-            <input type="tel" name="mobile" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <label><strong>ई-मेल</strong></label>
-            <input type="email" name="email" style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <label><strong>पत्ता</strong></label>
-            <textarea name="address" rows="3" style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;"></textarea>
-            <label><strong>अतिरिक्त माहिती</strong></label>
-            <textarea name="message" rows="4" style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;"></textarea>
-            <button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;cursor:pointer;">नोंदणी अर्ज पाठवा</button>
-            <button type="button" onclick="document.getElementById('registerModal').style.display='none'" style="width:100%;padding:12px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;cursor:pointer;">बंद करा</button>
-        </form>
-    </div>
-</div>
-
-<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
-<div id="volunteerModal" style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
-    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;box-sizing:border-box;">
-        <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position:absolute;right:15px;top:10px;font-size:28px;font-weight:bold;color:#777;cursor:pointer;line-height:1;">&times;</span>
-        <h3 style="margin:0 30px 18px 0;color:#7a2014;text-align:center;font-size:1.4rem;border-bottom:2px solid #FF9933;padding-bottom:8px;">स्वयंसेवक व्हा</h3>
-        <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
-            <div style="display:grid;grid-template-columns:3fr 1fr;gap:12px;margin-bottom:12px;">
-                <div>
-                    <label><strong>नाव</strong></label>
-                    <input type="text" name="full_name" required style="width:100%;padding:12px;margin:8px 0 0;box-sizing:border-box;">
-                </div>
-                <div>
-                    <label><strong>वय</strong></label>
-                    <input type="number" name="age" required style="width:100%;padding:12px;margin:8px 0 0;box-sizing:border-box;">
-                </div>
-            </div>
-            <label><strong>मोबाईल क्रमांक</strong></label>
-            <input type="tel" name="mobile" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <label><strong>ई-मेल</strong></label>
-            <input type="email" name="email" style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;">
-            <label><strong>पत्ता</strong></label>
-            <textarea name="address" rows="3" style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;"></textarea>
-            <label><strong>आपण आश्रमासाठी कशाप्रकारे स्वयंसेवा करू इच्छिता?</strong></label>
-            <textarea name="message" rows="4" required style="width:100%;padding:12px;margin:8px 0 12px;box-sizing:border-box;"></textarea>
-            <button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;cursor:pointer;">स्वयंसेवक अर्ज पाठवा</button>
-            <button type="button" onclick="document.getElementById('volunteerModal').style.display='none'" style="width:100%;padding:12px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;cursor:pointer;">बंद करा</button>
-        </form>
-    </div>
-</div>
 
 </body>
 </html>
