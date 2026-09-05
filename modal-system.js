@@ -1,6 +1,19 @@
 (function () {
     'use strict';
 
+    var SUPABASE_URL = 'https://ugdscjxgbyvopjfqsuti.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_SjDafLyve7ipnvDg_nFB6A_WSYgga1H';
+    var supabasePromise = null;
+
+    function getSupabase() {
+        if (!supabasePromise) {
+            supabasePromise = import('https://esm.sh/@supabase/supabase-js@2').then(function (mod) {
+                return mod.createClient(SUPABASE_URL, SUPABASE_KEY);
+            });
+        }
+        return supabasePromise;
+    }
+
     function getModal(id) {
         return document.getElementById(id);
     }
@@ -55,8 +68,6 @@
                 padding: '28px'
             });
 
-            // The historical/OG Volunteer form already has its own close (×) control.
-            // Do not add a second one on that modal.
             if (modal.id !== 'volunteerModal') {
                 var close = document.createElement('button');
                 close.type = 'button';
@@ -98,17 +109,16 @@
             '<textarea name="details" required rows="4" style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;resize:vertical;"></textarea>' +
             '<button type="submit" style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">Submit Registration</button>' +
             '</form>');
+        getModal('registerModal').dataset.generatedByModalSystem = 'true';
         styleModal(getModal('registerModal'), 'Register Loved Ones');
         attachForm(getModal('registerModal'));
     }
 
     function ensureModals() {
         ensureRegisterModal();
-
         if (!getModal('volunteerModal')) {
             addSimpleModal('volunteerModal', 'Volunteer Registration Form', '<p>Please fill in the volunteer application.</p>');
         }
-
         if (!getModal('donateModal')) {
             addSimpleModal('donateModal', 'Scan & Donate', '');
         }
@@ -130,18 +140,96 @@
             '</div>';
     }
 
+    function addFormValue(data, key, value) {
+        if (key in data) {
+            if (!Array.isArray(data[key])) data[key] = [data[key]];
+            data[key].push(value);
+        } else {
+            data[key] = value;
+        }
+    }
+
+    function safeFileName(name) {
+        return String(name || 'file').replace(/[^a-zA-Z0-9._-]/g, '_').slice(-120);
+    }
+
+    async function submitToSupabase(form) {
+        var client = await getSupabase();
+        var formData = new FormData(form);
+        var data = {};
+        var files = [];
+
+        formData.forEach(function (value, key) {
+            if (value instanceof File) {
+                if (value.size > 0) files.push({ key: key, file: value });
+            } else {
+                addFormValue(data, key, value);
+            }
+        });
+
+        var filePaths = [];
+        for (var i = 0; i < files.length; i++) {
+            var item = files[i];
+            var path = 'volunteer/' + crypto.randomUUID() + '-' + safeFileName(item.file.name);
+            var upload = await client.storage.from('volunteer-files').upload(path, item.file, {
+                upsert: false,
+                contentType: item.file.type || 'application/octet-stream'
+            });
+            if (upload.error) throw upload.error;
+            filePaths.push(path);
+        }
+
+        var modal = form.closest('[id$="Modal"]');
+        var formType = modal && modal.id === 'volunteerModal' ? 'Volunteer' : 'Register Loved Ones';
+        var language = document.documentElement.lang || 'en';
+        var languageName = language === 'hi' ? 'Hindi' : (language === 'mr' ? 'Marathi' : 'English');
+        var payload = Object.assign({}, data, {
+            _language: languageName,
+            _file_paths: filePaths
+        });
+
+        var insert = await client.from('form_submissions').insert({
+            form_type: formType,
+            payload: payload,
+            submission_data: data
+        }).select('id').single();
+
+        if (insert.error) throw insert.error;
+        return insert.data;
+    }
+
     function attachForm(modal) {
         if (!modal || modal.dataset.formReady === 'true') return;
         var form = modal.querySelector('form');
         if (!form) return;
         modal.dataset.formReady = 'true';
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', async function (event) {
             event.preventDefault();
-            alert(modal.id === 'registerModal'
-                ? 'Thank you. Your registration form has been received.'
-                : 'Thank you for volunteering. Your application has been received.');
-            form.reset();
-            closeSiteModal(modal.id);
+            var button = form.querySelector('button[type="submit"], input[type="submit"]');
+            var oldText = button ? (button.textContent || button.value) : '';
+            if (button) {
+                button.disabled = true;
+                if ('value' in button && button.tagName === 'INPUT') button.value = 'Submitting...';
+                else button.textContent = 'Submitting...';
+            }
+            try {
+                await submitToSupabase(form);
+                alert(modal.id === 'registerModal'
+                    ? 'Thank you. Your registration form has been received.'
+                    : 'Thank you for volunteering. Your application has been received.');
+                form.reset();
+                if (modal.id === 'volunteerModal') window.toggleAttachmentFields('');
+                closeSiteModal(modal.id);
+            } catch (error) {
+                console.error('Supabase form submission failed:', error);
+                alert('Sorry, the form could not be submitted right now. Please try again.');
+            } finally {
+                if (button) {
+                    button.disabled = false;
+                    if ('value' in button && button.tagName === 'INPUT') button.value = oldText;
+                    else button.textContent = oldText;
+                }
+            }
         });
     }
 
@@ -161,15 +249,9 @@
     function init() {
         ensureModals();
 
-        // Remove duplicate static Volunteer modal blocks. Keep the first OG block,
-        // which prevents duplicate close (×) controls without changing its form.
         var volunteerModals = document.querySelectorAll('#volunteerModal');
-        for (var i = 1; i < volunteerModals.length; i++) {
-            volunteerModals[i].remove();
-        }
+        for (var i = 1; i < volunteerModals.length; i++) volunteerModals[i].remove();
 
-        // The static Register Loved Ones form in index.html is the original/OG form.
-        // Do NOT restyle it or intercept its native Formspree submission.
         var registerModal = getModal('registerModal');
         if (registerModal) {
             registerModal.setAttribute('role', 'dialog');
@@ -184,10 +266,7 @@
         updateDonationModal('donateModal');
         updateDonationModal('donationModal');
 
-        // Only attach the helper handler to the dynamically-created fallback form.
-        if (registerModal && registerModal.dataset.generatedByModalSystem === 'true') {
-            attachForm(registerModal);
-        }
+        if (registerModal && registerModal.dataset.generatedByModalSystem === 'true') attachForm(registerModal);
         attachForm(getModal('volunteerModal'));
         installRegisterClickHandler();
 
@@ -196,11 +275,8 @@
         if (getModal('donationModal')) getModal('donationModal').style.display = 'none';
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
 
     document.addEventListener('keydown', function (event) {
         if (event.key !== 'Escape') return;
