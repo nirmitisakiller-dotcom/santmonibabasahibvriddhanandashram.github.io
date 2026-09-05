@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="favicon.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="favicon.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.jpg">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1957361882441200"
         crossorigin="anonymous"></script>
@@ -24,8 +24,8 @@
 
     <title>संत बाबा मोनी साहेब वृद्ध आनंद आश्रम</title>
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg">
 
     <style>
         body {
@@ -664,109 +664,129 @@
 
 </div>
 
-<!-- Registration Modal -->
-<div id="registerModal"
-     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
-
-    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;max-height:90vh;overflow-y:auto;">
-
-        <h2 style="color:#7a2014;text-align:center;">
-            प्रियजन का पंजीकरण
-        </h2>
-
-        <form>
-
-            <label><strong>नाम</strong></label>
-            <input type="text" required
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-            <label><strong>आयु</strong></label>
-            <input type="number" required
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-            <label><strong>संपर्क नंबर</strong></label>
-            <input type="tel" required
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-            <label><strong>अतिरिक्त जानकारी</strong></label>
-            <textarea rows="5"
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;"></textarea>
-
-            <button type="submit"
-                style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">
-                पंजीकरण जमा करें
-            </button>
-
-            <button type="button"
-                onclick="document.getElementById('registerModal').style.display='none'"
-                style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;">
-                बंद करें
-            </button>
-
-        </form>
-    </div>
-</div>
-
-<!-- Volunteer Modal -->
-<div id="volunteerModal"
-     style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
-
-    <div style="background:white;padding:30px;border-radius:10px;width:90%;max-width:600px;">
-
-        <h2 style="color:#7a2014;text-align:center;">
-            स्वयंसेवक बनें
-        </h2>
-
-        <form>
-
-            <label><strong>पूरा नाम</strong></label>
-            <input type="text" required
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-            <label><strong>मोबाइल नंबर</strong></label>
-            <input type="tel" required
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-            <label><strong>सेवा का उद्देश्य</strong></label>
-            <select onchange="toggleAttachmentFields(this.value)"
-                style="width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;">
-
-                <option value="">चुनें</option>
-                <option value="Internship">इंटर्नशिप</option>
-                <option value="General Help">सामान्य सहायता</option>
-                <option value="Other">अन्य</option>
-            </select>
-
-            <div id="attachmentsBox" style="display:none;">
-
-                <div id="appFormUpload" style="display:none;">
-                    <label><strong>आवेदन पत्र</strong></label>
-                    <input type="file" id="appFileInput"
-                        style="width:100%;margin:8px 0 15px;">
+<!-- POP-UP REGISTRATION FORM -->
+<div id="registerModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 480px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+        <span onclick="document.getElementById('registerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+        <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">प्रियजन का पंजीकरण फॉर्म</h3>
+        <form action="https://formspree.io/f/mbdbkepd" method="POST">
+            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">नाम:</label>
+                    <input type="text" name="elder_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                 </div>
-
-                <div id="aadhaarUpload" style="display:none;">
-                    <label><strong>आधार कार्ड</strong></label>
-                    <input type="file" id="aadhaarInput"
-                        style="width:100%;margin:8px 0 15px;">
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आयु:</label>
+                    <input type="number" name="elder_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
                 </div>
-
             </div>
 
-            <button type="submit"
-                style="width:100%;padding:14px;background:#FF9933;color:white;border:0;border-radius:6px;font-weight:bold;">
-                आवेदन जमा करें
-            </button>
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 6px; font-weight: bold; color: #444444;">चिकित्सीय जानकारी (लागू विकल्प चुनें):</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                    <input type="checkbox" name="condition_bp" value="Yes" style="width: auto; transform: scale(1.1);"> रक्तचाप (BP)
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                    <input type="checkbox" name="condition_diabetes" value="Yes" onchange="document.getElementById('modalDbTypeBox').style.display = this.checked ? 'block' : 'none';" style="width: auto; transform: scale(1.1);"> मधुमेह (शुगर)
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                    <input type="checkbox" name="condition_alzheimers" value="Yes" style="width: auto; transform: scale(1.1);"> अल्जाइमर
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;">
+                    <input type="checkbox" name="condition_schizophrenia" value="Yes" style="width: auto; transform: scale(1.1);"> सिज़ोफ्रेनिया
+                </label>
+            </div>
 
-            <button type="button"
-                onclick="document.getElementById('volunteerModal').style.display='none'"
-                style="width:100%;padding:14px;background:#555;color:white;border:0;border-radius:6px;margin-top:10px;">
-                बंद करें
-            </button>
+            <div id="modalDbTypeBox" style="display: none; margin-bottom: 12px;">
+                <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">मधुमेह का प्रकार:</label>
+                <select name="diabetes_type" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    <option value="Not Specified">निर्दिष्ट नहीं</option>
+                    <option value="Type 1 (Insulin Dependent)">टाइप 1 (इंसुलिन निर्भर)</option>
+                    <option value="Type 2 (Non-Insulin Dependent)">टाइप 2 (गैर-इंसुलिन निर्भर)</option>
+                    <option value="Pre-diabetic">प्री-डायबिटिक</option>
+                </select>
+            </div>
 
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">अन्य चिकित्सीय जानकारी:</label>
+            <textarea name="other_medical_details" rows="3" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 12px;"></textarea>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">अभिभावक / संपर्क नंबर:</label>
+            <input type="tel" name="guardian_contact" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 15px;" required>
+
+            <button type="submit" style="width: 100%; padding: 12px; background: #FF9933; color: white; border: 0; border-radius: 6px; font-weight: bold; font-size: 1rem; cursor: pointer;">पंजीकरण जमा करें</button>
         </form>
     </div>
 </div>
+
+<!-- SECOND POP-UP MODAL: VOLUNTEER SIGN-UP FORM -->
+<div id="volunteerModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+    <div style="background-color: #fff9f2; border: 2px solid #ffdec2; border-radius: 12px; width: 100%; max-width: 500px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); position: relative; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+        <span onclick="document.getElementById('volunteerModal').style.display='none'" style="position: absolute; right: 15px; top: 10px; font-size: 1.6rem; font-weight: bold; color: #7a2014; cursor: pointer;">&times;</span>
+        <h3 style="margin: 0 0 15px 0; color: #7a2014; text-align: center; font-size: 1.4rem; border-bottom: 2px solid #FF9933; padding-bottom: 8px;">स्वयंसेवक पंजीकरण फॉर्म</h3>
+        <form action="https://formspree.io" method="POST" enctype="multipart/form-data">
+            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">पूरा नाम:</label>
+                    <input type="text" name="volunteer_name" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आयु:</label>
+                    <input type="number" name="volunteer_age" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" required>
+                </div>
+            </div>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">वर्तमान व्यवसाय:</label>
+            <select name="volunteer_occupation" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 12px;" required>
+                <option value="">-- व्यवसाय चुनें --</option>
+                <option value="High School Student">हाई स्कूल विद्यार्थी</option>
+                <option value="College Student">कॉलेज विद्यार्थी</option>
+                <option value="Post-Graduation Student">स्नातकोत्तर विद्यार्थी</option>
+                <option value="Doing Job / Working Professional">नौकरी / कार्यरत पेशेवर</option>
+            </select>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 6px; font-weight: bold; color: #444444;">सेवा सहायता की श्रेणियाँ:</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;"><input type="checkbox" name="help_medical" value="Yes" style="width: auto; transform: scale(1.1);"> चिकित्सा सहायता</label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;"><input type="checkbox" name="help_langar" value="Yes" style="width: auto; transform: scale(1.1);"> लंगर सेवा (रसोई व भोजन वितरण)</label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;"><input type="checkbox" name="help_companionship" value="Yes" style="width: auto; transform: scale(1.1);"> बुजुर्गों का साथ व संवाद</label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444;"><input type="checkbox" name="help_admin" value="Yes" style="width: auto; transform: scale(1.1);"> प्रशासनिक / IT सहायता</label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin: 0; color: #444444; grid-column: 1 / -1; border-top: 1px dashed #ffdec2; padding-top: 4px;"><input type="checkbox" name="help_any_all" value="Yes" style="width: auto; transform: scale(1.1);"> उपरोक्त सभी / कोई भी विकल्प</label>
+            </div>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">उद्देश्य:</label>
+            <select id="volunteerPurpose" name="volunteer_purpose" onchange="toggleAttachmentFields(this.value)" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 12px;" required>
+                <option value="">-- उद्देश्य चुनें --</option>
+                <option value="General Help">सामान्य सहायता</option>
+                <option value="Internship">इंटर्नशिप</option>
+            </select>
+
+            <div id="attachmentsBox" style="display: none; background: #ffffff; border: 1px solid #ffdec2; border-radius: 8px; padding: 12px; margin-bottom: 12px; box-sizing: border-box;">
+                <h5 style="margin: 0 0 10px 0; color: #7a2014; font-size: 0.95rem; border-bottom: 1px solid #ffdec2; padding-bottom: 4px;">आवश्यक दस्तावेज़ अपलोड (PDF प्रारूप)</h5>
+                <div id="appFormUpload" style="display: none; margin-bottom: 10px;">
+                    <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; font-weight: bold; color: #444444;">इंटर्नशिप आवेदन पत्र (PDF):</label>
+                    <input type="file" id="appFileInput" name="internship_application" accept="application/pdf" style="width: 100%; font-size: 0.85rem;" />
+                </div>
+                <div id="aadhaarUpload" style="display: none;">
+                    <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; font-weight: bold; color: #444444;">आधार कार्ड (PDF):</label>
+                    <input type="file" id="aadhaarInput" name="aadhaar_card" accept="application/pdf" style="width: 100%; font-size: 0.85rem;" />
+                </div>
+            </div>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">उपलब्धता:</label>
+            <select name="volunteer_availability" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 12px;" required>
+                <option value="Weekends Only (Sat / Sun)">केवल सप्ताहांत (शनिवार / रविवार)</option>
+                <option value="Weekdays Only (Mon to Fri)">केवल कार्यदिवस (सोमवार से शुक्रवार)</option>
+                <option value="Flexible / On-Call Support">लचीला समय / आवश्यकता पर सहायता</option>
+            </select>
+
+            <label style="display: block; font-size: 0.9rem; margin-bottom: 4px; font-weight: bold; color: #444444;">अनुभव / अतिरिक्त जानकारी:</label>
+            <textarea name="volunteer_experience_notes" rows="3" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; margin-bottom: 15px;"></textarea>
+
+            <button type="submit" style="width: 100%; padding: 12px; background: #FF9933; color: white; border: 0; border-radius: 6px; font-weight: bold; font-size: 1rem; cursor: pointer;">आवेदन जमा करें</button>
+        </form>
+    </div>
+</div>
+
 <!-- Donation Modal -->
 <div id="donationModal"
      style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;
