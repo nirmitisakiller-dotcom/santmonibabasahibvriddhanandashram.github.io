@@ -61,9 +61,11 @@
             .banner-side-box img, .banner-center-box img { max-width: 100%; }
             .nav-item { min-height: 52px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
             .main-content { width: calc(100% - 32px); box-sizing: border-box; margin: 16px auto; padding: 18px 14px; }
-            .main-content .main-content { width: 100%; margin: 0; padding: 0; border: 0; box-shadow: none; }
+            .main-content > section { box-sizing: border-box; max-width: 100%; }
             .form-section { width: 100%; padding: 18px 14px; }
             .form-group input, .form-group textarea, .submit-btn { font-size: 16px; }
+            .story-text { font-size: 0.95rem; line-height: 1.55; }
+            .story-title { font-size: 1.05rem; line-height: 1.4; }
             .story-content { padding: 14px; }
             #registerModal, #volunteerModal, #donateModal, #donationModal { padding: 12px !important; }
             #registerModal > div, #volunteerModal > div, #donateModal > div, #donationModal > div { width: 100% !important; max-width: 560px !important; max-height: calc(100vh - 24px) !important; padding: 18px !important; }
@@ -82,8 +84,9 @@
                 .banner-side-box { max-width: none; width: 34%; height: 72px; border-width: 2px; }
                 .banner-center-box { width: 32%; padding: 0 2px; }
                 .banner-center-box img { max-height: 72px; }
-                .main-content h2 { font-size: 1.45rem; line-height: 1.25; }
-                .ashram-story-container { grid-template-columns: 1fr; gap: 16px; padding: 4px 0; }
+                .main-content h2 { font-size: 1.45rem; line-height: 1.3; }
+                .main-content > section { margin-top: 22px !important; margin-bottom: 22px !important; padding: 18px 14px !important; }
+                .ashram-story-container { grid-template-columns: 1fr; gap: 16px; padding: 4px 0; margin: 24px 0; }
                 .story-image-wrapper { height: 190px; }
                 #registerModal form > div:first-child, #volunteerModal form > div:first-child { grid-template-columns: 1fr !important; gap: 10px !important; }
                 #registerModal .main-content, #volunteerModal .main-content { width: 100%; }
@@ -96,7 +99,10 @@
                 .banner-center-box img { max-height: 58px; }
                 .nav-item { font-size: 0.9rem; padding: 13px 5px; }
                 .main-content { width: calc(100% - 20px); padding: 16px 12px; }
+                .main-content > section { padding: 16px 12px !important; }
+                .main-content h2 { font-size: 1.3rem; }
                 .story-image-wrapper { height: 165px; }
+                .story-text { font-size: 0.92rem; }
             }
         `;
         document.head.appendChild(style);
