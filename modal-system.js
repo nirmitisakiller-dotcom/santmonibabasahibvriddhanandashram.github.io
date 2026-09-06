@@ -47,6 +47,61 @@
         if (aadhaar) aadhaar.style.display = show ? 'block' : 'none';
     };
 
+    function installIndexMobileOptimizations() {
+        if (document.documentElement.lang !== 'en' || !document.querySelector('.header-container')) return;
+        var style = document.createElement('style');
+        style.id = 'index-mobile-optimizations';
+        style.textContent = `
+            html { -webkit-text-size-adjust: 100%; }
+            body { overflow-x: hidden; }
+            img { max-width: 100%; }
+            .language-bar { padding: 10px 12px; line-height: 1.7; }
+            .language-bar a { margin: 0 6px; white-space: nowrap; }
+            .sacred-banner-container { gap: 10px; }
+            .banner-side-box img, .banner-center-box img { max-width: 100%; }
+            .nav-item { min-height: 52px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+            .main-content { width: calc(100% - 32px); box-sizing: border-box; margin: 16px auto; padding: 18px 14px; }
+            .main-content .main-content { width: 100%; margin: 0; padding: 0; border: 0; box-shadow: none; }
+            .form-section { width: 100%; padding: 18px 14px; }
+            .form-group input, .form-group textarea, .submit-btn { font-size: 16px; }
+            .story-content { padding: 14px; }
+            #registerModal, #volunteerModal, #donateModal, #donationModal { padding: 12px !important; }
+            #registerModal > div, #volunteerModal > div, #donateModal > div, #donationModal > div { width: 100% !important; max-width: 560px !important; max-height: calc(100vh - 24px) !important; padding: 18px !important; }
+            #registerModal input, #registerModal textarea, #registerModal select, #volunteerModal input, #volunteerModal textarea, #volunteerModal select { font-size: 16px !important; }
+            .ashram-footer { padding: 30px 16px 18px; }
+            .footer-grid { gap: 22px; }
+            .footer-contact p { overflow-wrap: anywhere; }
+            @media (max-width: 768px) {
+                .header-container { padding: 20px 14px; gap: 14px; }
+                .baba-image-box { width: 92px; height: 92px; }
+                .header-center-title h3 { font-size: 0.95rem; margin-bottom: 8px; }
+                .header-center-title h1 { font-size: clamp(1.45rem, 7vw, 2rem); line-height: 1.18; }
+                .nav-grid { grid-template-columns: 1fr 1fr; }
+                .nav-item { padding: 14px 8px; font-size: 0.98rem; border-bottom: 1px solid #444444; }
+                .sacred-banner-container { flex-direction: row; padding: 10px; gap: 7px; }
+                .banner-side-box { max-width: none; width: 34%; height: 72px; border-width: 2px; }
+                .banner-center-box { width: 32%; padding: 0 2px; }
+                .banner-center-box img { max-height: 72px; }
+                .main-content h2 { font-size: 1.45rem; line-height: 1.25; }
+                .ashram-story-container { grid-template-columns: 1fr; gap: 16px; padding: 4px 0; }
+                .story-image-wrapper { height: 190px; }
+                #registerModal form > div:first-child, #volunteerModal form > div:first-child { grid-template-columns: 1fr !important; gap: 10px !important; }
+                #registerModal .main-content, #volunteerModal .main-content { width: 100%; }
+            }
+            @media (max-width: 420px) {
+                .language-bar { font-size: 0.9rem; }
+                .language-bar a { margin: 0 3px; }
+                .sacred-banner-container { padding: 8px; }
+                .banner-side-box { height: 58px; }
+                .banner-center-box img { max-height: 58px; }
+                .nav-item { font-size: 0.9rem; padding: 13px 5px; }
+                .main-content { width: calc(100% - 20px); padding: 16px 12px; }
+                .story-image-wrapper { height: 165px; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     function styleModal(modal, label) {
         if (!modal || modal.dataset.modalSystemReady === 'true') return;
         modal.dataset.modalSystemReady = 'true';
@@ -247,6 +302,7 @@
     }
 
     function init() {
+        installIndexMobileOptimizations();
         ensureModals();
 
         var volunteerModals = document.querySelectorAll('#volunteerModal');
