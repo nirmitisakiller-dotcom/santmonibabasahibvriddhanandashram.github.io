@@ -192,7 +192,7 @@
             form_type: formType,
             payload: payload,
             submission_data: data
-        }).select('id').single();
+        });
 
         if (insert.error) throw insert.error;
         return insert.data;
