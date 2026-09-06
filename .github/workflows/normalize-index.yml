@@ -1,0 +1,51 @@
+name: Normalize English Homepage Structure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/normalize-index.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Normalize index.html wrappers
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''</div>\n</div>\n    <div class="main-content">\n          <div class="main-content">'''
+          new = '''</div>\n    <div class="main-content">'''
+          if old not in s:
+              raise SystemExit('Expected duplicate wrapper pattern was not found; no changes made.')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit normalized index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
+          git commit -m "Normalize English homepage structure"
+          git push
+
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          rm -f .github/workflows/normalize-index.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/normalize-index.yml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Remove temporary normalization workflow"
+          git push
