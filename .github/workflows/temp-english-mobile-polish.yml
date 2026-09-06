@@ -1,0 +1,48 @@
+name: Temporary English Mobile Polish
+
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-english-mobile-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Polish English mobile CSS
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('modal-system.js')
+          s = p.read_text(encoding='utf-8')
+          old = '''            .main-content { width: calc(100% - 32px); box-sizing: border-box; margin: 16px auto; padding: 18px 14px; }\n            .main-content .main-content { width: 100%; margin: 0; padding: 0; border: 0; box-shadow: none; }\n            .form-section { width: 100%; padding: 18px 14px; }\n            .form-group input, .form-group textarea, .submit-btn { font-size: 16px; }\n            .story-content { padding: 14px; }'''
+          new = '''            .main-content { width: calc(100% - 32px); box-sizing: border-box; margin: 16px auto; padding: 18px 14px; }\n            .main-content > section { box-sizing: border-box; max-width: 100%; }\n            .form-section { width: 100%; padding: 18px 14px; }\n            .form-group input, .form-group textarea, .submit-btn { font-size: 16px; }\n            .story-text { font-size: 0.95rem; line-height: 1.55; }\n            .story-title { font-size: 1.05rem; line-height: 1.4; }\n            .story-content { padding: 14px; }'''
+          if old not in s:
+              raise SystemExit('Expected English mobile CSS block not found')
+          s = s.replace(old, new, 1)
+          old2 = '''                .main-content h2 { font-size: 1.45rem; line-height: 1.25; }\n                .ashram-story-container { grid-template-columns: 1fr; gap: 16px; padding: 4px 0; }'''
+          new2 = '''                .main-content h2 { font-size: 1.45rem; line-height: 1.3; }\n                .main-content > section { margin-top: 22px !important; margin-bottom: 22px !important; padding: 18px 14px !important; }\n                .ashram-story-container { grid-template-columns: 1fr; gap: 16px; padding: 4px 0; margin: 24px 0; }'''
+          if old2 not in s:
+              raise SystemExit('Expected English tablet/mobile block not found')
+          s = s.replace(old2, new2, 1)
+          old3 = '''                .main-content { width: calc(100% - 20px); padding: 16px 12px; }\n                .story-image-wrapper { height: 165px; }'''
+          new3 = '''                .main-content { width: calc(100% - 20px); padding: 16px 12px; }\n                .main-content > section { padding: 16px 12px !important; }\n                .main-content h2 { font-size: 1.3rem; }\n                .story-image-wrapper { height: 165px; }\n                .story-text { font-size: 0.92rem; }'''
+          if old3 not in s:
+              raise SystemExit('Expected English small-phone block not found')
+          s = s.replace(old3, new3, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add modal-system.js .github/workflows/temp-english-mobile-polish.yml
+          git commit -m "Polish English homepage mobile layout"
+          git push
+          git rm .github/workflows/temp-english-mobile-polish.yml
+          git commit -m "Remove temporary mobile polish workflow"
+          git push
