@@ -1,0 +1,219 @@
+name: Apply Terms Page Update
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create terms page and update links
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+
+          terms = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms and Conditions for the Sant Baba Moni Sahib Vriddhanand Ashram website.">
+    <link rel="canonical" href="https://santmonibabasahibvriddhanandashram.org/terms.html">
+    <link rel="alternate" hreflang="en" href="https://santmonibabasahibvriddhanandashram.org/terms.html">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="favicon.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.jpg">
+    <title>Terms &amp; Conditions | Sant Baba Moni Sahib Vriddhanand Ashram</title>
+    <style>
+        body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#fdfbf7;color:#333333;line-height:1.7}
+        .language-bar{background-color:#fbeed5;text-align:center;padding:12px;font-weight:bold;border-bottom:1px solid #e3d3b0}
+        .language-bar a{margin:0 15px;color:#7a2014;text-decoration:none}
+        .language-bar a:hover{text-decoration:underline}
+        .header-container{display:flex;background-color:#FF9933;color:white;padding:25px 30px;align-items:center;border-bottom:4px solid #E67E22}
+        .baba-image-box{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:20px;overflow:hidden;background-color:#ffffff;box-shadow:0 4px 8px rgba(0,0,0,0.15)}
+        .baba-image-box img{width:100%;height:100%;object-fit:cover}
+        .header-center-title{flex:2;text-align:center}
+        .header-center-title h3{margin:0 0 10px 0;font-style:italic;color:#ffffff;font-weight:bold;font-size:1.1rem}
+        .header-center-title h1{margin:0;font-size:2.2rem}
+        .nav-grid{display:grid;grid-template-columns:repeat(4,1fr);background-color:#333333}
+        .nav-item{color:white;text-align:center;padding:18px;text-decoration:none;font-weight:bold;border-right:1px solid #444444;font-size:1.1rem}
+        .nav-item:hover{background-color:#FF9933}
+        .sacred-banner-container{display:flex;justify-content:space-between;align-items:center;background-color:#ffffff;padding:15px 30px;border-bottom:2px solid #fbeed5;gap:15px}
+        .banner-side-box{flex:1;max-width:40%;height:100px;border:3px solid #800080;border-radius:8px;overflow:hidden;background-color:#FFC000;display:flex;align-items:center;justify-content:center}
+        .banner-side-box img{width:100%;height:100%;object-fit:contain}
+        .banner-center-box{flex-shrink:0;text-align:center;padding:0 10px}
+        .banner-center-box img{max-height:100px;width:auto;height:auto;display:block}
+        .main-content{max-width:1000px;margin:30px auto;padding:30px;background:white;border:1px solid #e6dfd3;border-radius:8px;text-align:left;box-shadow:0 4px 10px rgba(0,0,0,0.02);box-sizing:border-box}
+        .main-content h2{text-align:center;color:#7a2014;border-bottom:2px solid #FF9933;padding-bottom:10px}
+        .main-content h3{color:#7a2014;margin-top:28px}
+        .ashram-footer{background-color:#333333;color:#ffffff;padding:40px 20px 20px;font-family:Arial,sans-serif;margin-top:50px;border-top:4px solid #FF9933}
+        .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:30px}
+        .footer-col h4{color:#FF9933;font-size:1.2rem;margin-top:0;margin-bottom:15px;border-bottom:2px solid #444444;padding-bottom:8px}
+        .footer-links a{display:block;color:#cccccc;text-decoration:none;margin-bottom:10px;font-size:.95rem}
+        .footer-links a:hover{color:#FF9933}
+        .footer-contact p{margin:0 0 10px;color:#cccccc;font-size:.9rem;line-height:1.5}
+        .footer-donate-box{background-color:#444444;padding:15px;border-radius:8px;border:1px dashed #FF9933}
+        .footer-btn{display:block;text-align:center;background-color:#E67E22;color:#ffffff;text-decoration:none;padding:10px;border-radius:5px;font-weight:bold;margin-top:10px;font-size:.95rem}
+        .footer-bottom{max-width:1100px;margin:30px auto 0;padding-top:15px;border-top:1px solid #444444;text-align:center;font-size:.85rem;color:#999999}
+        .footer-bottom a{color:#cccccc;text-decoration:none;margin-left:10px}
+        .footer-bottom a:hover{color:#FF9933}
+        @media(max-width:768px){.header-container{flex-direction:column;text-align:center;gap:20px}.baba-image-box{margin-right:0}.nav-grid{grid-template-columns:1fr}.sacred-banner-container{flex-direction:column;padding:15px}.banner-side-box{max-width:100%;width:100%;height:120px}.footer-grid{grid-template-columns:1fr;gap:25px}.main-content{margin:20px 15px;padding:20px}.header-center-title h1{font-size:1.8rem}}
+    </style>
+</head>
+<body>
+    <div class="language-bar">
+        Select Site Language:
+        <a href="index.html">English</a> |
+        <a href="hindi.html">हिंदी (Hindi)</a> |
+        <a href="marathi.html">मराठी (Marathi)</a>
+    </div>
+
+    <div class="sacred-banner-container">
+        <div class="banner-side-box"><img src="khanda-banner.jpg" alt="Khanda Symbol Left" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';"></div>
+        <div class="banner-center-box"><img src="ekonkar.jpg" alt="Ek Onkar"></div>
+        <div class="banner-side-box"><img src="khanda-banner.jpg" alt="Khanda Symbol Right" onerror="this.style.display='none'; this.parentNode.innerText='[Khanda Photo]';"></div>
+    </div>
+
+    <div class="header-container">
+        <div class="baba-image-box"><img src="baba.jpg" alt="Sant Moni Baba" onerror="this.style.display='none'; this.parentNode.innerText='Baba Photo';"></div>
+        <div class="header-center-title">
+            <h3>"Service to Humanity is Service to God"</h3>
+            <h1>Sant Baba Moni Sahib Vriddhanand Ashram</h1>
+        </div>
+    </div>
+
+    <div class="nav-grid">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="javascript:void(0);" onclick="document.getElementById('donateModal')?.style.setProperty('display','flex')" class="nav-item">Donate Us</a>
+        <a href="contact.html" class="nav-item">Contact Us</a>
+        <a href="index.html" class="nav-item">Back to Website</a>
+    </div>
+
+    <main class="main-content">
+        <h2>Terms &amp; Conditions</h2>
+        <p><strong>Last updated: September 7, 2026</strong></p>
+        <p>Welcome to the official website of Sant Baba Moni Sahib Vriddhanand Ashram. By accessing or using this website, you agree to the following Terms &amp; Conditions. If you do not agree with these terms, please do not use the website.</p>
+
+        <h3>1. Website Purpose</h3>
+        <p>This website provides information about the Ashram, its activities, services, Langar Seva, volunteering, registration of loved ones, donations, and ways to contact the organization.</p>
+
+        <h3>2. Website Content</h3>
+        <p>We make reasonable efforts to keep the information on this website useful and up to date. However, information may change without prior notice, and the website may contain errors or omissions. Website content is provided for general informational purposes.</p>
+
+        <h3>3. Donations</h3>
+        <p>Any donation made through or in connection with this website is intended to support the Ashram and its service activities. Donors should review the details shown at the time of donation and retain their transaction records. Donation processing may involve third-party payment or banking services and may be subject to their own terms.</p>
+
+        <h3>4. Forms and Information Submitted</h3>
+        <p>When you submit information through a website form, you agree to provide information that is accurate to the best of your knowledge and to use the forms only for their intended purpose. Do not submit unlawful, fraudulent, abusive, or misleading information.</p>
+
+        <h3>5. Intellectual Property</h3>
+        <p>Unless otherwise stated, website text, graphics, branding, photographs, and other original materials are intended for the Ashram's website and may not be copied, modified, reproduced, or commercially used without appropriate permission.</p>
+
+        <h3>6. External Links</h3>
+        <p>The website may contain links to external websites or services. These third-party websites are outside the Ashram's control, and their content, availability, privacy practices, and terms are governed by their respective operators.</p>
+
+        <h3>7. Privacy</h3>
+        <p>Your use of this website is also subject to the website's <a href="privacy-policy.html">Privacy Policy</a>. Please review it to understand how information submitted through the website may be handled.</p>
+
+        <h3>8. Limitation of Liability</h3>
+        <p>To the extent permitted by applicable law, the Ashram and its website operators will not be responsible for losses arising from reliance on website information, temporary unavailability of the website, third-party services, or events beyond reasonable control.</p>
+
+        <h3>9. Changes to These Terms</h3>
+        <p>These Terms &amp; Conditions may be updated from time to time. Any updated version will be published on this page with a revised date. Continued use of the website after an update constitutes acceptance of the revised terms.</p>
+
+        <h3>10. Contact</h3>
+        <p>If you have questions about these Terms &amp; Conditions, please use the <a href="contact.html">Contact Us</a> page.</p>
+    </main>
+
+    <footer class="ashram-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>About the Ashram</h4>
+                <p>Sant Baba Moni Sahib Vriddhanand Ashram</p>
+                <p>Akurdi, Pune, Maharashtra, India</p>
+            </div>
+            <div class="footer-col">
+                <h4>Service</h4>
+                <div class="footer-donate-box">
+                    <p style="margin:0;color:#cccccc;">Service to humanity is service to God.</p>
+                    <a href="index.html" class="footer-btn">Return to Website</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sant Baba Moni Saheb Vriddh Anand Ashram. All Rights Reserved. | Government Registered Organization.
+            <a href="terms.html">Terms &amp; Conditions</a>
+        </div>
+    </footer>
+</body>
+</html>
+'''
+          (root / 'terms.html').write_text(terms, encoding='utf-8')
+
+          footer_link = '<a href="terms.html">Terms &amp; Conditions</a>'
+          for filename in ('index.html', 'marathi.html', 'hindi.html'):
+              p = root / filename
+              text = p.read_text(encoding='utf-8')
+              if footer_link in text:
+                  continue
+              marker = '<div class="footer-bottom">'
+              if marker not in text:
+                  raise SystemExit(f'Footer marker not found in {filename}')
+              # Put the new link inside the existing footer-bottom without changing any other footer content.
+              text = text.replace(marker, marker + '\n            ' + footer_link, 1)
+              p.write_text(text, encoding='utf-8')
+
+          sitemap = root / 'sitemap.xml'
+          text = sitemap.read_text(encoding='utf-8')
+          terms_url = 'https://santmonibabasahibvriddhanandashram.org/terms.html'
+          if terms_url not in text:
+              disclaimer_url = 'https://santmonibabasahibvriddhanandashram.org/disclaimer.html'
+              needle = f'  <url>\n    <loc>{disclaimer_url}</loc>\n  </url>'
+              if needle in text:
+                  replacement = needle + f'\n  <url>\n    <loc>{terms_url}</loc>\n  </url>'
+                  text = text.replace(needle, replacement, 1)
+              else:
+                  text = text.replace('</urlset>', f'  <url>\n    <loc>{terms_url}</loc>\n  </url>\n</urlset>', 1)
+              sitemap.write_text(text, encoding='utf-8')
+
+          # Remove this temporary workflow so it does not remain in the website repository.
+          workflow = root / '.github/workflows/apply-terms-page.yml'
+          if workflow.exists():
+              workflow.unlink()
+
+      - name: Commit and push final website changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add terms.html index.html marathi.html hindi.html sitemap.xml .github/workflows/apply-terms-page.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "feat: add terms and conditions page"
+          git push origin HEAD:main
