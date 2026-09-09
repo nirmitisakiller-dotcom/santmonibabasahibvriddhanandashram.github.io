@@ -18,7 +18,6 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
@@ -71,3 +70,4 @@ jobs:
           git rm .github/workflows/fix-index-introduction.yml
           git commit -m "fix: repair English introduction text"
           git push
+          echo "Temporary repair workflow removed after successful fix."
