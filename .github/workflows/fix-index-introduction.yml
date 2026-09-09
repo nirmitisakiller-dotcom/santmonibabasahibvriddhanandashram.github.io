@@ -1,0 +1,54 @@
+name: Fix index introduction text
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Repair introduction paragraph artifact
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+          marker = "<!-- OFFICIAL HISTORICAL NARRATIVE AND VISION SECTION -->"
+          start = text.index(marker)
+          end = text.index("<!-- VERIFIED ABOUT & LANGAR INFORMATION -->", start)
+          section = text[start:end]
+
+          # Remove stray bracket artifacts only when they occur at the end of
+          # a paragraph in the Introduction section. Do not alter the actual prose.
+          cleaned = re.sub(r"[ \t]*(?:\[[A-Za-z0-9]+[\]}]|\[[A-Za-z0-9]+\])[ \t]*(?=</p>)", "", section)
+
+          if cleaned == section:
+              raise SystemExit("No stray bracket artifact found in the Introduction section; refusing to make an unnecessary change.")
+
+          text = text[:start] + cleaned + text[end:]
+          path.write_text(text, encoding="utf-8")
+
+          # Verify the repaired section no longer ends paragraphs with the artifact pattern.
+          repaired = text[start:end]
+          if re.search(r"\[[A-Za-z0-9]+[\]}][ \t]*</p>", repaired) or re.search(r"\[[A-Za-z0-9]+\][ \t]*</p>", repaired):
+              raise SystemExit("Verification failed: bracket artifact remains in the Introduction section.")
+
+      - name: Commit repair and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "fix: repair introduction paragraph text"
+          git rm .github/workflows/fix-index-introduction.yml
+          git commit -m "chore: remove temporary introduction fix workflow"
+          git push
