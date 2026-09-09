@@ -1,0 +1,52 @@
+name: Final site cleanup
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Clean final placeholders and map links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          files = [Path('index.html'), Path('hindi.html'), Path('marathi.html')]
+          maps = 'https://www.google.com/maps/search/?api=1&query=Sant+Baba+Moni+Sahib+Vriddhanand+Ashram%2C+Survey+No.133%2F1%2C+Gurudwara+Road%2C+Near+Akurdi+Station%2C+Walhekarwadi%2C+Pune+411033'
+          replacements = {
+              'href="https://google.com"': f'href="{maps}"',
+              'Donation details will be displayed here.': 'For donation information, please contact the Ashram using the details on our Contact Us page.',
+              'दान का बैंक विवरण यहाँ प्रदर्शित किया जाएगा।': 'दान संबंधी जानकारी के लिए कृपया Contact Us पेज पर दिए गए आश्रम के संपर्क विवरण का उपयोग करें।',
+          }
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements.items():
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html hindi.html marathi.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: remove final placeholders and fix map links'
+          git push
+
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git rm -f .github/workflows/final-site-cleanup.yml || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: remove temporary cleanup workflow' || true
+          git push || true
