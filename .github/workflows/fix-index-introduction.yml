@@ -27,8 +27,6 @@ jobs:
           end = text.index("<!-- VERIFIED ABOUT & LANGAR INFORMATION -->", start)
           section = text[start:end]
 
-          # Remove stray bracket artifacts only when they occur at the end of
-          # a paragraph in the Introduction section. Do not alter the actual prose.
           cleaned = re.sub(r"[ \t]*(?:\[[A-Za-z0-9]+[\]}]|\[[A-Za-z0-9]+\])[ \t]*(?=</p>)", "", section)
 
           if cleaned == section:
@@ -37,7 +35,6 @@ jobs:
           text = text[:start] + cleaned + text[end:]
           path.write_text(text, encoding="utf-8")
 
-          # Verify the repaired section no longer ends paragraphs with the artifact pattern.
           repaired = text[start:end]
           if re.search(r"\[[A-Za-z0-9]+[\]}][ \t]*</p>", repaired) or re.search(r"\[[A-Za-z0-9]+\][ \t]*</p>", repaired):
               raise SystemExit("Verification failed: bracket artifact remains in the Introduction section.")
